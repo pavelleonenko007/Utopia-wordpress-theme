@@ -34,7 +34,6 @@ get_header(
 												)
 											);
 											?>
-											<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide"> -->
 										</a>
 										<div class="text-block-3"><?php the_field( 'role' ); ?></div>
 									</div>
