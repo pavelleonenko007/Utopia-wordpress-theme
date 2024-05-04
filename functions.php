@@ -590,7 +590,7 @@ function utopia_register_post_types(): void {
 			'hierarchical'  => false,
 			'supports'      => array( 'title', 'editor', 'thumbnail' ), // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
 			'taxonomies'    => array(),
-			'has_archive'   => false,
+			'has_archive'   => true,
 			'rewrite'       => array(
 				'slug' => 'utopians',
 			),
