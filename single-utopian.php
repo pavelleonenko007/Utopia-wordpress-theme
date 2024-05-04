@@ -13,37 +13,46 @@ get_header(
 		'barba-container-extra-classes' => 'inner-page',
 	)
 );
+
+the_post();
 ?>
 				<div class="usual-page">
 					<div class="article-page">
 						<div class="top-line-article">
-							<a href="/utopians" class="gery-link art-p w-inline-block">
+							<a href="<?php echo esc_url( get_post_type_archive_link( 'utopian' ) ); ?>" class="gery-link art-p w-inline-block">
 								<div class="text-block">all utopians</div>
 							</a>
 						</div>
 						<div class="article-midle">
 							<div class="vert art-vert">
-								<h1 class="h1-single art-h">Jeanine De Bique</h1>
-								<div class="p-24-120 uto-t">Soprano</div>
-								<div class="p-24-120 grey uto-t">Salzburg Festival 2023, Purcell: The Indian Queen — Peter Sellars' New Version</div>
+								<h1 class="h1-single art-h"><?php the_title(); ?></h1>
+								<div class="p-24-120 uto-t"><?php the_field( 'role' ); ?></div>
+								<?php
+								$concert = get_field( 'concert' );
+								if ( ! empty( $concert ) ) :
+									?>
+									<div class="p-24-120 grey uto-t"><?php echo esc_html( $concert ); ?></div>
+								<?php endif; ?>
 							</div>
-							<img src="<?php echo get_template_directory_uri(); ?>/images/65eef9c50fd2d28579087377_31.png" loading="eager" alt class="art-img">
+							<?php
+							the_post_thumbnail(
+								'full',
+								array(
+									'class'   => 'art-img',
+									'loading' => 'eager',
+								)
+							);
+							?>
 						</div>
 						<div class="art-rich">
-							<p class="descr-art">The Indian Queen’s key and most dramatic part — Teculihuatzin/Doña Luisa — was presented by Jeanine De Bique. The press has called her interpretation "magical" and "perfectly conveying all the shades of sadness". In this brief interview, Trinidadian-born soprano speaks on her understanding of this part and its roots, drawing energy from work and staying attached to music even far from the stage.</p>
+							<?php
+							$lead = get_field( 'lead' );
+							if ( ! empty( $lead ) ) :
+								?>
+								<p class="descr-art"><?php echo esc_html( $lead ); ?></p>
+							<?php endif; ?>
 							<div class="rich-right-side utop w-richtext">
-								<p><em>Quotes<br></em></p>
-								<p>There’s definitely a strong relationship between me and my character Teculihuatzin. Colonisation happened in different parts of the world, and it happened in my country. So, I can relate to what this opera speaks about. It’s very much the same story that my ancestors could be witnessing during British colonisation of the Caribbean. So, I can relate to that very well.</p>
-								<p>«Teodor’s ideas in music blend so well with Peter’s dramaturgical concept. The two are nothing short of perfection, in my opinion. That kind of creation is so important for the opera art form and sociocultural environment we live in today. This kind of story needs to be told with a certain amount of elegance and what is important is the portray of both sides of any story which Peter and Teodor do brilliantly. The audience has the opportunity to decide which side — one of colonisers or one of native inhabitants — they will stand with. The beauty of witnessing history and the freedom of choice is what makes this production so special».</p>
-								<figure class="w-richtext-align-center w-richtext-figure-type-image">
-									<div><img src="<?php echo get_template_directory_uri(); ?>/images/65eefbf07f12d7c4f7a3d67b_29.png" loading="lazy" alt></div>
-								</figure>
-								<p>«Artists give so much of themselves to their craft, therefore we can face imbalance throughout the career. It is important to pull positive energy from other experiences both creatively and in regular life as a reminder why we do the beautiful work we do. The Indian Queen is one of those experiences that I draw wholesome energy from. This project has and will be a positive subtext for my future engagements, and I’m very glad that we all had this very short but beautiful intense period in creating something beautiful».</p>
-								<p>«What baroque and classical music gives me personally, especially while working with such directors like Peter Sellars, is understanding of the historical context resonates with us today. After hundreds of years, we seem to be a stuck record, discussing and arguing the same basic issues of life and equality. Baroque music is timeless, it helps us recognise what our ancestors faced and how to not repeat the same errors. It remains a powerful message throughout the centuries».</p>
-								<figure class="w-richtext-align-center w-richtext-figure-type-image">
-									<div><img src="<?php echo get_template_directory_uri(); ?>/images/65eefcebc2a389b2f1b4b2de_30.png" loading="lazy" alt></div>
-								</figure>
-								<p>«It’s an exciting time for me as most of my music is a new discovery. My days off are pretty limited, and even a few days of vocal rest, I’m still mentally engrossed in learning repertoire. But when I am on my days off, I enjoy hiking, going to my island, to my home, to the beach and spending time with my family. Fortunately, my career allows me to travel and see other places, and I do make time to visit the places I travel to. I’m still young, and I enjoy my job, so all of these things are the natural parts of my lifestyle».</p>
+								<?php the_content(); ?>
 							</div>
 						</div>
 					</div>

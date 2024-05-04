@@ -600,3 +600,28 @@ function utopia_register_post_types(): void {
 
 	flush_rewrite_rules( false );
 }
+
+add_filter( 'the_content', 'utopia_wrap_images_on_utopian_posts' );
+/**
+ * Wrap images in <figure> tags on Utopian posts
+ *
+ * This function is a filter that is added to the 'the_content' filter.
+ * It will wrap any images in a post with a class of 'w-richtext-align-center w-richtext-figure-type-image'
+ * wrapped in a <figure> tag. This is to enable the correct styling of images in the Rich Text
+ * editor.
+ *
+ * @param string $content The post content.
+ * @return string The updated post content.
+ */
+function utopia_wrap_images_on_utopian_posts( $content ) {
+	if ( is_singular( 'utopian' ) ) {
+		$content = preg_replace(
+			'/<img[^>]+>/i',
+			'<figure class="w-richtext-align-center w-richtext-figure-type-image">'
+				. '$0' // The image tag that was matched.
+				. '</figure>',
+			$content
+		);
+	}
+	return $content;
+}
