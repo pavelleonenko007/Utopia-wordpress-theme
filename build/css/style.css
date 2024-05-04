@@ -6337,6 +6337,12 @@ body.homepage .homenavliner {
 /*!**********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/styles/index.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************/
-
+.send-btn {
+  background: transparent;
+  color: white;
+}
+.send-btn > .pre-send {
+  display: block;
+}
 
 /*# sourceMappingURL=style.css.map*/

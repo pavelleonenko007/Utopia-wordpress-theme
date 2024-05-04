@@ -1,2 +1,11 @@
 @import url('../webflow/css/main.css');
 @import url('../webflow/css/custom.css');
+
+.send-btn {
+	background: transparent;
+	color: white;
+
+	& > .pre-send {
+		display: block;
+	}
+}

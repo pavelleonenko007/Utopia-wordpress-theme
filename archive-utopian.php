@@ -17,119 +17,41 @@ get_header(
 				<div class="usual-page utop-page">
 					<div class="div-block-11">
 						<div class="utopians-page">
-							<div class="uto-item">
-								<a href="/utopian" class="uto-a w-inline-block">
-									<div>Andrei Nagy</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Flute</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Emmanuel Díaz</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Friend</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Usman Waskita</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Friend</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Parth Kumar</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">artist</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Sanjay Mandal</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">cello</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Diego Vásquez</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">oboe</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Imani Okoro</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">artist</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Sanjay Mandal</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Flute</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Andrei Nagy</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Flute</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Imani Okoro</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">artist</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Parth Kumar</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">artist</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Usman Waskita</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Friend</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Diego Vásquez</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">oboe</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Andrei Nagy</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Flute</div>
-							</div>
-							<div class="uto-item">
-								<a href="#" class="uto-a w-inline-block">
-									<div>Usman Waskita</div>
-									<img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide">
-								</a>
-								<div class="text-block-3">Friend</div>
-							</div>
+							<?php
+							if ( have_posts() ) :
+								while ( have_posts() ) :
+									the_post();
+									?>
+									<div class="uto-item">
+										<a href="<?php the_permalink(); ?>" class="uto-a w-inline-block">
+											<div><?php the_title(); ?></div>
+											<?php
+											the_post_thumbnail(
+												'full',
+												array(
+													'class'   => 'uto-img-hide',
+													'loading' => 'lazy',
+												)
+											);
+											?>
+											<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/65ef01e36e6da6f285c2b8b1_Frame202087325790.png" loading="lazy" alt class="uto-img-hide"> -->
+										</a>
+										<div class="text-block-3"><?php the_field( 'role' ); ?></div>
+									</div>
+									<?php
+								endwhile;
+							else :
+								?>
+								<p>No Utopians found</p>
+							<?php endif; ?>
 						</div>
 					</div>
 					<footer class="footer">
 						<div class="sub-from w-form">
 							<form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="65ef0726d2531bad1f44ea0e" data-wf-element-id="175357ac-dc97-ffe8-4592-427bd0633297">
 								<p class="p-24-120 subs">Subscribe to be the first to know about upcoming concerts</p>
-								<input class="sub-input w-input" maxlength="256" name="email" data-name="Email" placeholder="your email" type="email" id="email" required>
-								<div class="send-btn">
+								<input class="sub-input w-input" maxlength="256" name="email" data-name="Email" placeholder="your email" type="email" id="email" required autocomplete="off">
+								<button class="send-btn">
 									<div class="pre-send w-embed">
 										<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M2.07797 11.0802L2.07797 9.08016L14.078 9.08016L8.57797 3.58016L9.99797 2.16016L17.918 10.0802L9.99797 18.0002L8.57797 16.5802L14.078 11.0802L2.07797 11.0802Z" fill="#757575"></path>
@@ -140,7 +62,7 @@ get_header(
 											<path d="M1.83203 10.0001L8.8306 15.8323L18.162 4.16797" stroke="#FFFAF6" stroke-width="2.33286"></path>
 										</svg>
 									</div>
-								</div>
+								</button>
 							</form>
 							<div class="w-form-done">
 								<div>Thank you! Your submission has been received!</div>
