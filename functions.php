@@ -550,3 +550,53 @@ function utopia_footer_code(): void {
 	 */
 	the_field( 'footer_code', 'option' );
 }
+
+add_action( 'init', 'utopia_register_post_types' );
+
+function utopia_register_post_types(): void {
+	register_post_type(
+		'utopian',
+		array(
+			'label'         => null,
+			'labels'        => array(
+				'name'               => 'Utopians',
+				'singular_name'      => 'Utopian',
+				'add_new'            => 'Add new',
+				'add_new_item'       => 'Add new Utopian',
+				'edit_item'          => 'Edit Utopian',
+				'new_item'           => 'New Utopian',
+				'view_item'          => 'View Utopian',
+				'search_items'       => 'Search Utopians',
+				'not_found'          => 'No Utopians found',
+				'not_found_in_trash' => 'No Utopians found in Trash',
+				'parent_item_colon'  => '',
+				'menu_name'          => 'Utopians',
+			),
+			'description'   => '',
+			'public'        => true,
+			// 'publicly_queryable'  => null,
+			// 'exclude_from_search' => null,
+			// 'show_ui'             => null,
+			// 'show_in_nav_menus'   => null,
+			'show_in_menu'  => null,
+			// 'show_in_admin_bar'   => null,
+			'show_in_rest'  => true,
+			'rest_base'     => null,
+			'menu_position' => null,
+			'menu_icon'     => 'dashicons-admin-users',
+			// 'capability_type'   => 'post',
+			// 'capabilities'      => 'post',
+			// 'map_meta_cap'      => null,
+			'hierarchical'  => false,
+			'supports'      => array( 'title', 'editor', 'thumbnail' ), // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+			'taxonomies'    => array(),
+			'has_archive'   => false,
+			'rewrite'       => array(
+				'slug' => 'utopians',
+			),
+			'query_var'     => true,
+		)
+	);
+
+	flush_rewrite_rules( false );
+}
