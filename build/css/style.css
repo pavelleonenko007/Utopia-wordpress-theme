@@ -6345,4 +6345,9 @@ body.homepage .homenavliner {
   display: block;
 }
 
+button.link {
+  background: transparent;
+  padding: 0;
+}
+
 /*# sourceMappingURL=style.css.map*/
