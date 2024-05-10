@@ -598,6 +598,50 @@ function utopia_register_post_types(): void {
 		)
 	);
 
+	register_post_type(
+		'concert',
+		array(
+			'label'         => null,
+			'labels'        => array(
+				'name'               => 'Concerts',
+				'singular_name'      => 'Concert',
+				'add_new'            => 'Add new',
+				'add_new_item'       => 'Add new Concert',
+				'edit_item'          => 'Edit Concert',
+				'new_item'           => 'New Concert',
+				'view_item'          => 'View Concert',
+				'search_items'       => 'Search Concerts',
+				'not_found'          => 'No Concerts found',
+				'not_found_in_trash' => 'No Concerts found in Trash',
+				'parent_item_colon'  => '',
+				'menu_name'          => 'Concerts',
+			),
+			'description'   => '',
+			'public'        => true,
+			// 'publicly_queryable'  => null,
+			// 'exclude_from_search' => null,
+			// 'show_ui'             => null,
+			// 'show_in_nav_menus'   => null,
+			'show_in_menu'  => null,
+			// 'show_in_admin_bar'   => null,
+			'show_in_rest'  => true,
+			'rest_base'     => null,
+			'menu_position' => null,
+			'menu_icon'     => 'dashicons-tickets',
+			// 'capability_type'   => 'post',
+			// 'capabilities'      => 'post',
+			// 'map_meta_cap'      => null,
+			'hierarchical'  => false,
+			'supports'      => array( 'title', 'editor', 'thumbnail' ), // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+			'taxonomies'    => array(),
+			'has_archive'   => true,
+			'rewrite'       => array(
+				'slug' => 'concerts',
+			),
+			'query_var'     => true,
+		)
+	);
+
 	flush_rewrite_rules( false );
 }
 
@@ -623,5 +667,33 @@ function utopia_wrap_images_on_utopian_posts( $content ) {
 			$content
 		);
 	}
+	return $content;
+}
+
+add_filter( 'the_content', 'utopia_wrap_images_on_articles', 100, 1 );
+function utopia_wrap_images_on_articles( $content ) {
+	if ( is_singular( 'post' ) ) {
+		$content = preg_replace_callback(
+			'/<div[^>]*\bclass="(.*?\bwp-caption\b.*?)">(<img.+src="(.+)".*>)(<p.+>(.*)<\/p>)?<\/div>/mU',
+			function ( $matches ) {
+				$figure_classes = 'w-richtext-align-center w-richtext-figure-type-image';
+
+				if ( strpos( $matches[1], 'aligncenter' ) !== false ) {
+					$figure_classes = 'w-richtext-align-fullwidth w-richtext-figure-type-image';
+				}
+
+				return '<figure class="' . $figure_classes . '">'
+					. '<div>'
+						. $matches[2]
+					. '</div>'
+					. '<figcaption>'
+						. $matches[5]
+					. '</figcaption>'
+				. '</figure>';
+			},
+			$content
+		);
+	}
+
 	return $content;
 }
