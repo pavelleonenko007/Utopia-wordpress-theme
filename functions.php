@@ -697,3 +697,25 @@ function utopia_wrap_images_on_articles( $content ) {
 
 	return $content;
 }
+
+add_action( 'pre_get_posts', 'utopia_sort_concerts_by_date' );
+function utopia_sort_concerts_by_date( $query ) {
+	if ( $query->is_main_query() && $query->is_post_type_archive( 'concert' ) ) {
+		$query->set( 'orderby', 'meta_value' );
+		$query->set( 'meta_key', 'start_date' );
+		$query->set( 'meta_type', 'DATETIME' );
+		$query->set( 'order', 'ASC' );
+		$query->set( 'posts_per_page', -1 );
+		$query->set(
+			'meta_query',
+			array(
+				array(
+					'key'     => 'start_date',
+					'value'   => gmdate( 'Y-m-d H:i:s' ),
+					'type'    => 'DATETIME',
+					'compare' => '>=',
+				),
+			)
+		);
+	}
+}
