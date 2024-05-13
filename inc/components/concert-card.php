@@ -22,7 +22,12 @@ $start_date = get_field( 'start_date' );
 		);
 		?>
 		<div class="p-36-36 in-card in_2"><?php the_title(); ?></div>
-		<div class="p-16-120 _4"><?php the_field( 'location' ); ?></div>
+		<?php
+		$location = get_field( 'location' );
+		if ( ! empty( $location['location_name'] ) ) :
+			?>
+			<div class="p-16-120 _4"><?php echo esc_html( $location['location_name'] ); ?></div>
+		<?php endif; ?>
 		<div class="link-shos ll hvr">
 			<div class="btn-xtx">buy tickets</div>
 			<div class="hover-liner"></div>
