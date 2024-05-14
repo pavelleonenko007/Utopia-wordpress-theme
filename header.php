@@ -98,9 +98,9 @@ $barba_container_extra_classes = ! empty( $args['barba-container-extra-classes']
 			</header>
 			<div class="search-block">
 				<div class="text-block-6">Search in utopia</div>
-				<div class="serch-form w-form">
-					<form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
-						<input class="search-input w-input" autofocus="true" maxlength="256" name="name" data-name="Name" placeholder="What are you looking for?" type="text" id="name">
+				<div class="serch-form">
+					<form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
+						<input class="search-input w-input" autofocus="true" maxlength="256" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="What are you looking for?" type="search">
 					</form>
 				</div>
 				<div class="div-block-8">
