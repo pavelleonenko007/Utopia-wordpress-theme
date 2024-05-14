@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 $data_wf_page                  = ! empty( $args['data-wf-page'] ) ? $args['data-wf-page'] : '';
 $barba_container_extra_classes = ! empty( $args['barba-container-extra-classes'] ) ? $args['barba-container-extra-classes'] : '';
+$namespace                     = ! empty( $args['barba-namespace'] ) ? $args['barba-namespace'] : '';
 ?>
 <!DOCTYPE html>
 <html data-wf-page="<?php echo esc_attr( $data_wf_page ); ?>" data-wf-site="<?php echo esc_attr( DATA_WF_SITE ); ?>" <?php language_attributes(); ?>>
@@ -141,4 +142,4 @@ $barba_container_extra_classes = ! empty( $args['barba-container-extra-classes']
 			</div>
 		</div>
 		<div id="barba-wrapper" class="wrapper">
-			<div class="barba-container <?php echo esc_attr( $barba_container_extra_classes ); ?>">
+			<div class="barba-container <?php echo esc_attr( $barba_container_extra_classes ); ?>" data-namespace="<?php echo esc_attr( $namespace ); ?>">

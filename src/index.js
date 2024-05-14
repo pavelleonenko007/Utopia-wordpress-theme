@@ -571,9 +571,14 @@ function initPanzoom() {
 	panzoomInstance.on('zoom', zoomHandler);
 }
 
+function initBarba() {
+
+}
+
 window.addEventListener('load', (event) => {
 	// addEventListener('pointercancel', (event) => {
 	// 	console.log(event);
 	// });
 	initPanzoom();
+	initBarba();
 });

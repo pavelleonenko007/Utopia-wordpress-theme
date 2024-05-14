@@ -11,6 +11,7 @@ get_header(
 	array(
 		'data-wf-page'                  => '65e57c8082e6072b394e6a12',
 		'barba-container-extra-classes' => 'home-page',
+		'barba-namespace'               => 'homepage',
 	)
 );
 ?>
