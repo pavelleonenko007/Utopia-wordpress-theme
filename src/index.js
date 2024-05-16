@@ -1,9 +1,15 @@
 import './styles/index.scss';
 import './webflow/js/main.js';
 
-import panzoom from 'panzoom';
+import barba from '@barba/core';
+import gsap from 'gsap';
 
-console.log('utopia');
+import panzoom from 'panzoom';
+import {
+	calculateScrollPosition,
+	refreshWebflowScripts,
+	wait,
+} from './utils/index.js';
 
 // let panzoomEl;
 // let parent;
@@ -430,6 +436,40 @@ console.log('utopia');
 
 let panzoomInstance;
 
+/**
+ * A function that calculates the position of an element inside its parent.
+ *
+ * @param {Element} element - The element whose position is to be calculated.
+ * @param {Element | null} parent - The parent element used as a reference for positioning.
+ * @return {Object} An object with x and y properties representing the position of the element relative to its parent.
+ */
+function getElementPositionInsideParent(element, parent) {
+	const parentRect = parent
+		? parent.getBoundingClientRect()
+		: element.parentNode.getBoundingClientRect();
+	const elementRect = element.getBoundingClientRect();
+
+	return {
+		x: elementRect.left - parentRect.left,
+		y: elementRect.top - parentRect.top,
+	};
+}
+
+/**
+ * A function that calculates the position of an element inside the window.
+ *
+ * @param {Element} element - The element whose position is to be calculated.
+ * @return {Object} An object with x and y properties representing the position of the element relative to the window.
+ */
+// function getElementPositionInsideWindow(element) {
+// 	const elementRect = element.getBoundingClientRect();
+
+// 	return {
+// 		x: elementRect.left,
+// 		y: elementRect.top,
+// 	};
+// }
+
 function fixPanzoomOnMouseDown() {
 	document
 		.querySelectorAll('a')
@@ -442,20 +482,21 @@ function calculateZoomPercent(scale, minZoom, maxZoom) {
 
 function calculateZoomLevelSliderTransform(percentage) {
 	percentage = Math.max(0, Math.min(percentage, 100));
-	return (percentage - 50) * 2;
+	return -(percentage - 50);
 }
 
-function moveLevelSlider(percent) {
-	console.log(percent);
+function moveLevelSlider(percent, duration = 0) {
 	const slider = document.querySelector('.zoom-viewer');
-
-	console.log(slider);
 
 	if (!slider) {
 		return;
 	}
 
-	slider.style.transform = 'translate3d(' + percent + '%, 0px, 0)';
+	gsap.to(slider, {
+		x: percent + '%',
+		duration,
+	});
+	// slider.style.transform = 'translate3d(' + percent + '%, 0px, 0)';
 }
 
 function initPanzoom() {
@@ -472,6 +513,8 @@ function initPanzoom() {
 	const maxZoom = 2;
 
 	fixPanzoomOnMouseDown();
+
+	moveLevelSlider(0, 1);
 
 	panzoomInstance = panzoom(panzoomEl, {
 		boundsDisabledForZoom: true,
@@ -507,7 +550,6 @@ function initPanzoom() {
 	function panEndHandler(e) {
 		const { x, y } = e.getTransform();
 
-		console.log('handle');
 		const width = panzoomEl.getBoundingClientRect().width - window.innerWidth;
 		const height =
 			panzoomEl.getBoundingClientRect().height - window.innerHeight;
@@ -561,10 +603,11 @@ function initPanzoom() {
 		moveLevelSlider(
 			calculateZoomLevelSliderTransform(
 				calculateZoomPercent(scale, minZoom, maxZoom)
-			)
+			),
+			0.3
 		);
 
-		debouncedPanEndHandler(e);
+		// debouncedPanEndHandler(e);
 	}
 
 	panzoomInstance.on('panend', panEndHandler);
@@ -572,13 +615,89 @@ function initPanzoom() {
 }
 
 function initBarba() {
+	barba.init({
+		// debug: true,
+		transitions: [
+			{
+				name: 'scale-transition',
+				from: {
+					custom: ({ trigger }) => trigger?.closest('.uto-block'),
+					namespace: ['homepage'],
+				},
+				async leave({ trigger, current }) {
+					const blockElement = trigger.closest('.uto-block');
+					const { width, height, top, left } =
+						blockElement.getBoundingClientRect();
 
+					panzoomInstance.zoomAbs(left + width / 2, top + height / 2, 2);
+
+					await wait(300);
+
+					return gsap.to(current.container, {
+						opacity: 0,
+						duration: 0.5,
+					});
+				},
+				async beforeEnter({ next }) {
+					const scrollTop = calculateScrollPosition(next.container);
+					gsap.set(next.container, {
+						transformOrigin: `50% ${scrollTop + window.innerHeight / 2}px`,
+					});
+				},
+				enter({ next }) {
+					return gsap.from(next.container, {
+						opacity: 0,
+						scale: 0.5,
+						duration: 0.5,
+					});
+				},
+			},
+			{
+				name: 'fade-transition',
+				leave({ current }) {
+					const done = this.async();
+					gsap.to(current.container, {
+						autoAlpha: 0,
+						duration: 0.5,
+						onComplete: () => {
+							current.container.remove();
+							done();
+						},
+					});
+				},
+				// beforeEnter({ next }) {
+				// 	gsap.set(next.container, { autoAlpha: 0 });
+				// }
+				enter({ next }) {
+					const done = this.async();
+
+					window.scrollTo(0, 0);
+
+					gsap.from(next.container, {
+						autoAlpha: 0,
+						duration: 0.5,
+						onComplete: () => {
+							done();
+						},
+					});
+				},
+				afterEnter() {
+					initPanzoom();
+				},
+			},
+		],
+	});
+
+	barba.hooks.after(() => {
+		refreshWebflowScripts();
+	});
 }
 
+document.addEventListener('DOMContentLoaded', (event) => {
+	moveLevelSlider(0);
+});
+
 window.addEventListener('load', (event) => {
-	// addEventListener('pointercancel', (event) => {
-	// 	console.log(event);
-	// });
-	initPanzoom();
 	initBarba();
+	initPanzoom();
 });

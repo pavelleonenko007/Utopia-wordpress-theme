@@ -27,6 +27,7 @@
 	"dependencies": {
 		"@barba/core": "^2.9.7",
 		"@splidejs/splide": "^4.1.4",
+		"gsap": "^3.12.5",
 		"lenis": "^1.0.45",
 		"modern-normalize": "^2.0.0",
 		"panzoom": "^9.4.3",

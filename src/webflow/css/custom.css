@@ -40,7 +40,7 @@ html {
 	transform: scale(10);
 }
 .zoom-viewer {
-	transition: transform 500ms cubic-bezier(0.01, 0.39, 0, 1);
+	/* transition: transform 500ms cubic-bezier(0.01, 0.39, 0, 1); */
 }
 .content__img {
 	max-width: var(--img-maxwidth);
