@@ -5,8 +5,11 @@ import barba from '@barba/core';
 import gsap from 'gsap';
 
 import panzoom from 'panzoom';
+import { moveZoomSlider } from './components/LevelSlider.js';
 import {
 	calculateScrollPosition,
+	calculateZoomPercent,
+	calculateZoomSliderTransform,
 	refreshWebflowScripts,
 	wait,
 } from './utils/index.js';
@@ -476,29 +479,6 @@ function fixPanzoomOnMouseDown() {
 		.forEach((a) => a.setAttribute('draggable', 'false'));
 }
 
-function calculateZoomPercent(scale, minZoom, maxZoom) {
-	return ((scale - minZoom) / (maxZoom - minZoom)) * 100;
-}
-
-function calculateZoomLevelSliderTransform(percentage) {
-	percentage = Math.max(0, Math.min(percentage, 100));
-	return -(percentage - 50);
-}
-
-function moveLevelSlider(percent, duration = 0) {
-	const slider = document.querySelector('.zoom-viewer');
-
-	if (!slider) {
-		return;
-	}
-
-	gsap.to(slider, {
-		x: percent + '%',
-		duration,
-	});
-	// slider.style.transform = 'translate3d(' + percent + '%, 0px, 0)';
-}
-
 function initPanzoom() {
 	const panzoomEl = document.querySelector('.mapa');
 
@@ -510,11 +490,11 @@ function initPanzoom() {
 	const { width: panzoomElWidth, height: panzoomElHeight } =
 		panzoomEl.getBoundingClientRect();
 	const minZoom = window.innerHeight / panzoomElHeight;
-	const maxZoom = 2;
+	const maxZoom = 1;
 
 	fixPanzoomOnMouseDown();
 
-	moveLevelSlider(0, 1);
+	moveZoomSlider(0, 1);
 
 	panzoomInstance = panzoom(panzoomEl, {
 		boundsDisabledForZoom: true,
@@ -600,8 +580,8 @@ function initPanzoom() {
 	function zoomHandler(e) {
 		const { scale } = e.getTransform();
 
-		moveLevelSlider(
-			calculateZoomLevelSliderTransform(
+		moveZoomSlider(
+			calculateZoomSliderTransform(
 				calculateZoomPercent(scale, minZoom, maxZoom)
 			),
 			0.3
@@ -694,7 +674,7 @@ function initBarba() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-	moveLevelSlider(0);
+	moveZoomSlider(0);
 });
 
 window.addEventListener('load', (event) => {

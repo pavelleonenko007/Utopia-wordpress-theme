@@ -15,3 +15,12 @@ export const calculateScrollPosition = (element) => {
 };
 
 export const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export function calculateZoomPercent(scale, minZoom, maxZoom) {
+	return ((scale - minZoom) / (maxZoom - minZoom)) * 100;
+}
+
+export function calculateZoomSliderTransform(percentage) {
+	percentage = Math.max(0, Math.min(percentage, 50));
+	return -(percentage - 50);
+}
