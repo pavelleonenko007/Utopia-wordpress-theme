@@ -719,3 +719,36 @@ function utopia_sort_concerts_by_date( $query ) {
 		);
 	}
 }
+
+/**
+ * Formats a phone number into a tel: link.
+ *
+ * @param string $phone_number The phone number to format.
+ * @return string The formatted tel: link.
+ */
+function utopia_format_phone_link( string $phone_number ): string {
+	if ( empty( $phone_number ) ) {
+		return '';
+	}
+
+	$formatted_phone_number = preg_replace( '/[^0-9+]/', '', $phone_number );
+
+	return 'tel:' . $formatted_phone_number;
+}
+
+/**
+ * Formats an email address into a mailto: link.
+ *
+ * @param string $email The email address to format.
+ * @param string $subject (optional) The subject line for the email.
+ * @return string The formatted mailto: link.
+ */
+function utopia_format_email_link( string $email, string $subject = '' ): string {
+	$email_link = "mailto:{$email}";
+
+	if ( ! empty( $subject ) ) {
+		$email_link .= "?subject={$subject}";
+	}
+
+	return $email_link;
+}

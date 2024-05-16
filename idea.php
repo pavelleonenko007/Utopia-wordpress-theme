@@ -124,7 +124,7 @@ get_header(
 									?>
 								</div>
 								<?php
-								// TODO: add ajax for load more
+								// TODO: add ajax for load more!
 								if ( $articles_query->max_num_pages > 1 ) :
 									?>
 									<button type="button" data-button="load-more" data-type="article" class="link">load more</button>

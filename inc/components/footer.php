@@ -9,10 +9,11 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 <footer class="footer">
-	<div class="sub-from w-form">
-		<form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="65ef0726d2531bad1f44ea0e" data-wf-element-id="175357ac-dc97-ffe8-4592-427bd0633297">
+	<div class="sub-from">
+		<?php // TODO: add subscribe functionality! ?>
+		<form id="subscribe-form" class="form" data-wf-page-id="65ef0726d2531bad1f44ea0e" data-wf-element-id="175357ac-dc97-ffe8-4592-427bd0633297">
 			<p class="p-24-120 subs">Subscribe to be the first to know about upcoming concerts</p>
-			<input class="sub-input w-input" maxlength="256" name="email" data-name="Email" placeholder="your email" type="email" id="email" required autocomplete="off">
+			<input class="sub-input w-input" maxlength="256" name="email" placeholder="your email" type="email" id="email" required autocomplete="off">
 			<button class="send-btn">
 				<div class="pre-send w-embed">
 					<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +35,7 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 	</div>
 	<div class="div-block-5">
-		<a href="#" class="foo-logo w-inline-block">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="foo-logo w-inline-block">
 			<div class="html-embed w-embed">
 				<svg width="100%" height="100%" viewbox="0 0 123 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_7097_7011)">
@@ -53,28 +54,41 @@ defined( 'ABSPATH' ) || exit;
 				</svg>
 			</div>
 		</a>
-		<div class="vert foo-vert">
-			<div class="p-16-120 m11">Become a part of our world by donating to us</div>
-			<a href="#" class="link-shos ll foo-link hvr w-inline-block">
-				<div class="btn-xtx">support the utopia</div>
-				<div class="hover-liner"></div>
-			</a>
-		</div>
-		<div class="vert foo-vert">
-			<a href="#" class="foo-text-link w-inline-block">
-				<div>orchestra@utopia.com</div>
-			</a>
-			<a href="#" class="foo-text-link w-inline-block">
-				<div>pr@utopia.com</div>
-			</a>
-		</div>
-		<div class="vert foo-vert forzi">
-			<a href="#" class="foo-text-link _2 w-inline-block">
-				<div>Instagram</div>
-			</a>
-			<a href="#" class="foo-text-link w-inline-block">
-				<div>Facebook</div>
-			</a>
-		</div>
+		<?php
+		$donate_button = get_field( 'donate_button', 'option' );
+		if ( ! empty( $donate_button['link'] ) ) :
+			?>
+			<div class="vert foo-vert">
+				<div class="p-16-120 m11">Become a part of our world by donating to us</div>
+				<a href="<?php echo esc_url( $donate_button['link'] ); ?>" class="link-shos ll foo-link hvr w-inline-block">
+					<div class="btn-xtx"><?php echo ! empty( $donate_button['button_text'] ) ? esc_html( $donate_button['button_text'] ) : 'support the utopia'; ?></div>
+					<div class="hover-liner"></div>
+				</a>
+			</div>
+		<?php endif; ?>
+		<?php
+		$emails = get_field( 'emails', 'option' );
+		if ( ! empty( $emails ) ) :
+			?>
+			<div class="vert foo-vert">
+				<?php foreach ( $emails as $email ) : ?>
+					<a href="<?php echo esc_url( utopia_format_email_link( $email['email'] ) ); ?>" class="foo-text-link w-inline-block">
+						<div><?php echo esc_html( $email['email'] ); ?></div>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		<?php
+		$socials = get_field( 'socials', 'option' );
+		if ( ! empty( $socials ) ) :
+			?>
+			<div class="vert foo-vert forzi">
+				<?php foreach ( $socials as $social ) : ?>
+					<a href="<?php echo esc_url( $social['link'] ); ?>" target="_blank" rel="noopener noreferrer nofollow" class="foo-text-link _2 w-inline-block">
+						<div><?php echo esc_html( $social['name'] ); ?></div>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
 	</div>
 </footer>
