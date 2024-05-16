@@ -85,7 +85,7 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 						</div>
 					</div>
 					<div class="top-m">
-						<a data-w-id="abca3ef8-89fd-419b-96ff-5437a51c3d48" href="#" class="search-btn w-inline-block">
+						<a data-w-id="abca3ef8-89fd-419b-96ff-5437a51c3d48" href="#" class="search-btn w-inline-block" onclick="window.searchDialog.hasAttribute('open') ? window.searchDialog.close() : window.searchDialog.showModal();">
 							<div>search</div>
 						</a>
 						<a href="#" class="lang w-inline-block">
@@ -98,10 +98,10 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 					</a>
 				</div>
 			</header>
-			<div class="search-block">
+			<dialog class="search-block" id="searchDialog">
 				<div class="text-block-6">Search in utopia</div>
 				<div class="serch-form">
-					<form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
+					<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
 						<input class="search-input w-input" autofocus="true" maxlength="256" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="What are you looking for?" type="search">
 					</form>
 				</div>
@@ -140,7 +140,7 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 						</a>
 					</div>
 				</div>
-			</div>
+			</dialog>
 		</div>
 		<div id="barba-wrapper" data-barba="wrapper" class="wrapper">
 			<div class="barba-container <?php echo esc_attr( $barba_container_extra_classes ); ?>" data-barba="container" data-barba-namespace="<?php echo esc_attr( $namespace ); ?>">
