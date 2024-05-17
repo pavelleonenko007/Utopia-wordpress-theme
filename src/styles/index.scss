@@ -1,9 +1,13 @@
 @import url('../webflow/css/main.css');
 @import url('../webflow/css/custom.css');
 
+:root {
+	--color-white: #fff;
+}
+
 .send-btn {
 	background: transparent;
-	color: white;
+	color: var(--color-white);
 
 	& > .pre-send {
 		display: block;
@@ -26,6 +30,10 @@ button.link {
 	}
 
 	& > .text-block-6 {
-		color: #fff;
+		color: var(--color-white);
 	}
+}
+
+.search-input {
+	color: #fff;
 }

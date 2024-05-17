@@ -24,3 +24,39 @@ export function calculateZoomSliderTransform(percentage) {
 	percentage = Math.max(0, Math.min(percentage, 50));
 	return -(percentage - 50);
 }
+
+/**
+ * Debounce function execution to prevent it from being called more than once within a given timeframe.
+ *
+ * @param {Function} func - The function to debounce.
+ * @param {number} delay - The timeframe in milliseconds to debounce the function to.
+ * @returns {Function} - The debounced function.
+ */
+export function debounce(func, delay) {
+	let timeoutId;
+	return function(...args) {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(() => func.apply(this, args), delay);
+	};
+}
+
+
+/**
+ * Throttle function execution to prevent it from being called more than once in a given timeframe.
+ *
+ * @param {Function} func - The function to throttle.
+ * @param {number} delay - The timeframe in milliseconds to throttle the function to.
+ * @returns {Function} - The throttled function.
+ */
+export function throttle(func, delay) {
+	let lastCall = 0;
+	return function (...args) {
+		const now = Date.now();
+		if (now - lastCall < delay) {
+			return;
+		}
+		lastCall = now;
+		func(...args);
+	};
+}
+

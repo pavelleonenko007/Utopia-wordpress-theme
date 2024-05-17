@@ -308,6 +308,14 @@ function utopia_add_site_scripts() {
 		time(),
 		true
 	);
+
+	wp_localize_script(
+		'bundle',
+		'UTOPIA',
+		array(
+			'AJAX_URL' => admin_url( 'admin-ajax.php' ),
+		)
+	);
 }
 
 add_filter( 'wp_default_scripts', 'remove_jquery_migrate' );
@@ -751,4 +759,67 @@ function utopia_format_email_link( string $email, string $subject = '' ): string
 	}
 
 	return $email_link;
+}
+
+add_action( 'wp_ajax_search', 'utopia_search_site_content_via_ajax' );
+add_action( 'wp_ajax_nopriv_search', 'utopia_search_site_content_via_ajax' );
+function utopia_search_site_content_via_ajax() {
+	if ( ! isset( $_POST['search_nonce'] ) || ! wp_verify_nonce( $_POST['search_nonce'], 'search_action' ) || ! isset( $_POST['s'] ) ) {
+		wp_send_json_error( array( 'message' => 'Bad request' ), 400 );
+	}
+
+	$query_args = array(
+		'post_type'  => array( 'post', 'utopian', 'concert' ),
+		's'          => sanitize_text_field( wp_unslash( $_POST['s'] ) ),
+		'meta_query' => array(
+			'relation' => 'OR',
+			array(
+				'key'     => 'start_date',
+				'compare' => 'NOT EXISTS',
+			),
+			array(
+				'key'     => 'start_date',
+				'value'   => gmdate( 'Y-m-d H:i:s' ),
+				'type'    => 'DATETIME',
+				'compare' => '>=',
+			),
+		),
+	);
+
+	$query = new WP_Query( $query_args );
+
+	ob_start();
+
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+
+			global $post;
+
+			switch ( $post->post_type ) {
+				case 'concert':
+					get_template_part( 'inc/components/concert-card-min' );
+					break;
+				case 'utopian':
+					get_template_part( 'inc/components/utopian-search-card' );
+					break;
+				default:
+					get_template_part( 'inc/components/article-card' );
+					break;
+			}
+		}
+	} else {
+		echo '<p style="color: #fff; font-size: 24rem; line-height: 120%;">No results found.</p>';
+	}
+
+	wp_reset_postdata();
+
+	$html = ob_get_clean();
+
+	wp_send_json_success(
+		array(
+			'html'    => $html,
+			'message' => 'Posts successfully loaded',
+		)
+	);
 }

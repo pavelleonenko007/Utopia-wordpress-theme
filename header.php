@@ -101,45 +101,13 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 			<dialog class="search-block" id="searchDialog">
 				<div class="text-block-6">Search in utopia</div>
 				<div class="serch-form">
-					<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
+					<form role="search" id="searchform" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
 						<input class="search-input w-input" autofocus="true" maxlength="256" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="What are you looking for?" type="search">
+						<input type="hidden" name="action" value="search">
+						<?php wp_nonce_field( 'search_action', 'search_nonce', false ); ?>
 					</form>
 				</div>
-				<div class="div-block-8">
-					<div id="w-node-_0a595cc9-8957-c7f3-c082-caafc0635ada-a51c3d38" class="conc-card min">
-						<a href="#" class="conc-link min serchert w-inline-block">
-							<div class="p-28-120 serach">14 NOV</div>
-							<div class="p-28-120 _2 search">Brahms: Violin Concerto, Tchaikovsky: Symphony No. 5</div>
-							<div class="p-16-120 _4 min">Philharmonie BerlinBerlin, Germany</div>
-						</a>
-					</div>
-					<div id="w-node-_53b63f5b-57b7-5c58-ef8e-407679001952-a51c3d38" class="artic-item">
-						<a href="#" class="artic-link serch w-inline-block">
-							<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef01b0aafe177ef258df9d_25.png' ); ?>" loading="lazy" alt class="image-3">
-							<div class="vert servf">
-								<div class="p-24-120 sercg">Exquisite sensitivity of The Indian Queenin Salzburg</div>
-								<div class="p-16-120">read</div>
-							</div>
-						</a>
-					</div>
-					<div id="w-node-c510bd07-5263-2909-f3d3-ada46a8ff710-a51c3d38" class="artic-item">
-						<a href="#" class="artic-link serch w-inline-block">
-							<div class="vert servf">
-								<div class="p-24-120 sercg">c-Moll-Messe — Utopia · Currentzis</div>
-								<div class="p-16-120">read</div>
-							</div>
-						</a>
-					</div>
-					<div id="w-node-_8f0d8c0e-acb3-cdd3-10c9-17cb68af3f6b-a51c3d38" class="artic-item">
-						<a href="#" class="artic-link serch w-inline-block">
-							<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef01b0aafe177ef258df9d_25.png' ); ?>" loading="lazy" alt class="image-3">
-							<div class="vert servf">
-								<div class="p-24-120 sercg">Jeanine De Bique. Exquisite sensitivity of The Indian Queenin Salzburg</div>
-								<div class="p-16-120">read</div>
-							</div>
-						</a>
-					</div>
-				</div>
+				<div class="div-block-8 search-results"></div>
 			</dialog>
 		</div>
 		<div id="barba-wrapper" data-barba="wrapper" class="wrapper">

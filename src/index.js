@@ -6,6 +6,7 @@ import gsap from 'gsap';
 
 import panzoom from 'panzoom';
 import { moveZoomSlider } from './components/LevelSlider.js';
+import { initSearchForm } from './components/searchForm.js';
 import {
 	calculateScrollPosition,
 	calculateZoomPercent,
@@ -679,5 +680,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 window.addEventListener('load', (event) => {
 	initBarba();
+	initSearchForm();
 	initPanzoom();
 });
