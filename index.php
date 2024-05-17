@@ -14,6 +14,40 @@ get_header(
 		'barba-namespace'               => 'homepage',
 	)
 );
+
+$idea_page_id  = 12;
+$idea_page_url = get_the_permalink( $idea_page_id );
+
+$publication_1 = get_field( 'publication_1' );
+$publication_2 = get_field( 'publication_2' );
+$publication_3 = get_field( 'publication_3' );
+
+$quote_1 = get_field( 'quote_1' );
+$quote_2 = get_field( 'quote_2' );
+$quote_3 = get_field( 'quote_3' );
+
+$utopian_1     = get_field( 'utopian_1' );
+$utopian_2     = get_field( 'utopian_2' );
+$utopian_3     = get_field( 'utopian_3' );
+$utopian_4     = get_field( 'utopian_4' );
+$utopian_5     = get_field( 'utopian_5' );
+$utopians_link = get_post_type_archive_link( 'utopian' );
+
+$concert_1     = get_field( 'concert_1' );
+$concert_2     = get_field( 'concert_2' );
+$concert_3     = get_field( 'concert_3' );
+$concert_4     = get_field( 'concert_4' );
+$concerts_link = get_post_type_archive_link( 'concert' );
+
+$photo_1 = get_field( 'photo_1' );
+$photo_2 = get_field( 'photo_2' );
+$photo_3 = get_field( 'photo_3' );
+$photo_4 = get_field( 'photo_4' );
+$photo_5 = get_field( 'photo_5' );
+$photo_6 = get_field( 'photo_6' );
+$photo_7 = get_field( 'photo_7' );
+$photo_8 = get_field( 'photo_8' );
+
 ?>
 				<div class="map-block">
 					<div class="bg-imgers">
@@ -43,58 +77,94 @@ get_header(
 										</div>
 										<div class="top-abs">
 											<div class="p-14-20 _2">The orchestra of Teodor Currentzis is a special creative community of like-minded musicians with a shared ideology, performing all over the globe.</div>
-											<a href="#" class="u-link u-u w-inline-block">
+											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-16-120 _2 _33">read</div>
 											</a>
 										</div>
 									</div>
-									<div class="uto-block _1">
-										<a href="#" class="u-link u-u w-inline-block">
-											<div class="p-36-36 _2">Jeanine De Bique</div>
-											<div class="p-16-120 _2">utopian</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-									</div>
-									<div class="uto-block _2">
-										<a href="#" class="u-link u-e w-inline-block">
-											<div class="ev-mom">
-												<div class="p-36-36 _2">14 NOV</div>
-												<div class="p-36-36 _2 mmax">Brahms: Violin Concerto, Tchaikovsky: Symphony No. 5</div>
-												<div class="p-16-120 _2"> </div>
-												<div class="p-16-120 _2">Philharmonie BerlinBerlin, Germany</div>
+									<?php if ( ! empty( $utopian_1 ) ) : ?>
+										<div class="uto-block _1">
+											<a href="<?php echo esc_url( get_the_permalink( $utopian_1 ) ); ?>" class="u-link u-u w-inline-block">
+												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_1 ) ); ?></div>
+												<div class="p-16-120 _2">utopian</div>
+												<?php
+												echo get_the_post_thumbnail(
+													$utopian_1,
+													'full',
+													array(
+														'loading' => 'eager',
+														'class'   => 'uu-image',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
 											</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
 										</div>
-									</div>
-									<div class="uto-block _3">
-										<a href="#" class="u-link u-q w-inline-block">
-											<div class="p-30-120 _2">Frankly speaking, <br>music is with me and inside me all the time. Everything is music, and music is everything for me.</div>
-											<div class="p-16-120 _3">— Teodor Currentzis</div>
-											<div class="p-16-120 _2">read</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-									</div>
-									<div class="uto-block _4">
-										<a href="#" class="u-link u-p w-inline-block">
-											<div class="ev-mom">
-												<div class="p-16-120 _2 pol">Next time, the "utopians" are going to gather again in November for a series of concerts in Berlin, Antwerpen, Brescia and Rome</div>
-												<div class="p-16-120 _2">by Opera Wire</div>
+									<?php endif; ?>
+									<?php if ( ! empty( $concert_1 ) ) : ?>
+										<div class="uto-block _2">
+											<a href="<?php echo esc_url( get_the_permalink( $concert_1 ) ); ?>" class="u-link u-e w-inline-block">
+												<div class="ev-mom">
+													<?php
+													$start_date = get_field( 'start_date', $concert_1 );
+													if ( ! empty( $start_date ) ) :
+														?>
+														<div class="p-36-36 _2"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
+													<?php endif; ?>
+													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_1 ) ); ?></div>
+													<div class="p-16-120 _2"> </div>
+													<?php
+													$location = get_field( 'location' );
+													if ( ! empty( $location['location_name'] ) ) :
+														?>
+														<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+													<?php endif; ?>
+												</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
 											</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
 										</div>
-									</div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $quote_1 ) && ! empty( $quote_1['quote'] ) ) :
+										$quote     = $quote_1['quote'];
+										$url       = ! empty( $quote_1['url'] ) ? $quote_1['url'] : '#';
+										$link_text = ! empty( $quote_1['link_text'] ) ? $quote_1['link_text'] : 'read';
+										$author    = ! empty( $quote_1['author'] ) ? $quote_1['author'] : '';
+										?>
+										<div class="uto-block _3">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-q w-inline-block">
+												<div class="p-30-120 _2"><?php echo esc_html( $quote ); ?></div>
+												<?php if ( ! empty( $author ) ) : ?>
+													<div class="p-16-120 _3">— <?php echo esc_html( $author ); ?></div>
+												<?php endif; ?>
+												<div class="p-16-120 _2"><?php echo esc_html( $link_text ); ?></div>
+												<?php // TODO: maybe remove useless image? ?>
+												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+										</div>
+									<?php endif; ?>
+									<?php if ( ! empty( $publication_1 ) ) : ?>
+										<div class="uto-block _4">
+											<a href="<?php echo esc_url( get_the_permalink( $publication_1 ) ); ?>" class="u-link u-p w-inline-block">
+												<div class="ev-mom">
+													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_1 ) ); ?></div>
+													<div class="p-16-120 _2">by <?php echo esc_html( get_the_author( $publication_1 ) ); ?></div>
+												</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+										</div>
+									<?php endif; ?>
 									<div class="uto-block _5">
-										<a href="#" class="u-link u-i w-inline-block">
+										<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
 											<div class="p-36-36 _2">Shared musical Ideology</div>
 											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
 										</a>
@@ -102,129 +172,253 @@ get_header(
 											<div class="rtz-checl"></div>
 										</div>
 									</div>
-									<div class="uto-block _6">
-										<a href="#" class="u-link u-u w-inline-block">
-											<div class="p-36-36 _2">Jeanine De Bique</div>
-											<div class="p-16-120 _2">utopian</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
-									</div>
-									<div class="uto-block _7">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
-										</div>
-									</div>
-									<div class="uto-block _8">
-										<a href="#" class="u-link u-u w-inline-block">
-											<div class="p-56-105 _2">Utopians</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
-									</div>
-									<div class="uto-block _9">
-										<a href="#" class="u-link u-p w-inline-block">
-											<div class="ev-mom">
-												<div class="p-16-120 _2 pol">«There’s definitely a strong relationship between me and my character Teculihuatzin»</div>
-												<div class="p-16-120 _2">read</div>
+									<?php if ( ! empty( $utopian_3 ) ) : ?>
+										<div class="uto-block _6">
+											<a href="<?php echo esc_url( get_the_permalink( $utopian_3 ) ); ?>" class="u-link u-u w-inline-block">
+												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_3 ) ); ?></div>
+												<div class="p-16-120 _2">utopian</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
 											</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+											<?php
+											echo get_the_post_thumbnail(
+												$utopian_3,
+												'full',
+												array(
+													'class'   => 'uu-image',
+													'loading' => 'eager',
+												)
+											);
+											?>
 										</div>
-									</div>
-									<div class="uto-block _10">
-										<a href="#" class="u-link u-e w-inline-block">
-											<div class="ev-mom">
-												<div class="p-36-36 _2">14 NOV</div>
-												<div class="p-36-36 _2 mmax">Brahms: Violin Concerto, Tchaikovsky: Symphony No. 5</div>
-												<div class="p-16-120 _2"> </div>
-												<div class="p-16-120 _2">Philharmonie BerlinBerlin, Germany</div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $photo_4 ) && ! empty( $photo_4['photo'] ) ) :
+										$url         = ! empty( $photo_4['url'] ) ? $photo_4['url'] : '#';
+										$description = ! empty( $photo_4['description'] ) ? $photo_4['description'] : '';
+										$link_text   = ! empty( $photo_4['link_text'] ) ? $photo_4['link_text'] : 'read';
+										?>
+										<div class="uto-block _7">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_4['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
 											</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-									</div>
-									<div class="uto-block _11">
-										<a href="#" class="u-link u-u w-inline-block">
-											<div class="p-36-36 _2">Jeanine De Bique</div>
-											<div class="p-16-120 _2">utopian</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php if ( ! empty( $utopians_link ) ) : ?>
+										<div class="uto-block _8">
+											<a href="<?php echo esc_url( $utopians_link ); ?>" class="u-link u-u w-inline-block">
+												<div class="p-56-105 _2">Utopians</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<?php // TODO: maybe remove useless image? ?>
+											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
 										</div>
-										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
-									</div>
-									<div class="uto-block _12">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php if ( ! empty( $publication_3 ) ) : ?>
+										<div class="uto-block _9">
+											<a href="<?php echo esc_url( get_the_permalink( $publication_3 ) ); ?>" class="u-link u-p w-inline-block">
+												<div class="ev-mom">
+													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_3 ) ); ?></div>
+													<div class="p-16-120 _2">read</div>
+												</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
+									<?php endif; ?>
+									<?php if ( ! empty( $concert_3 ) ) : ?>
+										<div class="uto-block _10">
+											<a href="<?php echo esc_url( get_the_permalink( $concert_3 ) ); ?>" class="u-link u-e w-inline-block">
+												<div class="ev-mom">
+													<?php
+													$start_date = get_field( 'start_date', $concert_3 );
+													if ( ! empty( $start_date ) ) :
+														?>
+														<div class="p-36-36 _2"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
+													<?php endif; ?>
+													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_3 ) ); ?></div>
+													<div class="p-16-120 _2"> </div>
+													<?php
+													$location = get_field( 'location' );
+													if ( ! empty( $location['location_name'] ) ) :
+														?>
+													<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+													<?php endif; ?>
+												</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-									</div>
-									<div class="uto-block _13">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php if ( ! empty( $utopian_5 ) ) : ?>
+										<div class="uto-block _11">
+											<a href="<?php echo esc_url( get_the_permalink( $utopian_5 ) ); ?>" class="u-link u-u w-inline-block">
+												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_5 ) ); ?></div>
+												<div class="p-16-120 _2">utopian</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<?php
+											echo get_the_post_thumbnail(
+												$utopian_5,
+												'full',
+												array(
+													'class'   => 'uu-image',
+													'loading' => 'eager',
+												)
+											);
+											?>
 										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $photo_6 ) && ! empty( $photo_6['photo'] ) ) :
+										$url         = ! empty( $photo_6['url'] ) ? $photo_6['url'] : '#';
+										$description = ! empty( $photo_6['description'] ) ? $photo_6['description'] : '';
+										$link_text   = ! empty( $photo_6['link_text'] ) ? $photo_6['link_text'] : 'read';
+										?>
+										<div class="uto-block _12">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_6['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-									</div>
-									<div class="uto-block _14">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $photo_2 ) && ! empty( $photo_2['photo'] ) ) :
+										$url         = ! empty( $photo_2['url'] ) ? $photo_2['url'] : '#';
+										$description = ! empty( $photo_2['descrioption'] ) ? $photo_2['descrioption'] : '';
+										$link_text   = ! empty( $photo_2['link_text'] ) ? $photo_2['link_text'] : 'read';
+										?>
+										<div class="uto-block _13">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_2['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $photo_1 ) && ! empty( $photo_1['photo'] ) ) :
+										$url         = ! empty( $photo_1['url'] ) ? $photo_1['url'] : '#';
+										$description = ! empty( $photo_1['description'] ) ? $photo_1['description'] : '';
+										$link_text   = ! empty( $photo_1['link_text'] ) ? $photo_1['link_text'] : 'read';
+										?>
+										<div class="uto-block _14">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_1['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
 									<div class="uto-block _15">
-										<a href="/idea" class="u-link u-i w-inline-block">
+										<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
 											<div class="p-56-105 _2">idea</div>
 										</a>
 										<div class="rtz-checker">
 											<div class="rtz-checl"></div>
 										</div>
 									</div>
-									<div class="uto-block _16">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php
+									if ( ! empty( $photo_3 ) && ! empty( $photo_3['photo'] ) ) :
+										$url         = ! empty( $photo_3['url'] ) ? $photo_3['url'] : '#';
+										$description = ! empty( $photo_3['description'] ) ? $photo_3['description'] : '';
+										$link_text   = ! empty( $photo_3['link_text'] ) ? $photo_3['link_text'] : 'read';
+										?>
+										<div class="uto-block _16">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_3['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
-										</div>
-									</div>
+									<?php endif; ?>
 									<div class="uto-block _17">
-										<a href="#" class="u-link u-i w-inline-block">
+										<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
 											<div class="p-36-36 _2">community <br>of like-minded people</div>
 											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
 										</a>
@@ -232,81 +426,147 @@ get_header(
 											<div class="rtz-checl"></div>
 										</div>
 									</div>
-									<div class="uto-block _18">
-										<a href="#" class="u-link u-e w-inline-block">
-											<div class="ev-mom">
-												<div class="p-36-36 _2">14 NOV</div>
-												<div class="p-36-36 _2 mmax">Brahms: Violin Concerto, Tchaikovsky: Symphony No. 5</div>
-												<div class="p-16-120 _2"> </div>
-												<div class="p-16-120 _2">Philharmonie BerlinBerlin, Germany</div>
+									<?php if ( ! empty( $concert_2 ) ) : ?>
+										<div class="uto-block _18">
+											<a href="<?php echo esc_url( get_the_permalink( $concert_2 ) ); ?>" class="u-link u-e w-inline-block">
+												<div class="ev-mom">
+													<?php
+													$start_date = get_field( 'start_date', $concert_2 );
+													if ( ! empty( $start_date ) ) :
+														?>
+														<div class="p-36-36 _2"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
+													<?php endif; ?>
+													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_2 ) ); ?></div>
+													<div class="p-16-120 _2"> </div>
+													<?php
+													$location = get_field( 'location' );
+													if ( ! empty( $location['location_name'] ) ) :
+														?>
+														<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+													<?php endif; ?>
+												</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
 											</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
 										</div>
-									</div>
-									<div class="uto-block _19">
-										<a href="/utopian" class="u-link u-u w-inline-block">
-											<div class="p-36-36 _2">Jeanine De Bique</div>
-											<div class="p-16-120 _2">utopian</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
-									</div>
-									<div class="uto-block _20">
-										<a href="#" class="u-link u-q w-inline-block">
-											<div class="p-30-120 _2">Frankly speaking, <br>music is with me and inside me all the time. Everything is music, and music is everything for me.</div>
-											<div class="p-16-120 _3">— Teodor Currentzis</div>
-											<div class="p-16-120 _2">read</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-									</div>
-									<div class="uto-block _21">
-										<a href="/article" class="u-link u-p w-inline-block">
-											<div class="ev-mom">
-												<div class="p-16-120 _2 pol">«There’s definitely a strong relationship between me and my character Teculihuatzin»</div>
-												<div class="p-16-120 _2">read</div>
+									<?php endif; ?>
+									<?php if ( ! empty( $utopian_2 ) ) : ?>
+										<div class="uto-block _19">
+											<a href="<?php echo esc_url( get_the_permalink( $utopian_2 ) ); ?>" class="u-link u-u w-inline-block">
+												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_2 ) ); ?></div>
+												<div class="p-16-120 _2">utopian</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
 											</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+											<?php
+											echo get_the_post_thumbnail(
+												$utopian_2,
+												'full',
+												array(
+													'loading' => 'eager',
+													'class'   => 'uu-image',
+												)
+											);
+											?>
 										</div>
-									</div>
-									<div class="uto-block _22">
-										<a href="/utopian" class="u-link u-u w-inline-block">
-											<div class="p-36-36 _2">Jeanine De Bique</div>
-											<div class="p-16-120 _2">utopian</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $quote_2 ) && ! empty( $quote_2['quote'] ) ) :
+										$quote     = $quote_2['quote'];
+										$url       = ! empty( $quote_2['url'] ) ? $quote_2['url'] : '#';
+										$link_text = ! empty( $quote_2['link_text'] ) ? $quote_2['link_text'] : 'read';
+										$author    = ! empty( $quote_2['author'] ) ? $quote_2['author'] : '';
+										?>
+										<div class="uto-block _20">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-q w-inline-block">
+												<div class="p-30-120 _2"><?php echo esc_html( $quote ); ?></div>
+												<?php if ( ! empty( $author ) ) : ?>
+													<div class="p-16-120 _3">— <?php echo esc_html( $author ); ?></div>
+												<?php endif; ?>
+												<div class="p-16-120 _2"><?php echo esc_html( $link_text ); ?></div>
+												<?php // TODO: maybe remove useless image? ?>
+												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
-									</div>
-									<div class="uto-block _23">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php if ( ! empty( $publication_2 ) ) : ?>
+										<div class="uto-block _21">
+											<a href="<?php echo esc_url( get_the_permalink( $publication_2 ) ); ?>" class="u-link u-p w-inline-block">
+												<div class="ev-mom">
+													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_2 ) ); ?></div>
+													<div class="p-16-120 _2">read</div>
+												</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
+									<?php endif; ?>
+									<?php if ( ! empty( $utopian_4 ) ) : ?>
+										<div class="uto-block _22">
+											<a href="<?php echo esc_url( get_the_permalink( $utopian_4 ) ); ?>" class="u-link u-u w-inline-block">
+												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_4 ) ); ?></div>
+												<div class="p-16-120 _2">utopian</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<?php
+											echo get_the_post_thumbnail(
+												$utopian_4,
+												'full',
+												array(
+													'class'   => 'uu-image',
+													'loading' => 'eager',
+												)
+											);
+											?>
 										</div>
-									</div>
-									<div class="uto-block _24">
-										<a href="/concerts" class="u-link u-i w-inline-block">
-											<div class="p-56-105 _2">Concerts</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $photo_5 ) && ! empty( $photo_5['photo'] ) ) :
+										$url         = ! empty( $photo_5['url'] ) ? $photo_5['url'] : '#';
+										$description = ! empty( $photo_5['description'] ) ? $photo_5['description'] : '';
+										$link_text   = ! empty( $photo_5['link_text'] ) ? $photo_5['link_text'] : 'read';
+										?>
+										<div class="uto-block _23">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_5['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
+									<?php if ( ! empty( $concerts_link ) ) : ?>
+										<div class="uto-block _24">
+											<a href="<?php echo esc_url( $concerts_link ); ?>" class="u-link u-i w-inline-block">
+												<div class="p-56-105 _2">Concerts</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+										</div>
+									<?php endif; ?>
 									<div class="uto-block _25">
 										<a href="#" class="u-link u-i w-inline-block">
 											<div class="p-36-36 _2">idealistic attept to find an approuch to music creation</div>
@@ -316,64 +576,132 @@ get_header(
 											<div class="rtz-checl"></div>
 										</div>
 									</div>
-									<div class="uto-block _26">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
-										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
-										</div>
-									</div>
-									<div class="uto-block _27">
-										<a href="/concert-full" class="u-link u-e w-inline-block">
-											<div class="ev-mom">
-												<div class="p-36-36 _2">14 NOV</div>
-												<div class="p-36-36 _2 mmax">Brahms: Violin Concerto, Tchaikovsky: Symphony No. 5</div>
-												<div class="p-16-120 _2"> </div>
-												<div class="p-16-120 _2">Philharmonie BerlinBerlin, Germany</div>
+									<?php
+									if ( ! empty( $photo_7 ) && ! empty( $photo_7['photo'] ) ) :
+										$url         = ! empty( $photo_7['url'] ) ? $photo_7['url'] : '#';
+										$description = ! empty( $photo_7['description'] ) ? $photo_7['description'] : '';
+										$link_text   = ! empty( $photo_7['link_text'] ) ? $photo_7['link_text'] : 'read';
+										?>
+										<div class="uto-block _26">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_7['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
 											</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-									</div>
-									<div class="uto-block _28">
-										<a href="#" class="u-link u-u w-inline-block">
-											<div class="p-36-36 _2">Jeanine De Bique</div>
-											<div class="p-16-120 _2">utopian</div>
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php if ( ! empty( $concert_4 ) ) : ?>
+										<div class="uto-block _27">
+											<a href="<?php echo esc_url( get_the_permalink( $concert_4 ) ); ?>" class="u-link u-e w-inline-block">
+												<div class="ev-mom">
+													<?php
+													$start_date = get_field( 'start_date', $concert_4 );
+													if ( ! empty( $start_date ) ) :
+														?>
+														<div class="p-36-36 _2"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
+													<?php endif; ?>
+													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_4 ) ); ?></div>
+													<div class="p-16-120 _2"> </div>
+													<?php
+													$location = get_field( 'location' );
+													if ( ! empty( $location['location_name'] ) ) :
+														?>
+														<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+													<?php endif; ?>
+												</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
-									</div>
-									<div class="uto-block _29">
-										<a href="#" class="u-link u-img w-inline-block">
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65e58e3f95fad9b24e019178_Rectangle2071.jpg' ); ?>" loading="eager" alt class="u-image">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php if ( ! empty( $utopian_6 ) ) : ?>
+										<div class="uto-block _28">
+											<a href="<?php echo esc_url( get_the_permalink( $utopian_6 ) ); ?>" class="u-link u-u w-inline-block">
+												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_6 ) ); ?></div>
+												<div class="p-16-120 _2">utopian</div>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<?php
+											echo get_the_post_thumbnail(
+												$utopian_6,
+												'full',
+												array(
+													'class'   => 'uu-image',
+													'loading' => 'eager',
+												)
+											);
+											?>
 										</div>
-										<div class="under-image">
-											<div>Approach to music creation<br></div>
-											<div class="pseudo-link">read</div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $photo_8 ) && ! empty( $photo_8['photo'] ) ) :
+										$url         = ! empty( $photo_8['url'] ) ? $photo_8['url'] : '#';
+										$description = ! empty( $photo_8['description'] ) ? $photo_8['description'] : '';
+										$link_text   = ! empty( $photo_8['link_text'] ) ? $photo_8['link_text'] : 'read';
+										?>
+										<div class="uto-block _29">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
+												<?php
+												echo wp_get_attachment_image(
+													$photo_8['photo'],
+													'full',
+													false,
+													array(
+														'class'   => 'u-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
+											<div class="under-image">
+												<div><?php echo esc_html( $description ); ?><br></div>
+												<div class="pseudo-link"><?php echo esc_html( $link_text ); ?></div>
+											</div>
 										</div>
-									</div>
-									<div class="uto-block _30">
-										<a href="/article" class="u-link u-q w-inline-block">
-											<div class="p-30-120 _2">Frankly speaking, <br>music is with me and inside me all the time. Everything is music, and music is everything for me.</div>
-											<div class="p-16-120 _3">— Teodor Currentzis</div>
-											<div class="p-16-120 _2">read</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php endif; ?>
+									<?php
+									if ( ! empty( $quote_3 ) && ! empty( $quote_3['quote'] ) ) :
+										$quote     = ! empty( $quote_3['quote'] ) ? $quote_3['quote'] : '';
+										$url       = ! empty( $quote_3['url'] ) ? $quote_3['url'] : '#';
+										$link_text = ! empty( $quote_3['link_text'] ) ? $quote_3['link_text'] : 'read';
+										$author    = ! empty( $quote_3['author'] ) ? $quote_3['author'] : '';
+										?>
+										<div class="uto-block _30">
+											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-q w-inline-block">
+												<div class="p-30-120 _2"><?php echo esc_html( $quote ); ?></div>
+												<?php if ( ! empty( $author ) ) : ?>
+													<div class="p-16-120 _3">— <?php echo esc_html( $author ); ?></div>
+												<?php endif; ?>
+												<div class="p-16-120 _2"><?php echo esc_html( $link_text ); ?></div>
+												<?php // TODO: maybe remove useless image? ?>
+												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
 									<div class="uto-block _31">
 										<a href="#" class="u-link u-i w-inline-block">
 											<div class="p-36-36 _2">independent orchestra</div>
