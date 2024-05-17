@@ -6,6 +6,7 @@ import gsap from 'gsap';
 
 import panzoom from 'panzoom';
 import { moveZoomSlider } from './components/LevelSlider.js';
+import { initLoader } from './components/Loader.js';
 import { initSearchForm } from './components/searchForm.js';
 import {
 	calculateScrollPosition,
@@ -459,21 +460,6 @@ function getElementPositionInsideParent(element, parent) {
 	};
 }
 
-/**
- * A function that calculates the position of an element inside the window.
- *
- * @param {Element} element - The element whose position is to be calculated.
- * @return {Object} An object with x and y properties representing the position of the element relative to the window.
- */
-// function getElementPositionInsideWindow(element) {
-// 	const elementRect = element.getBoundingClientRect();
-
-// 	return {
-// 		x: elementRect.left,
-// 		y: elementRect.top,
-// 	};
-// }
-
 function fixPanzoomOnMouseDown() {
 	document
 		.querySelectorAll('a')
@@ -495,13 +481,14 @@ function initPanzoom() {
 
 	fixPanzoomOnMouseDown();
 
-	moveZoomSlider(0, 1);
+	// moveZoomSlider(0, 1);
 
 	panzoomInstance = panzoom(panzoomEl, {
 		boundsDisabledForZoom: true,
 		smoothScroll: false,
 		maxZoom,
 		minZoom,
+		initialZoom: minZoom,
 		zoomDoubleClickSpeed: 1,
 		onDoubleClick: function (e) {
 			return false; // tells the library to not preventDefault, and not stop propagation
@@ -509,14 +496,14 @@ function initPanzoom() {
 	});
 
 	panzoomInstance.moveTo(
-		-(panzoomElWidth - window.innerWidth) / 2,
-		-(panzoomElHeight - window.innerHeight) / 2,
+		-(panzoomElWidth * minZoom - window.innerWidth) / 2,
+		-(panzoomElHeight * minZoom - window.innerHeight) / 2,
 		false
 	);
 
 	setTimeout(() => {
 		panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
-	});
+	}, 1000);
 
 	function debounce(func, delay = 300) {
 		let timerId;
@@ -675,7 +662,8 @@ function initBarba() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-	moveZoomSlider(0);
+	// moveZoomSlider(50);
+	initLoader();
 });
 
 window.addEventListener('load', (event) => {

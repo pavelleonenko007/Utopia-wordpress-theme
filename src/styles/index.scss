@@ -2,12 +2,13 @@
 @import url('../webflow/css/custom.css');
 
 :root {
-	--color-white: #fff;
+	--color-white: 255 255 255;
+	--color-dark: 22 22 22;
 }
 
 .send-btn {
 	background: transparent;
-	color: var(--color-white);
+	color: rgb(var(--color-white));
 
 	& > .pre-send {
 		display: block;
@@ -30,10 +31,68 @@ button.link {
 	}
 
 	& > .text-block-6 {
-		color: var(--color-white);
+		color: rgb(var(--color-white));
 	}
 }
 
 .search-input {
-	color: #fff;
+	color: var(rgb(var(--color-white)));
+}
+
+.hello-screen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(var(--color-dark) / 0.8);
+	backdrop-filter: blur(10rem);
+	z-index: 9999;
+
+	&__body {
+		width: 100%;
+		max-width: 210rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		row-gap: 16rem;
+		text-align: center;
+		font-family: Utopia, sans-serif;
+		font-size: 18rem;
+		line-height: 1.2;
+	}
+
+	&__loader {
+		width: 4rem;
+		height: 4rem;
+		border-radius: 50%;
+		background-color: #fff;
+		box-shadow: 8rem 0 #fff, -8rem 0 #fff;
+		position: relative;
+		animation: flash 0.5s ease-out infinite alternate;
+	}
+
+	&__text {
+		&--hidden {
+			display: none;
+		}
+	}
+}
+
+@keyframes flash {
+  0% {
+    background-color: #FFF2;
+    box-shadow: 8rem 0 #FFF2, -8rem 0 #FFF;
+  }
+  50% {
+    background-color: #FFF;
+    box-shadow: 8rem 0 #FFF2, -8rem 0 #FFF2;
+  }
+  100% {
+    background-color: #FFF2;
+    box-shadow: 8rem 0 #FFF, -8rem 0 #FFF2;
+  }
 }

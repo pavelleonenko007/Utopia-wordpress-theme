@@ -459,4 +459,11 @@ get_header(
 			</div>
 		</div>
 		<a href="#" class="rest w-inline-block"></a>
+		<div class="hello-screen">
+			<div class="hello-screen__body">
+				<div class="hello-screen__text">utopia is gathering wait till first bar</div>
+				<div class="hello-screen__text hello-screen__text--hidden">ZOOM and drag to navigate</div>
+				<div class="hello-screen__loader"></div>
+			</div>
+		</div>
 		<?php get_footer(); ?>
