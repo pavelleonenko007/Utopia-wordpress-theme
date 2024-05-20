@@ -1,0 +1,47 @@
+name: Deploy Code via SFTP
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  generate-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+          fetch-depth: 0
+
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+  
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` commanded
+
+      - name: Build production bundle
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build # will run `yarn build` command
+
+      - name: 📂 SFTP uploader                       # Upload to SFTP 
+        uses: wangyucode/sftp-upload-action@v2.0.2
+        with:
+          host: ${{ secrets.SFTP_SERVER_IP }}                  # Recommended to put the credentials in github secrets.
+          username: ${{ secrets.SFTP_LOGIN }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          compress: true                             # Compression
+          forceUpload: false                          # Optional, Force uploading all files, Default to false(upload only newer files).
+          localDir: '.'                              # Required, Absolute or relative to cwd.
+          remoteDir: '/home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia'                             # Required, Absolute path only.
+          exclude: '.git*,.DS_Store'
