@@ -40,4 +40,4 @@ jobs:
           forceUpload: false                          # Optional, Force uploading all files, Default to false(upload only newer files).
           localDir: '.'                              # Required, Absolute or relative to cwd.
           remoteDir: '/home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia'                             # Required, Absolute path only.
-          exclude: '.git*,.DS_Store'
+          exclude: '.git*,.DS_Store,node_modules/,vendor/'
