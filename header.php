@@ -99,6 +99,17 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 				</div>
 			</header>
 			<dialog class="search-block" id="searchDialog">
+				<div class="search-block__controls">
+					<div class="search-block__title">Search</div>
+					<form method="dialog" class="search-block__close-button-wrapper">
+						<button class="search-block__close-btn" type="submit">
+							<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="currentColor"/>
+							</svg>
+							<span class="sr-only">Close</span>
+						</button>
+					</form>
+				</div>
 				<div class="text-block-6">Search in utopia</div>
 				<div class="serch-form">
 					<form role="search" id="searchform" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
