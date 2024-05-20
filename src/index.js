@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import panzoom from 'panzoom';
 import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
-import { initSearchForm } from './components/searchForm.js';
+import { initSearchForm } from './components/SearchForm.js';
 import {
 	calculateScrollPosition,
 	calculateZoomPercent,
