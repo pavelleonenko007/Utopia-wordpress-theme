@@ -20,6 +20,106 @@
             "endpoint": 0
         },
         {
+            "key": "field_664b2d11a5fa7",
+            "label": "Idea 0",
+            "name": "idea_0",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text under the logotype.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_664b2d45a5fa8",
+            "label": "Idea 1",
+            "name": "idea_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_664b2d4ba5fa9",
+            "label": "Idea 2",
+            "name": "idea_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_664b2d4ea5faa",
+            "label": "Idea 3",
+            "name": "idea_3",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_664b2d50a5fab",
+            "label": "Idea 4",
+            "name": "idea_4",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_66476fb556dd8",
             "label": "Quotes",
             "name": "",
@@ -1425,5 +1525,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1715958121
+    "modified": 1716203003
 }

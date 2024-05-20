@@ -17,6 +17,11 @@ get_header(
 
 $idea_page_id  = 12;
 $idea_page_url = get_the_permalink( $idea_page_id );
+$idea_0        = get_field( 'idea_0' );
+$idea_1        = get_field( 'idea_1' );
+$idea_2        = get_field( 'idea_2' );
+$idea_3        = get_field( 'idea_3' );
+$idea_4        = get_field( 'idea_4' );
 
 $publication_1 = get_field( 'publication_1' );
 $publication_2 = get_field( 'publication_2' );
@@ -75,12 +80,16 @@ $photo_8 = get_field( 'photo_8' );
 												</defs>
 											</svg>
 										</div>
-										<div class="top-abs">
-											<div class="p-14-20 _2">The orchestra of Teodor Currentzis is a special creative community of like-minded musicians with a shared ideology, performing all over the globe.</div>
-											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-u w-inline-block">
-												<div class="p-16-120 _2 _33">read</div>
-											</a>
-										</div>
+										<?php
+										if ( ! empty( $idea_0 ) ) :
+											?>
+											<div class="top-abs">
+												<div class="p-14-20 _2"><?php echo $idea_0; ?></div>
+												<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-u w-inline-block">
+													<div class="p-16-120 _2 _33">read</div>
+												</a>
+											</div>
+										<?php endif; ?>
 									</div>
 									<?php if ( ! empty( $utopian_1 ) ) : ?>
 										<div class="uto-block _1">
@@ -163,15 +172,18 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<div class="uto-block _5">
-										<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
-											<div class="p-36-36 _2">Shared musical Ideology</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php if ( ! empty( $idea_2 ) ) : ?>
+										<div class="uto-block _5">
+											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
+												<div class="p-36-36 _2"><?php echo $idea_2; ?></div>
+												<?php // TODO: remove useless image? ?>
+												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
 									<?php if ( ! empty( $utopian_3 ) ) : ?>
 										<div class="uto-block _6">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_3 ) ); ?>" class="u-link u-u w-inline-block">
@@ -417,15 +429,18 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<div class="uto-block _17">
-										<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
-											<div class="p-36-36 _2">community <br>of like-minded people</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php if ( ! empty( $idea_1 ) ) : ?>
+										<div class="uto-block _17">
+											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
+												<div class="p-36-36 _2"><?php echo $idea_1; ?></div>
+												<?php // TODO: remove useless img? ?>
+												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
 									<?php if ( ! empty( $concert_2 ) ) : ?>
 										<div class="uto-block _18">
 											<a href="<?php echo esc_url( get_the_permalink( $concert_2 ) ); ?>" class="u-link u-e w-inline-block">
@@ -567,15 +582,17 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<div class="uto-block _25">
-										<a href="#" class="u-link u-i w-inline-block">
-											<div class="p-36-36 _2">idealistic attept to find an approuch to music creation</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php if ( ! empty( $idea_3 ) ) : ?>
+										<div class="uto-block _25">
+											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
+												<div class="p-36-36 _2"><?php echo $idea_3; ?></div>
+												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
 									<?php
 									if ( ! empty( $photo_7 ) && ! empty( $photo_7['photo'] ) ) :
 										$url         = ! empty( $photo_7['url'] ) ? $photo_7['url'] : '#';
@@ -702,86 +719,72 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<div class="uto-block _31">
-										<a href="#" class="u-link u-i w-inline-block">
-											<div class="p-36-36 _2">independent orchestra</div>
-											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
-										</a>
-										<div class="rtz-checker">
-											<div class="rtz-checl"></div>
+									<?php if ( ! empty( $idea_4 ) ) : ?>
+										<div class="uto-block _31">
+											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
+												<div class="p-36-36 _2"><?php echo $idea_4; ?></div>
+												<?php // TODO: remove useless img? ?>
+												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+											</a>
+											<div class="rtz-checker">
+												<div class="rtz-checl"></div>
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="bottom-home">
-					<a href="#" class="link-shos bottmer hvr w-inline-block">
-						<div class="btn-xtx">discover upcoming tour</div>
-						<div class="hover-liner"></div>
-					</a>
-					<div class="marq-mom">
-						<div class="marq">
-							<div class="marq-line">
-								<a href="/concert-full" class="marq-link w-inline-block">
-									<div class="p-11">2 aug</div>
-									<div class="p-11-2">Salzburg Festival I Purcell: The Indian Queen</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">7 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">8 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
-							</div>
-							<div class="marq-line">
-								<a href="/concert-full" class="marq-link w-inline-block">
-									<div class="p-11">2 aug</div>
-									<div class="p-11-2">Salzburg Festival I Purcell: The Indian Queen</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">7 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">8 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
-							</div>
-							<div class="marq-line">
-								<a href="/concert-full" class="marq-link w-inline-block">
-									<div class="p-11">2 aug</div>
-									<div class="p-11-2">Salzburg Festival I Purcell: The Indian Queen</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">7 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">8 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
-							</div>
-							<div class="marq-line">
-								<a href="/concert-full" class="marq-link w-inline-block">
-									<div class="p-11">2 aug</div>
-									<div class="p-11-2">Salzburg Festival I Purcell: The Indian Queen</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">7 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
-								<a href="#" class="marq-link w-inline-block">
-									<div class="p-11">8 aug</div>
-									<div class="p-11-2">Salzburg Festival i Mozart: c-Moll-Messe</div>
-								</a>
+				<?php
+				$closest_concerts_args = array(
+					'post_type'      => 'concert',
+					'posts_per_page' => 4,
+					'meta_key'       => 'start_date',
+					'orderby'        => 'meta_value',
+					'order'          => 'ASC',
+					'meta_query'     => array(
+						array(
+							'key'     => 'start_date',
+							'value'   => gmdate( 'Y-m-d H:i:s' ),
+							'compare' => '>=',
+							'type'    => 'DATETIME',
+						),
+					),
+				);
+
+				$closest_concerts = new WP_Query( $closest_concerts_args );
+
+				if ( $closest_concerts->have_posts() ) :
+					?>
+					<div class="bottom-home">
+						<a href="<?php echo esc_url( get_post_type_archive_link( 'concert' ) ); ?>" class="link-shos bottmer hvr w-inline-block">
+							<div class="btn-xtx">discover upcoming tour</div>
+							<div class="hover-liner"></div>
+						</a>
+						<div class="marq-mom">
+							<div class="marq">
+								<?php for ( $i = 0; $i < 3; $i++ ) : ?>
+									<div class="marq-line">
+											<?php
+											while ( $closest_concerts->have_posts() ) :
+												$closest_concerts->the_post();
+												?>
+												<a href="<?php the_permalink(); ?>" class="marq-link w-inline-block">
+														<?php $start_date = get_field( 'start_date' ); ?>
+													<div class="p-11"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
+													<div class="p-11-2"><?php the_title(); ?></div>
+												</a>
+												<?php
+											endwhile;
+											wp_reset_postdata();
+											?>
+									</div>
+								<?php endfor; ?>
 							</div>
 						</div>
 					</div>
-				</div>
+				<?php endif; ?>
 				<a data-w-id="7a9256bf-0e57-2e65-aece-e84ab29ba067" href="#" class="hidden-clicker-home w-inline-block"></a>
 				<canvas class="canvas"></canvas>
 			</div>
