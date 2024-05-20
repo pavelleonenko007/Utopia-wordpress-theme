@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  generate-version:
+  sftp-upload:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,20 +19,16 @@ jobs:
           fetch-tags: true
           fetch-depth: 0
 
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
-  
-      - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install # will run `yarn install` commanded
+          node-version: '20.x'
 
-      - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build # will run `yarn build` command
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build
+        run: yarn build
 
       - name: 📂 SFTP uploader                       # Upload to SFTP 
         uses: wangyucode/sftp-upload-action@v2.0.2
