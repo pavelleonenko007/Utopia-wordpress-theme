@@ -613,6 +613,7 @@ function initBarba() {
 					});
 				},
 				enter({ next }) {
+					moveZoomSlider(-50, 0.5);
 					return gsap.from(next.container, {
 						opacity: 0,
 						scale: 0.5,
@@ -641,6 +642,11 @@ function initBarba() {
 
 					window.scrollTo(0, 0);
 
+					if (next.namespace === 'homepage') {
+						initPanzoom();
+						moveZoomSlider(50, 0.5);
+					}
+
 					gsap.from(next.container, {
 						autoAlpha: 0,
 						duration: 0.5,
@@ -648,9 +654,6 @@ function initBarba() {
 							done();
 						},
 					});
-				},
-				afterEnter() {
-					initPanzoom();
 				},
 			},
 		],
