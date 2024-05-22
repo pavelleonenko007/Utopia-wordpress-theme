@@ -46,8 +46,9 @@ $gallery = get_field( 'gallery' );
 							the_post_thumbnail(
 								'full',
 								array(
-									'class'   => 'art-img',
-									'loading' => 'eager',
+									'class'        => 'art-img',
+									'loading'      => 'eager',
+									'data-gallery' => 'thumbnail',
 								)
 							);
 							?>
@@ -72,7 +73,7 @@ $gallery = get_field( 'gallery' );
 												break;
 											}
 											?>
-											<a href="#" class="con-slide-mom w-inline-block">
+											<a href="#" class="con-slide-mom w-inline-block" data-image-index="<?php echo esc_attr( $index ); ?>" data-gallery="gallery">
 												<?php
 												echo wp_get_attachment_image(
 													$image['image'],
@@ -122,7 +123,6 @@ $gallery = get_field( 'gallery' );
 									?>
 								</div>
 							<?php endif; ?>
-
 							<?php
 							$related_articles = get_field( 'related_articles' );
 							if ( ! empty( $related_articles ) ) :
@@ -151,4 +151,61 @@ $gallery = get_field( 'gallery' );
 					</div>
 					<?php get_template_part( 'inc/components/footer' ); ?>
 				</div>
+				<?php if ( has_post_thumbnail() ) : ?>
+					<dialog class="image-gallery" id="thumbnailGallery">
+						<div class="image-gallery__header">
+							<div class="image-gallery__counter gallery-counter">
+							</div>
+							<button type="button" class="image-gallery__close-button">
+								<span>Close</span>
+							</button>
+						</div>
+						<div class="image-gallery__body">
+							<ul class="image-gallery__list">
+								<li class="image-gallery__item">
+									<figure class="image-gallery__element">
+										<div>
+											<?php the_post_thumbnail( 'full' ); ?>
+										</div>
+									</figure>
+								</li>
+							</ul>
+						</div>
+					</dialog>
+				<?php endif; ?>
+				<?php if ( ! empty( $gallery ) ) : ?>
+					<dialog class="image-gallery" id="articleGallery">
+						<div class="image-gallery__header">
+							<div class="image-gallery__counter gallery-counter">
+								<svg class="image-gallery__arrow-icon image-gallery__arrow-icon--left" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M6.53033 5.46967C6.82322 5.76256 6.82322 6.23743 6.53033 6.53033L1.75737 11.3033C1.46448 11.5962 0.989606 11.5962 0.696712 11.3033C0.403818 11.0104 0.403817 10.5355 0.69671 10.2427L4.93934 6L0.696689 1.75737C0.403795 1.46448 0.403793 0.989604 0.696686 0.69671C0.989579 0.403816 1.46445 0.403814 1.75735 0.696707L6.53033 5.46967ZM5 5.25L6 5.25L6 6.75L5 6.75L5 5.25Z" fill="#818181"/>
+								</svg>
+								<span>
+									<span class="gallery-counter__current">1</span>/<span class="gallery-counter__total"><?php echo count( $gallery ); ?></span>
+								</span>
+								<svg class="image-gallery__arrow-icon image-gallery__arrow-icon--right" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M6.53033 5.46967C6.82322 5.76256 6.82322 6.23743 6.53033 6.53033L1.75737 11.3033C1.46448 11.5962 0.989606 11.5962 0.696712 11.3033C0.403818 11.0104 0.403817 10.5355 0.69671 10.2427L4.93934 6L0.696689 1.75737C0.403795 1.46448 0.403793 0.989604 0.696686 0.69671C0.989579 0.403816 1.46445 0.403814 1.75735 0.696707L6.53033 5.46967ZM5 5.25L6 5.25L6 6.75L5 6.75L5 5.25Z" fill="#818181"/>
+								</svg>
+							</div>
+							<button type="button" class="image-gallery__close-button">
+								<span>Close</span>
+							</button>
+						</div>
+						<div class="image-gallery__body">
+							<ul class="image-gallery__list">
+								<?php foreach ( $gallery as $gallery_image ) : ?>
+									<li class="image-gallery__item">
+										<figure class="image-gallery__element">
+											<div>
+												<?php echo wp_get_attachment_image( $gallery_image['image'], 'full', false ); ?>
+											</div>
+										</figure>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+						<button type="button" class="image-gallery__nav image-gallery__nav--prev"><span class="sr-only">Previous</span></button>
+						<button type="button" class="image-gallery__nav image-gallery__nav--next"><span class="sr-only">Next</span></button>
+					</dialog>
+				<?php endif; ?>
 				<?php get_footer(); ?>

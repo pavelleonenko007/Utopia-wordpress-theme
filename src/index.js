@@ -5,6 +5,7 @@ import barba from '@barba/core';
 import gsap from 'gsap';
 
 import panzoom from 'panzoom';
+import { initContentGalleries, initPostGalleries, initThumbnailGallery } from './components/ImageGalleryDialog.js';
 import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
 import { initSearchForm } from './components/SearchForm.js';
@@ -659,6 +660,10 @@ function initBarba() {
 		],
 	});
 
+	barba.hooks.enter(() => {
+		initContentGalleries();
+	});
+
 	barba.hooks.after(() => {
 		refreshWebflowScripts();
 	});
@@ -667,6 +672,9 @@ function initBarba() {
 document.addEventListener('DOMContentLoaded', (event) => {
 	// moveZoomSlider(50);
 	initLoader();
+	initThumbnailGallery();
+	initContentGalleries();
+	initPostGalleries();
 });
 
 window.addEventListener('load', (event) => {

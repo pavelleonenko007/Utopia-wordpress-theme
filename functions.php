@@ -667,11 +667,18 @@ add_filter( 'the_content', 'utopia_wrap_images_on_utopian_posts' );
  */
 function utopia_wrap_images_on_utopian_posts( $content ) {
 	if ( is_singular( 'utopian' ) ) {
-		$content = preg_replace(
+		$counter = 0;
+		$content = preg_replace_callback(
 			'/<img[^>]+>/i',
-			'<figure class="w-richtext-align-center w-richtext-figure-type-image">'
-				. '$0' // The image tag that was matched.
-				. '</figure>',
+			function ( $matches ) use ( &$counter ) {
+				$figure_attr = 'data-image-index="' . $counter . '" data-gallery="content"';
+				$counter++;
+				return '<figure class="w-richtext-align-center w-richtext-figure-type-image" ' . $figure_attr . '>'
+				. '<div>'
+				. $matches[0] // The image tag that was matched.
+				. '</div>'
+				. '</figure>';
+			},
 			$content
 		);
 	}
@@ -681,16 +688,20 @@ function utopia_wrap_images_on_utopian_posts( $content ) {
 add_filter( 'the_content', 'utopia_wrap_images_on_articles', 100, 1 );
 function utopia_wrap_images_on_articles( $content ) {
 	if ( is_singular( 'post' ) ) {
+		$counter = 0;
 		$content = preg_replace_callback(
 			'/<div[^>]*\bclass="(.*?\bwp-caption\b.*?)">(<img.+src="(.+)".*>)(<p.+>(.*)<\/p>)?<\/div>/mU',
-			function ( $matches ) {
+			function ( $matches ) use ( &$counter ) {
 				$figure_classes = 'w-richtext-align-center w-richtext-figure-type-image';
 
 				if ( strpos( $matches[1], 'aligncenter' ) !== false ) {
 					$figure_classes = 'w-richtext-align-fullwidth w-richtext-figure-type-image';
 				}
 
-				return '<figure class="' . $figure_classes . '">'
+				$gallery_attr = 'data-image-index="' . $counter . '" data-gallery="content"';
+				$counter++;
+
+				return '<figure class="' . $figure_classes . '" ' . $gallery_attr . '>'
 					. '<div>'
 						. $matches[2]
 					. '</div>'

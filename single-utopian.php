@@ -38,8 +38,9 @@ the_post();
 							the_post_thumbnail(
 								'full',
 								array(
-									'class'   => 'art-img',
-									'loading' => 'eager',
+									'class'        => 'art-img',
+									'loading'      => 'eager',
+									'data-gallery' => 'thumbnail',
 								)
 							);
 							?>
@@ -58,4 +59,26 @@ the_post();
 					</div>
 					<?php get_template_part( 'inc/components/footer' ); ?>
 				</div>
+				<?php if ( has_post_thumbnail() ) : ?>
+					<dialog class="image-gallery" id="thumbnailGallery">
+						<div class="image-gallery__header">
+							<div class="image-gallery__counter gallery-counter">
+							</div>
+							<button type="button" class="image-gallery__close-button">
+								<span>Close</span>
+							</button>
+						</div>
+						<div class="image-gallery__body">
+							<ul class="image-gallery__list">
+								<li class="image-gallery__item">
+									<figure class="image-gallery__element">
+										<div>
+											<?php the_post_thumbnail( 'full' ); ?>
+										</div>
+									</figure>
+								</li>
+							</ul>
+						</div>
+					</dialog>
+				<?php endif; ?>
 				<?php get_footer(); ?>
