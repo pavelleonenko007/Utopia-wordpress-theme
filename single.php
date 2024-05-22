@@ -174,7 +174,7 @@ $gallery = get_field( 'gallery' );
 					</dialog>
 				<?php endif; ?>
 				<?php if ( ! empty( $gallery ) ) : ?>
-					<dialog class="image-gallery" id="articleGallery">
+					<dialog class="image-gallery" id="postGallery">
 						<div class="image-gallery__header">
 							<div class="image-gallery__counter gallery-counter">
 								<svg class="image-gallery__arrow-icon image-gallery__arrow-icon--left" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
