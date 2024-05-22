@@ -331,3 +331,29 @@ button.link {
 		}
 	}
 }
+
+.form {
+	&--loading {
+		& .pre-send {
+			animation: loading 1s ease-in-out infinite;
+		}
+	}
+}
+
+.loading {
+	animation: loading 1s ease-in-out infinite;
+}
+
+@keyframes loading {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

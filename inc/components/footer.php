@@ -14,6 +14,8 @@ defined( 'ABSPATH' ) || exit;
 		<form id="subscribe-form" class="form" data-wf-page-id="65ef0726d2531bad1f44ea0e" data-wf-element-id="175357ac-dc97-ffe8-4592-427bd0633297">
 			<p class="p-24-120 subs">Subscribe to be the first to know about upcoming concerts</p>
 			<input class="sub-input w-input" maxlength="256" name="email" placeholder="your email" type="email" id="email" required autocomplete="off">
+			<input type="hidden" name="action" value="subscribe">
+			<?php wp_nonce_field( 'ajax_subscribe', 'subscribe_nonce', false ); ?>
 			<button class="send-btn">
 				<div class="pre-send w-embed">
 					<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

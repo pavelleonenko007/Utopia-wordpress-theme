@@ -834,3 +834,161 @@ function utopia_search_site_content_via_ajax() {
 		)
 	);
 }
+
+add_action( 'after_setup_theme', 'utopia_create_subscribers_table' );
+/**
+ * Creates the subscribers table.
+ *
+ * @since 0.0.1
+ */
+function utopia_create_subscribers_table(): void {
+	global $wpdb;
+
+	$table_name      = $wpdb->prefix . 'utopia_subscribers';
+	$charset_collate = $wpdb->get_charset_collate();
+
+	// Create the subscribers table.
+	$sql = "CREATE TABLE $table_name (
+			id mediumint(9) NOT NULL AUTO_INCREMENT,
+			email varchar(100) NOT NULL,
+			token varchar(100) NOT NULL,
+			confirmed tinyint(1) DEFAULT 0 NOT NULL,
+			PRIMARY KEY  (id)
+	) $charset_collate;";
+
+	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	/**
+	 * Execute the SQL statement to create the table.
+	 *
+	 * @since 0.0.1
+	 *
+	 * @param string $sql The SQL statement to execute.
+	 */
+	dbDelta( $sql );
+}
+
+add_action( 'wp_ajax_subscribe', 'utopia_subscribe_user_via_ajax' );
+add_action( 'wp_ajax_nopriv_subscribe', 'utopia_subscribe_user_via_ajax' );
+function utopia_subscribe_user_via_ajax() {
+	if ( ! isset( $_POST['subscribe_nonce'] ) || ! wp_verify_nonce( $_POST['subscribe_nonce'], 'ajax_subscribe' ) || ! isset( $_POST['email'] ) ) {
+		wp_send_json_error( array( 'message' => 'Bad request' ), 400 );
+	}
+
+	if ( empty( $_POST['email'] ) || ! is_email( $_POST['email'] ) ) {
+		wp_send_json_error( array( 'message' => 'Invalid email address' ), 400 );
+	}
+
+	global $wpdb;
+
+	$table_name = $wpdb->prefix . 'utopia_subscribers';
+	$email      = sanitize_email( wp_unslash( $_POST['email'] ) );
+	$token      = wp_generate_uuid4();
+
+	$subscriber = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE email = %s", $email ) );
+
+	if ( $subscriber ) {
+			wp_send_json_success( array( 'message' => 'Already subscribed' ), 200 );
+	}
+
+	$wpdb->insert(
+		$table_name,
+		array(
+			'email' => $email,
+			'token' => $token,
+		),
+		array( '%s', '%s' )
+	);
+
+	$confirm_link = add_query_arg(
+		array( 'utopia_subscribe_confirm' => $token ),
+		home_url()
+	);
+
+	$subject = 'Utopia Subscription confirmation';
+	$message = 'Please confirm your subscription by clicking on the link: ' . $confirm_link;
+	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+
+	wp_mail( $email, $subject, $message, $headers );
+
+	wp_send_json_success( array( 'message' => 'Subscription successful' ), 200 );
+}
+
+add_action( 'init', 'utopia_manage_subscriptions' );
+function utopia_manage_subscriptions() {
+
+	if ( isset( $_GET['utopia_subscribe_confirm'] ) ) {
+		$token = sanitize_text_field( $_GET['utopia_subscribe_confirm'] );
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'utopia_subscribers';
+
+		$subscriber = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE token = %s", $token ) );
+		if ( $subscriber ) {
+				$wpdb->update(
+					$table_name,
+					array( 'confirmed' => 1 ),
+					array( 'token' => $token ),
+					array( '%d' ),
+					array( '%s' )
+				);
+
+				echo '<p>Subscription confirmed!</p>';
+				exit;
+		} else {
+				echo '<p>There is no such subscription.</p>';
+				exit;
+		}
+	}
+
+	if ( isset( $_GET['utopia_unsubscribe'] ) ) {
+		$token = sanitize_text_field( $_GET['utopia_unsubscribe'] );
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'utopia_subscribers';
+
+		$subscriber = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE token = %s", $token ) );
+		if ( $subscriber ) {
+				$wpdb->delete(
+					$table_name,
+					array( 'token' => $token ),
+					array( '%s' )
+				);
+
+				echo "<p>You've unsubscribed from the newsletter.</p>";
+				exit;
+		}
+	}
+}
+
+add_action( 'publish_post', 'utopia_notify_subscribers', 10, 2 );
+/**
+ * Notify subscribers about new concerts
+ *
+ * @since 0.0.1
+ *
+ * @param int     $post_id Post ID of the new concert
+ * @param WP_Post $post Post object of the new concert
+ */
+function utopia_notify_subscribers( $post_id, $post ) {
+	if ( 'concert' !== $post->post_type ) {
+		return;
+	}
+
+	global $wpdb;
+
+	$table_name  = $wpdb->prefix . 'utopia_subscribers';
+	$subscribers = $wpdb->get_results( "SELECT email, token FROM $table_name WHERE confirmed = 1" );
+
+	$subject = 'New Utopia concert';
+	$message = 'Find out more about the new utopia concert: ' . get_permalink( $post_id );
+	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+
+	foreach ( $subscribers as $subscriber ) {
+		$unsubscribe_link = add_query_arg(
+			array( 'utopia_unsubscribe' => $subscriber->token ),
+			home_url()
+		);
+
+		$message_with_unsubscribe = $message . '<br><br><a href="' . $unsubscribe_link . '">Unsubscribe</a>';
+
+		wp_mail( $subscriber->email, $subject, $message_with_unsubscribe, $headers );
+	}
+}

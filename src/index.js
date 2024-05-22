@@ -9,6 +9,7 @@ import { initContentGalleries, initPostGalleries, initThumbnailGallery } from '.
 import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
 import { initSearchForm } from './components/SearchForm.js';
+import { initSubscribeForm } from './components/SubscribeForm.js';
 import {
 	calculateScrollPosition,
 	calculateZoomPercent,
@@ -586,6 +587,7 @@ function initPanzoom() {
 function initBarba() {
 	barba.init({
 		// debug: true,
+		prevent: ({ el }) => el.closest('#wpadminbar'),
 		transitions: [
 			{
 				name: 'scale-transition',
@@ -675,6 +677,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	initThumbnailGallery();
 	initContentGalleries();
 	initPostGalleries();
+	initSubscribeForm();
 });
 
 window.addEventListener('load', (event) => {
