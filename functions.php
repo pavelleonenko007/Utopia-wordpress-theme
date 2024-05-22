@@ -958,7 +958,7 @@ function utopia_manage_subscriptions() {
 	}
 }
 
-add_action( 'publish_post', 'utopia_notify_subscribers', 10, 2 );
+add_action( 'publish_concert', 'utopia_notify_subscribers', 10, 2 );
 /**
  * Notify subscribers about new concerts
  *
@@ -968,10 +968,6 @@ add_action( 'publish_post', 'utopia_notify_subscribers', 10, 2 );
  * @param WP_Post $post Post object of the new concert
  */
 function utopia_notify_subscribers( $post_id, $post ) {
-	if ( 'concert' !== $post->post_type ) {
-		return;
-	}
-
 	global $wpdb;
 
 	$table_name  = $wpdb->prefix . 'utopia_subscribers';
