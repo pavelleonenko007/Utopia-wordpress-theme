@@ -27,8 +27,8 @@ jobs:
           username: ${{ secrets.SFTP_LOGIN }} # FTP username
           password: ${{ secrets.SFTP_PASSWORD }} # FTP password
           remote_folder: '/home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia/' # optional, remote path of your FTP server
-          local_folder:  # optional, local path, default is: dist
+          local_folder: # optional, local path, default is: dist
           cleanup: false # optional, remove existing files inside FTP remote folder
           include: '[]' # optional, e.g. '['dist']'
-          exclude: "['.git*','.git*/**','node_modules/**','vendor/**']" 
+          exclude: ['.git*', '.git*/**', 'node_modules/**', 'vendor/**']
           passive: true # optional
