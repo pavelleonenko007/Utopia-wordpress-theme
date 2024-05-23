@@ -21,6 +21,15 @@ export const initLoader = async () => {
 		},
 	});
 
+	tl.set(
+		'.uto-block._0',
+		{
+			opacity: 0,
+			transition: 'none',
+		},
+		0
+	);
+
 	await wait(5_000);
 
 	tl.set(indicator, {
@@ -68,5 +77,12 @@ export const initLoader = async () => {
 				display: 'none',
 			},
 			4
+		)
+		.to(
+			'.uto-block._0',
+			{
+				opacity: 1,
+			},
+			3
 		);
 };
