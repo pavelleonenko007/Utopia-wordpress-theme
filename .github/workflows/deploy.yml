@@ -1,4 +1,4 @@
-name: 🚀 Deploy Code via SFTP
+name: Deploy Code via SFTP
 
 on:
   push:
@@ -18,16 +18,15 @@ jobs:
         with:
           fetch-tags: true
           fetch-depth: 0
-      - name: 📂  FTP Deployer
-        uses: sand4rt/ftp-deployer@v1.8
+
+      - name: 📂 SFTP uploader                       # Upload to SFTP 
+        uses: wangyucode/sftp-upload-action@v2.0.2
         with:
-          sftp: false # optional
-          host: ${{ secrets.SFTP_SERVER_IP }} # e.g. ftp.host.com or sftp.host.com (without ftp:// or ftps://)
-          port: 21 # optional, default is: 21
-          username: ${{ secrets.SFTP_LOGIN }} # FTP username
-          password: ${{ secrets.SFTP_PASSWORD }} # FTP password
-          remote_folder: '/home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia/' # optional, remote path of your FTP server
-          local_folder: './' # optional, local path, default is: dist
-          cleanup: false # optional, remove existing files inside FTP remote folder
-          include: '[]' # optional, e.g. '['dist']'
-          passive: true # optional
+          host: ${{ secrets.SFTP_SERVER_IP }}                  # Recommended to put the credentials in github secrets.
+          username: ${{ secrets.SFTP_LOGIN }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          compress: true                             # Compression
+          forceUpload: false                          # Optional, Force uploading all files, Default to false(upload only newer files).
+          localDir: '.'                              # Required, Absolute or relative to cwd.
+          remoteDir: '/home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia/'                             # Required, Absolute path only.
+          exclude: '.git/*,.DS_Store,node_modules/*,vendor/*'
