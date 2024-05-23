@@ -5,7 +5,11 @@ import barba from '@barba/core';
 import gsap from 'gsap';
 
 import panzoom from 'panzoom';
-import { initContentGalleries, initPostGalleries, initThumbnailGallery } from './components/ImageGalleryDialog.js';
+import {
+	initContentGalleries,
+	initPostGalleries,
+	initThumbnailGallery,
+} from './components/ImageGalleryDialog.js';
 import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
 import { initSearchForm } from './components/SearchForm.js';
@@ -483,7 +487,9 @@ function initPanzoom() {
 
 	fixPanzoomOnMouseDown();
 
-	// moveZoomSlider(0, 1);
+	if (panzoomInstance) {
+		panzoomInstance.dispose();
+	}
 
 	panzoomInstance = panzoom(panzoomEl, {
 		boundsDisabledForZoom: true,
@@ -590,6 +596,22 @@ function initBarba() {
 		prevent: ({ el }) => el.closest('#wpadminbar'),
 		transitions: [
 			{
+				name: 'initial-transition',
+				once({ next }) {
+					initLoader();
+					initThumbnailGallery();
+					initContentGalleries();
+					initPostGalleries();
+					initSubscribeForm();
+					initSearchForm();
+					initPanzoom();
+
+					if (next.namespace !== 'homepage') {
+						moveZoomSlider(-50);
+					}
+				},
+			},
+			{
 				name: 'scale-transition',
 				from: {
 					custom: ({ trigger }) => trigger?.closest('.uto-block'),
@@ -637,9 +659,6 @@ function initBarba() {
 						},
 					});
 				},
-				// beforeEnter({ next }) {
-				// 	gsap.set(next.container, { autoAlpha: 0 });
-				// }
 				enter({ next }) {
 					const done = this.async();
 
@@ -663,7 +682,11 @@ function initBarba() {
 	});
 
 	barba.hooks.enter(() => {
+		initPanzoom();
+		initThumbnailGallery();
 		initContentGalleries();
+		initPostGalleries();
+		initSubscribeForm();
 	});
 
 	barba.hooks.after(() => {
@@ -672,16 +695,5 @@ function initBarba() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-	// moveZoomSlider(50);
-	initLoader();
-	initThumbnailGallery();
-	initContentGalleries();
-	initPostGalleries();
-	initSubscribeForm();
-});
-
-window.addEventListener('load', (event) => {
 	initBarba();
-	initSearchForm();
-	initPanzoom();
 });

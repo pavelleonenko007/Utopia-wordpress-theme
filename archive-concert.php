@@ -11,6 +11,7 @@ get_header(
 	array(
 		'data-wf-page'                  => '65e5ca782508f719b6fdfdcd',
 		'barba-container-extra-classes' => 'inner-page',
+		'barba-namespace'               => 'concerts',
 	)
 );
 ?>
