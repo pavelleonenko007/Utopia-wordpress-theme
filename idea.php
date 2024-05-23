@@ -42,7 +42,7 @@ get_header(
 								<p>He has also collaborated with the key figures in modern Western theatre: Robert Wilson, Romeo Castellucci, Peter Sellars, Dmitri Tcherniakov, Theodoros Terzopoulos, and others. Teodor Currentzis is a Resident Artist at the Salzburg Festival as well as at the RUHRtriennale Festival, festivals in Lucerne and Aix-en-Provence. As a Resident Artist at the Vienna Konzerthaus, since the 2016/17 season he has given concerts with Vienna Symphony Orchestra, Camerata Salzburg, SWR Symphony orchestra, and musicAeterna.</p>
 								<figure class="w-richtext-align-center w-richtext-figure-type-image">
 									<div>
-										<img src="<?php echo esc_url( TEMPLATE_PATH . '/images/65ef00e8f37b101f1e94c0cd_26.png' ); ?>" loading="lazy" alt>
+										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef00e8f37b101f1e94c0cd_26.png' ); ?>" loading="lazy" alt>
 									</div>
 								</figure>
 								<p>Works by Mozart, Mahler, Beethoven, Tchaikovsky, Rameau, and Stravinsky released by Teodor Currentzis on Sony Classical record label have received numerous international music awards: ECHO Klassik, Edison Klassiek, Japanese Record Academy Award, and BBC Music Magazine’s Opera Award.Teodor Currentzis has received the Toepfer Foundation’s prestigious KAIROS Award. He has also been awarded the Greek Order of the Phoenix and the international Musikfest Bremen Award.</p>
