@@ -24,7 +24,6 @@ jobs:
           server: ${{ secrets.SFTP_SERVER_IP }} 
           username: ${{ secrets.SFTP_LOGIN }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
           server-dir: '/home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia/'
           exclude: |
             **/.git*
