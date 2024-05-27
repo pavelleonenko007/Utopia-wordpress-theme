@@ -60,3 +60,10 @@ export function throttle(func, delay) {
 	};
 }
 
+export const updateDataWfPage = html => {
+	const regex = /<html[^>]*\sdata-wf-page="([^"]*)"[^>]*>/;
+	const dataWfPage = html.match(regex)[1];
+
+	document.querySelector('html').setAttribute('data-wf-page', dataWfPage);
+}
+

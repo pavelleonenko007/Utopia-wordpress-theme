@@ -24,6 +24,7 @@ import {
 	calculateZoomPercent,
 	calculateZoomSliderTransform,
 	refreshWebflowScripts,
+	updateDataWfPage,
 	wait,
 } from './utils/index.js';
 
@@ -719,6 +720,7 @@ function initBarba() {
 		initContentGalleries();
 		initPostGalleries();
 		initSubscribeForm();
+		updateDataWfPage(data.next.html);
 	});
 
 	barba.hooks.after(() => {
