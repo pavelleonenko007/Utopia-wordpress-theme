@@ -15,6 +15,11 @@ import { initLoader } from './components/Loader.js';
 import { initSearchForm } from './components/SearchForm.js';
 import { initSubscribeForm } from './components/SubscribeForm.js';
 import {
+	getPreviousPanCoordinates,
+	rememberPreviousPanCoordinates,
+	resetPreviousPanCoordinates,
+} from './state/index.js';
+import {
 	calculateScrollPosition,
 	calculateZoomPercent,
 	calculateZoomSliderTransform,
@@ -446,7 +451,6 @@ import {
 // }
 
 let panzoomInstance;
-
 /**
  * A function that calculates the position of an element inside its parent.
  *
@@ -489,25 +493,47 @@ function initPanzoom() {
 
 	if (panzoomInstance) {
 		panzoomInstance.dispose();
+		console.log('Panzoom instance disposed');
 	}
+
+	const panzoomCoordinates = getPreviousPanCoordinates();
+	const initialX = panzoomCoordinates
+		? panzoomCoordinates.x
+		: -(panzoomElWidth * minZoom - window.innerWidth) / 2;
+	const initialY = panzoomCoordinates
+		? panzoomCoordinates.y
+		: -(panzoomElHeight * minZoom - window.innerHeight) / 2;
+	const initialZoom = panzoomCoordinates ? panzoomCoordinates.scale : minZoom;
+
+	console.log({ initialX, initialY, initialZoom });
 
 	panzoomInstance = panzoom(panzoomEl, {
 		boundsDisabledForZoom: true,
 		smoothScroll: false,
 		maxZoom,
 		minZoom,
-		initialZoom: minZoom,
+		initialZoom,
 		zoomDoubleClickSpeed: 1,
 		onDoubleClick: function (e) {
 			return false; // tells the library to not preventDefault, and not stop propagation
 		},
 	});
 
-	panzoomInstance.moveTo(
-		-(panzoomElWidth * minZoom - window.innerWidth) / 2,
-		-(panzoomElHeight * minZoom - window.innerHeight) / 2,
-		false
-	);
+	console.log('Panzoom initialized', panzoomInstance);
+
+	// if (panzoomCoordinates) {
+	// 	console.log(panzoomCoordinates);
+	// 	// panzoomInstance.zoomAbs(panzoomCoordinates.x, panzoomCoordinates.y, 2)
+	// 	panzoomInstance.moveTo(
+	// 		panzoomCoordinates.x * minZoom,
+	// 		panzoomCoordinates.y * minZoom
+	// 	);
+	// 	setTimeout(() => {
+	// 		panzoomInstance.zoom(window.innerWidth / 2, window.innerHeight / 2, 1);
+	// 	});
+	// } else {
+	panzoomInstance.moveTo(initialX, initialY);
+	// }
 
 	setTimeout(() => {
 		panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
@@ -622,9 +648,13 @@ function initBarba() {
 					const { width, height, top, left } =
 						blockElement.getBoundingClientRect();
 
-					panzoomInstance.zoomAbs(left + width / 2, top + height / 2, 2);
+					panzoomInstance.zoomAbs(left + width / 2, top + height / 2, 1);
+
+					console.log(left + width / 2, top + height / 2);
 
 					await wait(300);
+
+					rememberPreviousPanCoordinates(panzoomInstance.getTransform());
 
 					return gsap.to(current.container, {
 						opacity: 0,
@@ -659,7 +689,7 @@ function initBarba() {
 						},
 					});
 				},
-				enter({ next }) {
+				enter({ next, current }) {
 					const done = this.async();
 
 					window.scrollTo(0, 0);
@@ -668,6 +698,8 @@ function initBarba() {
 						initPanzoom();
 						moveZoomSlider(50, 0.5);
 					}
+
+					resetPreviousPanCoordinates();
 
 					gsap.from(next.container, {
 						autoAlpha: 0,
@@ -681,8 +713,8 @@ function initBarba() {
 		],
 	});
 
-	barba.hooks.enter(() => {
-		initPanzoom();
+	barba.hooks.enter((data) => {
+		// initPanzoom();
 		initThumbnailGallery();
 		initContentGalleries();
 		initPostGalleries();

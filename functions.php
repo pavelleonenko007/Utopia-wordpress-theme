@@ -259,19 +259,19 @@ add_action( 'wp_enqueue_scripts', 'utopia_add_site_scripts' );
  * @since 1.0.0
  */
 function utopia_add_site_scripts() {
-	// Enqueue The Vogne stylesheet.
-	wp_enqueue_style(
-		'thevogne',
-		'//thevogne.ru/clients/esh/utopia/style.css',
-		array(),
-		time()
-	);
-
 	// Enqueue build stylesheet.
 	wp_enqueue_style(
 		'style',
 		TEMPLATE_PATH . '/build/css/style.css',
-		array( 'thevogne' ),
+		array(),
+		time()
+	);
+
+	// Enqueue The Vogne stylesheet.
+	wp_enqueue_style(
+		'thevogne',
+		'//thevogne.ru/clients/esh/utopia/style.css',
+		array( 'style' ),
 		time()
 	);
 
