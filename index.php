@@ -236,7 +236,7 @@ $photo_8 = get_field( 'photo_8' );
 									<?php endif; ?>
 									<?php if ( ! empty( $utopians_link ) ) : ?>
 										<div class="uto-block _8">
-											<a href="<?php echo esc_url( $utopians_link ); ?>" class="u-link u-u w-inline-block">
+											<a href="<?php echo esc_url( $utopians_link ); ?>" class="u-link u-i w-inline-block">
 												<div class="p-56-105 _2">Utopians</div>
 											</a>
 											<div class="rtz-checker">

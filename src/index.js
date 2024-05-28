@@ -486,10 +486,11 @@ function initPanzoom() {
 		return;
 	}
 
+	const panzoomCoordinates = getPreviousPanCoordinates();
 	const { width: panzoomElWidth, height: panzoomElHeight } =
 		panzoomEl.getBoundingClientRect();
 	const minZoom = window.innerHeight / panzoomElHeight;
-	const maxZoom = 1;
+	const maxZoom = panzoomCoordinates ? panzoomCoordinates.scale : 1;
 
 	fixPanzoomOnMouseDown();
 
@@ -497,7 +498,6 @@ function initPanzoom() {
 		panzoomInstance.dispose();
 	}
 
-	const panzoomCoordinates = getPreviousPanCoordinates();
 	const initialX = panzoomCoordinates
 		? panzoomCoordinates.x
 		: -(panzoomElWidth * minZoom - window.innerWidth) / 2;
@@ -577,6 +577,8 @@ function initPanzoom() {
 	function zoomHandler(e) {
 		const { scale } = e.getTransform();
 
+		console.log(scale);
+
 		moveZoomSlider(
 			calculateZoomSliderTransform(
 				calculateZoomPercent(scale, minZoom, maxZoom)
@@ -623,7 +625,11 @@ function initBarba() {
 					const { width, height, top, left } =
 						blockElement.getBoundingClientRect();
 
-					panzoomInstance.zoomAbs(left + width / 2, top + height / 2, 1);
+					panzoomInstance.setMaxZoom(7);
+
+					setTimeout(() => {
+						panzoomInstance.zoomAbs(left + width / 2, top + height / 2, 7);
+					});
 
 					await wait(300);
 
@@ -674,15 +680,15 @@ function initBarba() {
 
 					initPanzoom();
 
-					panzoomInstance.setMaxZoom(4);
+					// panzoomInstance.setMaxZoom(4);
 
-					setTimeout(() => {
-						panzoomInstance.zoomAbs(
-							window.innerWidth / 2,
-							window.innerHeight / 2,
-							4
-						);
-					});
+					// setTimeout(() => {
+					// 	panzoomInstance.zoomAbs(
+					// 		window.innerWidth / 2,
+					// 		window.innerHeight / 2,
+					// 		4
+					// 	);
+					// });
 
 					await wait(300);
 
