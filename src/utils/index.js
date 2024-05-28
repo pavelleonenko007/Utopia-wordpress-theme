@@ -1,3 +1,5 @@
+import gsap from "gsap";
+
 export const refreshWebflowScripts = () => {
 	Webflow.destroy();
 	Webflow.ready();
@@ -34,12 +36,11 @@ export function calculateZoomSliderTransform(percentage) {
  */
 export function debounce(func, delay) {
 	let timeoutId;
-	return function(...args) {
+	return function (...args) {
 		clearTimeout(timeoutId);
 		timeoutId = setTimeout(() => func.apply(this, args), delay);
 	};
 }
-
 
 /**
  * Throttle function execution to prevent it from being called more than once in a given timeframe.
@@ -60,10 +61,16 @@ export function throttle(func, delay) {
 	};
 }
 
-export const updateDataWfPage = html => {
+export const updateDataWfPage = (html) => {
 	const regex = /<html[^>]*\sdata-wf-page="([^"]*)"[^>]*>/;
 	const dataWfPage = html.match(regex)[1];
 
 	document.querySelector('html').setAttribute('data-wf-page', dataWfPage);
-}
+};
 
+export const setCorrectTransformOrigin = (element) => {
+	const scrollTop = calculateScrollPosition(element);
+	gsap.set(element, {
+		transformOrigin: `50% ${scrollTop + window.innerHeight / 2}px`,
+	});
+};

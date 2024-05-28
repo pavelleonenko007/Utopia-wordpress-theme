@@ -20,10 +20,11 @@ import {
 	resetPreviousPanCoordinates,
 } from './state/index.js';
 import {
-	calculateScrollPosition,
 	calculateZoomPercent,
 	calculateZoomSliderTransform,
+	debounce,
 	refreshWebflowScripts,
+	setCorrectTransformOrigin,
 	updateDataWfPage,
 	wait,
 } from './utils/index.js';
@@ -494,7 +495,6 @@ function initPanzoom() {
 
 	if (panzoomInstance) {
 		panzoomInstance.dispose();
-		console.log('Panzoom instance disposed');
 	}
 
 	const panzoomCoordinates = getPreviousPanCoordinates();
@@ -505,8 +505,6 @@ function initPanzoom() {
 		? panzoomCoordinates.y
 		: -(panzoomElHeight * minZoom - window.innerHeight) / 2;
 	const initialZoom = panzoomCoordinates ? panzoomCoordinates.scale : minZoom;
-
-	console.log({ initialX, initialY, initialZoom });
 
 	panzoomInstance = panzoom(panzoomEl, {
 		boundsDisabledForZoom: true,
@@ -520,35 +518,11 @@ function initPanzoom() {
 		},
 	});
 
-	console.log('Panzoom initialized', panzoomInstance);
-
-	// if (panzoomCoordinates) {
-	// 	console.log(panzoomCoordinates);
-	// 	// panzoomInstance.zoomAbs(panzoomCoordinates.x, panzoomCoordinates.y, 2)
-	// 	panzoomInstance.moveTo(
-	// 		panzoomCoordinates.x * minZoom,
-	// 		panzoomCoordinates.y * minZoom
-	// 	);
-	// 	setTimeout(() => {
-	// 		panzoomInstance.zoom(window.innerWidth / 2, window.innerHeight / 2, 1);
-	// 	});
-	// } else {
 	panzoomInstance.moveTo(initialX, initialY);
-	// }
 
 	setTimeout(() => {
 		panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
-	}, 1000);
-
-	function debounce(func, delay = 300) {
-		let timerId;
-		return function (...args) {
-			clearTimeout(timerId);
-			timerId = setTimeout(() => {
-				func.apply(this, args);
-			}, delay);
-		};
-	}
+	}, 300);
 
 	function panEndHandler(e) {
 		const { x, y } = e.getTransform();
@@ -619,7 +593,7 @@ function initPanzoom() {
 
 function initBarba() {
 	barba.init({
-		// debug: true,
+		debug: true,
 		prevent: ({ el }) => el.closest('#wpadminbar'),
 		transitions: [
 			{
@@ -651,8 +625,6 @@ function initBarba() {
 
 					panzoomInstance.zoomAbs(left + width / 2, top + height / 2, 1);
 
-					console.log(left + width / 2, top + height / 2);
-
 					await wait(300);
 
 					rememberPreviousPanCoordinates(panzoomInstance.getTransform());
@@ -663,10 +635,7 @@ function initBarba() {
 					});
 				},
 				async beforeEnter({ next }) {
-					const scrollTop = calculateScrollPosition(next.container);
-					gsap.set(next.container, {
-						transformOrigin: `50% ${scrollTop + window.innerHeight / 2}px`,
-					});
+					setCorrectTransformOrigin(next.container);
 				},
 				enter({ next }) {
 					moveZoomSlider(-50, 0.5);
@@ -674,6 +643,64 @@ function initBarba() {
 						opacity: 0,
 						scale: 0.5,
 						duration: 0.5,
+					});
+				},
+			},
+			{
+				name: 'scale-out-transition',
+				to: {
+					custom: ({ next }) => {
+						return (
+							next?.namespace === 'homepage' && getPreviousPanCoordinates()
+						);
+					},
+				},
+				beforeLeave({ current }) {
+					setCorrectTransformOrigin(current.container);
+				},
+				leave({ current }) {
+					return gsap.to(current.container, {
+						scale: 0.5,
+						opacity: 0,
+						duration: 0.5,
+					});
+				},
+				async enter({ next }) {
+					gsap.set(next.container, {
+						opacity: 0,
+					});
+
+					moveZoomSlider(0, 0.5);
+
+					initPanzoom();
+
+					panzoomInstance.setMaxZoom(4);
+
+					setTimeout(() => {
+						panzoomInstance.zoomAbs(
+							window.innerWidth / 2,
+							window.innerHeight / 2,
+							4
+						);
+					});
+
+					await wait(300);
+
+					panzoomInstance.zoomAbs(
+						window.innerWidth / 2,
+						window.innerHeight / 2,
+						1
+					);
+
+					resetPreviousPanCoordinates();
+
+					return gsap.to(next.container, {
+						autoAlpha: 1,
+						// scale: 1.5,
+						duration: 0.5,
+						onComplete: () => {
+							panzoomInstance.setMaxZoom(1);
+						},
 					});
 				},
 			},
