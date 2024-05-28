@@ -85,7 +85,7 @@ $photo_8 = get_field( 'photo_8' );
 											?>
 											<div class="top-abs">
 												<div class="p-14-20 _2"><?php echo $idea_0; ?></div>
-												<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-u w-inline-block">
+												<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
 													<div class="p-16-120 _2 _33">read</div>
 												</a>
 											</div>
