@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: 📂 SFTP uploader # Upload to SFTP
         uses: wangyucode/sftp-upload-action@v2.0.2
