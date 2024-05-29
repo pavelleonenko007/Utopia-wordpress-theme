@@ -577,8 +577,6 @@ function initPanzoom() {
 	function zoomHandler(e) {
 		const { scale } = e.getTransform();
 
-		console.log(scale);
-
 		moveZoomSlider(
 			calculateZoomSliderTransform(
 				calculateZoomPercent(scale, minZoom, maxZoom)
@@ -625,13 +623,15 @@ function initBarba() {
 					const { width, height, top, left } =
 						blockElement.getBoundingClientRect();
 
+					const panzoomEl = document.querySelector('.mapa');
+					panzoomEl.style.transition = 'transform 2s cubic-bezier(0.65, 0, 0.35, 1)';
 					panzoomInstance.setMaxZoom(7);
 
 					setTimeout(() => {
 						panzoomInstance.zoomAbs(left + width / 2, top + height / 2, 7);
 					});
 
-					await wait(300);
+					await wait(1_000);
 
 					rememberPreviousPanCoordinates(panzoomInstance.getTransform());
 

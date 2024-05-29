@@ -9,7 +9,6 @@ export let previousPanCoordinates = null;
  * @return {void} This function does not return anything.
  */
 export const rememberPreviousPanCoordinates = (coordinates) => {
-	console.log('rememberPreviousPanCoordinates:', coordinates);
 	previousPanCoordinates = coordinates;
 };
 
