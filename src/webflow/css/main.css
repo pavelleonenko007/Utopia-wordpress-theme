@@ -2080,6 +2080,14 @@ textarea.w-input, textarea.w-select {
   display: grid;
 }
 
+.w-code-component > * {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 :root {
   --yellow: #b7934a;
   --black: black;
@@ -3735,10 +3743,11 @@ figcaption {
 }
 
 .rich-right-side p {
-  color: #fffaf6;
+  color: #818181;
   text-indent: 0;
-  margin-top: 80rem;
+  margin-top: 0;
   margin-bottom: 0;
+  padding-top: 0;
   font-size: 22rem;
   line-height: 120%;
 }
@@ -4755,6 +4764,85 @@ figcaption {
   position: relative;
 }
 
+.heading {
+  color: #fffaf6;
+  text-transform: lowercase;
+  max-width: 612rem;
+  margin-top: 60rem;
+  margin-bottom: 6rem;
+  font-family: Utopia, sans-serif;
+  font-size: 56rem;
+  font-weight: 400;
+  line-height: 105%;
+}
+
+.heading._2 {
+  margin-bottom: -22rem;
+}
+
+.text-richer h2 {
+  color: #fffaf6;
+  text-transform: lowercase;
+  max-width: 612rem;
+  margin-top: 54rem;
+  margin-bottom: 0;
+  font-family: Utopia, sans-serif;
+  font-size: 36rem;
+  font-weight: 400;
+  line-height: 105%;
+}
+
+.text-richer p {
+  max-width: 976rem;
+  margin-top: 31rem;
+  margin-bottom: 0;
+  font-size: 24rem;
+  line-height: 120%;
+}
+
+.text-richer a {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  text-decoration: none;
+}
+
+.text-richer a:hover {
+  opacity: .6;
+}
+
+.coocky-block {
+  z-index: 2147483647;
+  color: #fffaf6;
+  background-color: #515151;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16rem 26rem;
+  font-size: 14rem;
+  line-height: 120%;
+  display: flex;
+  position: fixed;
+  top: 0%;
+  bottom: auto;
+  left: auto;
+  right: 0%;
+}
+
+.text-block-7 {
+  flex: none;
+  margin-right: 34rem;
+}
+
+.text-block-8 {
+  color: #757575;
+  margin-left: 34rem;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.text-block-8:hover {
+  color: #fff;
+}
+
 @media screen and (min-width: 1440px) {
   .p-36-36.in-card, .p-36-36.in-card.in_2 {
     font-size: 36rem;
@@ -5299,6 +5387,20 @@ figcaption {
   .html-embed-2 {
     width: 118px;
   }
+
+  .heading, .text-richer {
+    padding-right: 48rem;
+  }
+
+  .text-richer h2 {
+    margin-top: 34rem;
+    font-size: 24rem;
+  }
+
+  .text-richer p {
+    margin-top: 24rem;
+    font-size: 18rem;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -5547,7 +5649,7 @@ figcaption {
   }
 
   .rich-right-side p {
-    margin-top: 80rem;
+    margin-top: 0;
     font-size: 17rem;
   }
 
@@ -5870,6 +5972,40 @@ figcaption {
 
   .open-m.crest {
     display: none;
+  }
+
+  .heading {
+    letter-spacing: .36rem;
+    margin-top: 25rem;
+    font-size: 36rem;
+  }
+
+  .heading._2 {
+    margin-bottom: 20rem;
+  }
+
+  .text-richer h2 {
+    letter-spacing: .28rem;
+    font-size: 28rem;
+    line-height: 120%;
+  }
+
+  .text-richer p {
+    font-size: 17rem;
+    line-height: 120%;
+  }
+
+  .coocky-block {
+    width: 100%;
+    padding: 24rem 18rem;
+    font-size: 18rem;
+    line-height: 148%;
+    display: block;
+  }
+
+  .text-block-7 {
+    margin-bottom: 18rem;
+    margin-right: 0;
   }
 }
 
