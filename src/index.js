@@ -577,9 +577,11 @@ function initPanzoom() {
 	function zoomHandler(e) {
 		const { scale } = e.getTransform();
 
+		console.log(scale);
+
 		moveZoomSlider(
 			calculateZoomSliderTransform(
-				calculateZoomPercent(scale, minZoom, maxZoom)
+				calculateZoomPercent(scale, e.getMinZoom(), e.getMaxZoom())
 			),
 			0.3
 		);
@@ -676,8 +678,6 @@ function initBarba() {
 						opacity: 0,
 					});
 
-					moveZoomSlider(0, 0.5);
-
 					initPanzoom();
 
 					// panzoomInstance.setMaxZoom(4);
@@ -697,6 +697,7 @@ function initBarba() {
 						window.innerHeight / 2,
 						1
 					);
+					moveZoomSlider(0, 0.5);
 
 					resetPreviousPanCoordinates();
 
