@@ -15,7 +15,7 @@ if ( null === $accepted ) : ?>
 
 	<dialog open aria-label="Cookie Policy" class="coocky-block">
 		<div class="text-block-7">By using this site, you are agreeing to our use of cookies</div>
-		<form method="dialog" onsubmit="document.cookie = 'cookie_accepted=yes; max-age=30;'">
+		<form method="dialog" onsubmit="document.cookie = 'cookie_accepted=yes; max-age=604800;'">
 			<button class="accbtn">Accept</button>
 		</form>
 		<a href="<?php echo esc_url( get_the_permalink( $privacy_policy_page ) ); ?>" class="text-block-8">Learn more</a>
