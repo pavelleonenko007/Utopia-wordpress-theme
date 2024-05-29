@@ -21,6 +21,7 @@ if ( 'index.php' !== $page_template_slug ) : ?>
 			<div class="div-block-10"></div>
 		<?php endif; ?>
 <?php endif; ?>
+<?php get_template_part( 'inc/components/cookie' ); ?>
 		<!-- FOOTER CODE -->
 		<?php utopia_footer_code(); ?>
 	</body>

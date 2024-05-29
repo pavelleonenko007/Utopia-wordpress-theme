@@ -367,3 +367,11 @@ button.link {
 		opacity: 1;
 	}
 }
+
+.coocky-block {
+	display: none;
+}
+
+[open].coocky-block {
+	display: flex;
+}
