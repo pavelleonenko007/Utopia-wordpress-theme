@@ -9,7 +9,7 @@
             "aria-label": "",
             "type": "textarea",
             "instructions": "Text that will be displayed before the main content.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -256,5 +256,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1715344730
+    "modified": 1716986448
 }

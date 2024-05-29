@@ -9,7 +9,7 @@
             "aria-label": "",
             "type": "date_time_picker",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -82,7 +82,7 @@
             "aria-label": "",
             "type": "group",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -137,7 +137,7 @@
             "aria-label": "",
             "type": "text",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -157,7 +157,7 @@
             "aria-label": "",
             "type": "wysiwyg",
             "instructions": "Add track list to the concert.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -242,7 +242,7 @@
             "aria-label": "",
             "type": "textarea",
             "instructions": "Add disclaimer to the concert.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -382,5 +382,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1715601487
+    "modified": 1716986088
 }

@@ -988,3 +988,56 @@ function utopia_notify_subscribers( $post_id, $post ) {
 		wp_mail( $subscriber->email, $subject, $message_with_unsubscribe, $headers );
 	}
 }
+
+add_action( 'edit_page_form', 'utopia_validate_default_wordpress_fields' );
+add_action( 'edit_form_advanced', 'utopia_validate_default_wordpress_fields' );
+
+/**
+ * Validates the default WordPress fields when editing a post.
+ *
+ * Adds a JavaScript event listener to the DOMContentLoaded event, which
+ * sets the 'required' attribute of the 'title' input field to true.
+ *
+ * @param WP_Post $post The post object being edited.
+ */
+function utopia_validate_default_wordpress_fields( $post ) {
+	?>
+	<!-- Validate default WordPress fields when editing a post. -->
+	<style>
+		.wp-input-error {
+			border: 1px solid red !important;
+		}
+	</style>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			const postForm = document.querySelector('form#post');
+
+			postForm.addEventListener('submit', function(event) {
+				const requiredFieldsSelectors = [
+					'#title',
+					'#content',
+				];
+
+				const failedFields = requiredFieldsSelectors.some(selector => {
+					const field = document.querySelector(selector);
+
+					if (field) {
+						if (!field.value) {
+							event.preventDefault();
+
+							let errorBlock = selector === '#content' ? field.previousElementSibling : field;
+
+							field.focus();
+							field.onchange = () => errorBlock.classList.remove('wp-input-error');
+
+							errorBlock.classList.add('wp-input-error');
+
+							return true;
+						}
+					}
+				});
+			});
+		});
+	</script>
+	<?php
+}
