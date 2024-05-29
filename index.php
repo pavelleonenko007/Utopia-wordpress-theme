@@ -62,7 +62,7 @@ $photo_8 = get_field( 'photo_8' );
 						<div class="mapa tst">
 							<div class="map">
 								<div class="map-scale">
-									<div class="uto-block _0">
+									<a href="<?php echo esc_url( $idea_page_url ); ?>" class="uto-block _0">
 										<div class="logo w-embed">
 											<svg width="100%" height="100%" viewbox="0 0 581 89" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<g clip-path="url(#clip0_3520_67133)">
@@ -85,12 +85,12 @@ $photo_8 = get_field( 'photo_8' );
 											?>
 											<div class="top-abs">
 												<div class="p-14-20 _2"><?php echo $idea_0; ?></div>
-												<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
+												<div class="u-link u-i w-inline-block">
 													<div class="p-16-120 _2 _33">read</div>
-												</a>
+												</div>
 											</div>
 										<?php endif; ?>
-									</div>
+									</a>
 									<?php if ( ! empty( $utopian_1 ) ) : ?>
 										<div class="uto-block _1">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_1 ) ); ?>" class="u-link u-u w-inline-block">
