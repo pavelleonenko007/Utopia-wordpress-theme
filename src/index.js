@@ -516,6 +516,11 @@ function initPanzoom() {
 		onDoubleClick: function (e) {
 			return false; // tells the library to not preventDefault, and not stop propagation
 		},
+		onTouch: function(e) {
+			// `e` - is current touch event.
+	
+			return false; // tells the library to not preventDefault.
+		}
 	});
 
 	panzoomInstance.moveTo(initialX, initialY);
@@ -576,8 +581,6 @@ function initPanzoom() {
 
 	function zoomHandler(e) {
 		const { scale } = e.getTransform();
-
-		console.log(scale);
 
 		moveZoomSlider(
 			calculateZoomSliderTransform(
