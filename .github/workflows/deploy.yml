@@ -31,7 +31,6 @@ jobs:
           username: ${{ secrets.SFTP_LOGIN }}
           password: ${{ secrets.SFTP_PASSWORD }}
           server-dir: /home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia/
-          state-name: /home/a0984460/domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia/.ftp-deploy-sync-state.json
           log-level: verbose
           exclude: |
             **/.git*
