@@ -374,6 +374,14 @@ button.link {
 
 [open].coocky-block {
 	display: flex;
+
+	@media screen and (max-width: 479px) {
+		display: block;
+
+		& > form {
+			display: inline-block;
+		}
+	}
 }
 
 .mapa {
