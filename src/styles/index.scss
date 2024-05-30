@@ -387,3 +387,12 @@ button.link {
 .mapa {
 	touch-action: none;
 }
+
+.uto-block {
+	transform-origin: center center;
+}
+
+.uto-block--unobserved {
+	opacity: 0.3;
+	scale: 0.7;
+}

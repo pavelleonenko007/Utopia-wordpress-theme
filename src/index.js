@@ -253,21 +253,21 @@ import {
 // 		).observe(trigger);
 // 	});
 
-// 	document.querySelectorAll('.uto-block').forEach((trigger) => {
-// 		new IntersectionObserver(
-// 			(entries, observer) => {
-// 				entries.forEach(async (entry) => {
-// 					if (entry.isIntersecting) {
-// 						$(entry.target).removeClass('opview');
-// 					} else {
-// 					}
-// 				});
-// 			},
-// 			{
-// 				threshold: 0.2,
-// 			}
-// 		).observe(trigger);
-// 	});
+// document.querySelectorAll('.uto-block').forEach((trigger) => {
+// 	new IntersectionObserver(
+// 		(entries, observer) => {
+// 			entries.forEach(async (entry) => {
+// 				if (entry.isIntersecting) {
+// 					$(entry.target).removeClass('opview');
+// 				} else {
+// 				}
+// 			});
+// 		},
+// 		{
+// 			threshold: 0.2,
+// 		}
+// 	).observe(trigger);
+// });
 // }
 
 // function levelchecker() {
@@ -453,6 +453,7 @@ import {
 // }
 
 let panzoomInstance;
+let panzoomObserver;
 /**
  * A function that calculates the position of an element inside its parent.
  *
@@ -476,6 +477,83 @@ function fixPanzoomOnMouseDown() {
 	document
 		.querySelectorAll('a')
 		.forEach((a) => a.setAttribute('draggable', 'false'));
+}
+
+function setupPanzoomObserver() {
+	const panzoomElements = document.querySelectorAll('.uto-block');
+
+	if (panzoomElements.length === 0) {
+		return;
+	}
+
+	panzoomObserver = new IntersectionObserver(
+		(entries) => {
+			entries.forEach(async (entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.remove('opview');
+				}
+
+				entry.target.classList.toggle(
+					'uto-block--unobserved',
+					!entry.isIntersecting
+				);
+				// if (entry.isIntersecting) {
+				// 	$(entry.target).removeClass('opview');
+				// } else {
+				// }
+			});
+		},
+		{
+			threshold: 0.2,
+			rootMargin: '-10%',
+		}
+	);
+
+	panzoomElements.forEach((panzoomElement) => {
+		panzoomObserver.observe(panzoomElement);
+	});
+}
+
+function disconnectPanzoomObserver() {
+	panzoomObserver?.disconnect();
+}
+
+function setupTransformOrigin() {
+	// Получаем блок с классом mapa
+	const mapaBlock = document.querySelector('.mapa');
+
+	// Получаем координаты блока mapa
+	const mapaRect = mapaBlock.getBoundingClientRect();
+
+	const children = Array.from(mapaBlock.querySelectorAll('.uto-block'));
+
+	// Проходимся по всем дочерним элементам
+	children.forEach((block) => {
+		block.style.transition = 'all 1s ease';
+	});
+	children
+		.filter((block) => !block.classList.contains('_0'))
+		.forEach((child) => {
+			// Получаем координаты дочернего элемента относительно блока mapa
+			const rect = child.getBoundingClientRect();
+
+			// Устанавливаем transform-origin в зависимости от доли
+			if (rect.top <= mapaRect.height / 2 && rect.left <= mapaRect.width / 2) {
+				child.style.transformOrigin = 'top left';
+			} else if (
+				rect.top <= mapaRect.height / 2 &&
+				rect.left > mapaRect.width / 2
+			) {
+				child.style.transformOrigin = 'top right';
+			} else if (
+				rect.top > mapaRect.height / 2 &&
+				rect.left <= mapaRect.width / 2
+			) {
+				child.style.transformOrigin = 'bottom left';
+			} else {
+				child.style.transformOrigin = 'bottom right';
+			}
+		});
 }
 
 function initPanzoom() {
@@ -516,11 +594,11 @@ function initPanzoom() {
 		onDoubleClick: function (e) {
 			return false; // tells the library to not preventDefault, and not stop propagation
 		},
-		onTouch: function(e) {
+		onTouch: function (e) {
 			// `e` - is current touch event.
-	
+
 			return false; // tells the library to not preventDefault.
-		}
+		},
 	});
 
 	panzoomInstance.moveTo(initialX, initialY);
@@ -611,6 +689,8 @@ function initBarba() {
 					initSubscribeForm();
 					initSearchForm();
 					initPanzoom();
+					setupTransformOrigin();
+					setupPanzoomObserver();
 
 					if (next.namespace !== 'homepage') {
 						moveZoomSlider(-50);
@@ -629,7 +709,8 @@ function initBarba() {
 						blockElement.getBoundingClientRect();
 
 					const panzoomEl = document.querySelector('.mapa');
-					panzoomEl.style.transition = 'transform 2s cubic-bezier(0.65, 0, 0.35, 1)';
+					panzoomEl.style.transition =
+						'transform 2s cubic-bezier(0.65, 0, 0.35, 1)';
 					panzoomInstance.setMaxZoom(7);
 
 					setTimeout(() => {
@@ -650,6 +731,7 @@ function initBarba() {
 				},
 				enter({ next }) {
 					moveZoomSlider(-50, 0.5);
+					disconnectPanzoomObserver();
 					return gsap.from(next.container, {
 						opacity: 0,
 						scale: 0.5,
@@ -682,6 +764,8 @@ function initBarba() {
 					});
 
 					initPanzoom();
+					setupTransformOrigin();
+					setupPanzoomObserver();
 
 					// panzoomInstance.setMaxZoom(4);
 
