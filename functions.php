@@ -246,12 +246,6 @@ if (
 
 add_filter( 'widget_text', 'do_shortcode' );
 
-add_action( 'admin_enqueue_scripts', 'utopia_add_admin_scripts' );
-function utopia_add_admin_scripts() {
-	wp_register_script( 'admin_script', TEMPLATE_PATH . '/js/admin.js', array( 'jquery' ), false, true );
-	wp_enqueue_script( 'admin_script' );
-}
-
 add_action( 'wp_enqueue_scripts', 'utopia_add_site_scripts' );
 /**
  * Enqueue scripts and styles for the frontend.
