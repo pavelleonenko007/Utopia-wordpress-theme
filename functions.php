@@ -267,14 +267,6 @@ function utopia_add_site_scripts() {
 		time()
 	);
 
-	// Enqueue The Vogne stylesheet.
-	wp_enqueue_style(
-		'thevogne',
-		'//thevogne.ru/clients/esh/utopia/style.css',
-		array( 'style' ),
-		time()
-	);
-
 	// Deregister and register jQuery as core script.
 	wp_deregister_script( 'jquery-core' );
 	wp_register_script(
