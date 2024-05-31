@@ -771,16 +771,6 @@ function initBarba() {
 					setupTransformOrigin();
 					setupPanzoomObserver();
 
-					// panzoomInstance.setMaxZoom(4);
-
-					// setTimeout(() => {
-					// 	panzoomInstance.zoomAbs(
-					// 		window.innerWidth / 2,
-					// 		window.innerHeight / 2,
-					// 		4
-					// 	);
-					// });
-
 					await wait(300);
 
 					panzoomInstance.zoomAbs(
@@ -818,7 +808,13 @@ function initBarba() {
 				enter({ next, current }) {
 					const done = this.async();
 
-					window.scrollTo(0, 0);
+					console.log(next.url);
+
+					if (next.url.hash !== '' && next.url.hash !== undefined) {
+						document.getElementById(next.url.hash).scrollIntoView();
+					} else {
+						window.scrollTo(0, 0);
+					}
 
 					if (next.namespace === 'homepage') {
 						initPanzoom();
@@ -844,7 +840,6 @@ function initBarba() {
 	});
 
 	barba.hooks.enter((data) => {
-		// initPanzoom();
 		initThumbnailGallery();
 		initContentGalleries();
 		initPostGalleries();

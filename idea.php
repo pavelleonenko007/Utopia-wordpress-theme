@@ -91,7 +91,7 @@ get_header(
 
 					if ( $articles_query->have_posts() ) :
 						?>
-						<div class="usual-page-idea def-color">
+						<div id="blog" class="usual-page-idea def-color">
 							<h2 class="h2-idea">Our world</h2>
 							<div class="iaea-page ltr">
 								<div class="conc-core in-page idea-page">

@@ -21,9 +21,9 @@ $gallery = get_field( 'gallery' );
 				<div class="usual-page">
 					<div id="top" class="article-page">
 						<div class="top-line-article">
-							<?php // TODO: ask where the link should lead ?>
-							<a href="#" class="gery-link art-p w-inline-block">
-								<div class="text-block">all articles</div>
+							<?php $idea_page_id = 12; ?>
+							<a href="<?php echo esc_url( get_the_permalink( $idea_page_id ) . '#blog' ); ?>" class="gery-link art-p w-inline-block">
+								<div class="text-block">Articles in Our World</div>
 							</a>
 							<div class="art-top">
 								<div class="text-block grey"><?php the_date( 'j F Y' ); ?></div>
