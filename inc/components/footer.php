@@ -10,10 +10,20 @@ defined( 'ABSPATH' ) || exit;
 
 <footer class="footer">
 	<div class="sub-from">
-		<?php // TODO: add subscribe functionality! ?>
 		<form id="subscribe-form" class="form" data-wf-page-id="65ef0726d2531bad1f44ea0e" data-wf-element-id="175357ac-dc97-ffe8-4592-427bd0633297">
 			<p class="p-24-120 subs">Subscribe to be the first to know about upcoming concerts</p>
-			<input class="sub-input w-input" maxlength="256" name="email" placeholder="your email" type="email" id="email" required autocomplete="off">
+			<input 
+				class="sub-input w-input" 
+				maxlength="256" 
+				name="email" 
+				placeholder="your email" 
+				type="email" 
+				id="email" 
+				pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+				required 
+				autocomplete="off"
+				oninput="this.classList.remove('sub-input--error');"
+			>
 			<input type="hidden" name="action" value="subscribe">
 			<?php wp_nonce_field( 'ajax_subscribe', 'subscribe_nonce', false ); ?>
 			<button class="send-btn">
@@ -29,12 +39,6 @@ defined( 'ABSPATH' ) || exit;
 				</div>
 			</button>
 		</form>
-		<div class="w-form-done">
-			<div>Thank you! Your submission has been received!</div>
-		</div>
-		<div class="w-form-fail">
-			<div>Oops! Something went wrong while submitting the form.</div>
-		</div>
 	</div>
 	<div class="div-block-5">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="foo-logo w-inline-block">

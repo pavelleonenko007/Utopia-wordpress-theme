@@ -74,3 +74,9 @@ export const setCorrectTransformOrigin = (element) => {
 		transformOrigin: `50% ${scrollTop + window.innerHeight / 2}px`,
 	});
 };
+
+export class FormValidator {
+	static isEmail(email) {
+		return email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+	}
+}

@@ -7,6 +7,7 @@
 	--color-dark: 22 22 22;
 	--color-light-gray: 129 129 129;
 	--color-gray: 117 117 117;
+	--color-error: 176 0 32;
 }
 
 .w-input {
@@ -395,4 +396,12 @@ button.link {
 .uto-block--unobserved {
 	opacity: 0.3;
 	scale: 0.7;
+}
+
+.sub-input {
+
+	&--error {
+		color: rgb(var(--color-error)) !important;
+		border-bottom-color: rgb(var(--color-error)) !important;
+	}
 }

@@ -1,3 +1,5 @@
+import { FormValidator } from '../utils';
+
 const SUBSCRIBE_FORM_SELECTOR = '#subscribe-form';
 
 export const initSubscribeForm = () => {
@@ -9,10 +11,10 @@ export const initSubscribeForm = () => {
 	const successIcon = subscribeForm.querySelector('.done-send');
 
 	/**
-	 * 
-	 * @param {SubmitEvent} event 
+	 *
+	 * @param {SubmitEvent} event
 	 */
-	const submitHandler = event => {
+	const submitHandler = (event) => {
 		event.preventDefault();
 
 		const isSending = subscribeForm.classList.contains('form--loading');
@@ -21,12 +23,21 @@ export const initSubscribeForm = () => {
 		subscribeForm.classList.add('form--loading');
 
 		const formData = new FormData(subscribeForm);
+		const email = formData.get('email');
+
+		if (!FormValidator.isEmail(email)) {
+			subscribeForm
+				.querySelector('[name="email"]')
+				.classList.add('sub-input--error');
+			subscribeForm.classList.remove('form--loading');
+			return;
+		}
 
 		fetch(UTOPIA.AJAX_URL, {
 			method: 'POST',
 			body: formData,
 		})
-			.then(response => response.json())
+			.then((response) => response.json())
 			.then(({ data, success }) => {
 				if (!success) {
 					throw new Error(data.message);
@@ -40,7 +51,7 @@ export const initSubscribeForm = () => {
 					successIcon.style.display = 'block';
 				}
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.error(error.message);
 			})
 			.finally(() => {
@@ -55,10 +66,11 @@ export const initSubscribeForm = () => {
 						sendIcon.style.display = 'block';
 					}
 
-					subscribeForm.classList.remove('form--loading')
+					subscribeForm.classList.remove('form--loading');
 				}, 3_000);
 			});
-	}
+	};
 
 	subscribeForm.addEventListener('submit', submitHandler);
-}
+	// subscribeForm.addEventListener('onchange', submitHandler);
+};
