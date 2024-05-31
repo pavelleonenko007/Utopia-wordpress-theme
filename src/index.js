@@ -522,6 +522,10 @@ function setupTransformOrigin() {
 	// Получаем блок с классом mapa
 	const mapaBlock = document.querySelector('.mapa');
 
+	if (!mapaBlock) {
+		return;
+	}
+
 	// Получаем координаты блока mapa
 	const mapaRect = mapaBlock.getBoundingClientRect();
 
@@ -819,6 +823,10 @@ function initBarba() {
 					if (next.namespace === 'homepage') {
 						initPanzoom();
 						moveZoomSlider(50, 0.5);
+					}
+
+					if (next.namespace !== 'homepage') {
+						moveZoomSlider(-50, 0.5);
 					}
 
 					resetPreviousPanCoordinates();
