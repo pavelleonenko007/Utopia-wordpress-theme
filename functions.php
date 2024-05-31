@@ -1041,3 +1041,12 @@ function utopia_validate_default_wordpress_fields( $post ) {
 	</script>
 	<?php
 }
+
+add_filter( 'acf/validate_value/type=url', 'utopia_acf_validate_url', 10, 3 );
+function utopia_acf_validate_url( $valid, $value, $field ) {
+	if ( ! preg_match( '/^(http|https):\/\/([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-z]{2,4}(\/.*)?$/', $value ) ) {
+		return 'Please enter a valid URL';
+	}
+
+	return true;
+}
