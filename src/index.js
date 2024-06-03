@@ -679,8 +679,10 @@ function initPanzoom() {
 }
 
 function initBarba() {
+	window.history.scrollRestoration = 'manual';
+
 	barba.init({
-		debug: true,
+		debug: false,
 		prevent: ({ el }) => el.closest('#wpadminbar'),
 		transitions: [
 			{
@@ -703,9 +705,11 @@ function initBarba() {
 			},
 			{
 				name: 'scale-transition',
-				from: {
-					custom: ({ trigger }) => trigger?.closest('.uto-block'),
-					namespace: ['homepage'],
+				to: {
+					custom: ({ next, trigger }) =>
+						typeof trigger !== 'string' &&
+						trigger.closest('.uto-block') !== null &&
+						next.namespace !== 'homepage',
 				},
 				async leave({ trigger, current }) {
 					const blockElement = trigger.closest('.uto-block');
@@ -748,7 +752,8 @@ function initBarba() {
 				to: {
 					custom: ({ next }) => {
 						return (
-							next?.namespace === 'homepage' && getPreviousPanCoordinates()
+							next?.namespace === 'homepage' &&
+							getPreviousPanCoordinates() !== null
 						);
 					},
 				},
@@ -807,8 +812,6 @@ function initBarba() {
 				},
 				enter({ next, current }) {
 					const done = this.async();
-
-					console.log(next.url);
 
 					if (next.url.hash !== '' && next.url.hash !== undefined) {
 						document.getElementById(next.url.hash).scrollIntoView();
