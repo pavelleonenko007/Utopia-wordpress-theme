@@ -28,7 +28,7 @@ get_header(
 							<div class="rich-right-side uto idear w-richtext">
 								<figure style="max-width:1280pxpx" class="w-richtext-align-fullwidth w-richtext-figure-type-image">
 									<div>
-										<img loading="lazy" src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eeeba859b27db2c8d82634_Utopians.png' ); ?>" alt>
+										<img loading="lazy" src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/idea_1.png' ); ?>" alt="">
 									</div>
 								</figure>
 								<h2>Teodor<br>Currentzis</h2>
