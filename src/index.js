@@ -700,13 +700,29 @@ function initBarba() {
 			{
 				name: 'initial-transition',
 				once({ next }) {
-					initLoader();
+					initPanzoom();
+					initLoader(() => {
+						document.body.style.pointerEvents = 'none';
+						const panzoomEl = document.querySelector('.mapa');
+						panzoomEl.style.transition =
+							'transform 2s cubic-bezier(0.65, 0, 0.35, 1)';
+						panzoomInstance.zoomAbs(
+							window.innerWidth / 2,
+							window.innerHeight / 2,
+							1
+						);
+
+						setTimeout(() => {
+							panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
+							document.body.style.pointerEvents = null;
+						}, 2_000);
+					});
 					initThumbnailGallery();
 					initContentGalleries();
 					initPostGalleries();
 					initSubscribeForm();
 					initSearchForm();
-					initPanzoom();
+
 					setupTransformOrigin();
 					setupPanzoomObserver();
 

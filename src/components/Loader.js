@@ -5,7 +5,7 @@ const LOADER_SELECTOR = '.hello-screen';
 const LOADER_TEXT_SELECTOR = '.hello-screen__text';
 const LOADER_INDICATOR = '.hello-screen__loader';
 
-export const initLoader = async () => {
+export const initLoader = async (callback = () => {}) => {
 	const loader = document.querySelector(LOADER_SELECTOR);
 
 	if (!loader) {
@@ -82,6 +82,9 @@ export const initLoader = async () => {
 			'.uto-block._0',
 			{
 				opacity: 1,
+				onComplete: () => {
+					callback();
+				},
 			},
 			3
 		);
