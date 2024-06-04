@@ -10,6 +10,10 @@ import {
 	initPostGalleries,
 	initThumbnailGallery,
 } from './components/ImageGalleryDialog.js';
+import {
+	highlightLeftMenu,
+	unhighlightLeftMenu,
+} from './components/LeftMenu.js';
 import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
 import { initSearchForm } from './components/SearchForm.js';
@@ -684,6 +688,14 @@ function initBarba() {
 	barba.init({
 		debug: false,
 		prevent: ({ el }) => el.closest('#wpadminbar'),
+		views: [
+			{
+				namespace: 'idea',
+				beforeEnter() {
+					highlightLeftMenu();
+				},
+			},
+		],
 		transitions: [
 			{
 				name: 'initial-transition',
@@ -840,6 +852,10 @@ function initBarba() {
 				},
 			},
 		],
+	});
+
+	barba.hooks.afterLeave(() => {
+		unhighlightLeftMenu();
 	});
 
 	barba.hooks.enter((data) => {

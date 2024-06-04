@@ -404,6 +404,28 @@ button.link {
 	}
 }
 
+.left-menu {
+	&--light-gray {
+		color: rgb(var(--color-light-gray));
+
+		& .search-btn,
+		& .lang,
+		& .us-link {
+			color: inherit;
+		}
+
+		& .dot-zoom-dot,
+		& .zoom-line,
+		& .a-dot {
+			background-color: rgb(var(--color-light-gray));
+		}
+
+		& .a-dot > img {
+			filter: invert(1);
+		}
+	}
+}
+
 /* Thevogne Start */
 .div-block-3 {
 	width: 100vw;

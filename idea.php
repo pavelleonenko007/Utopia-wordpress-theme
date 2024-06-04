@@ -11,6 +11,7 @@ get_header(
 	array(
 		'data-wf-page'                  => '65eefdcf9cf03e9f8bd9f3e0',
 		'barba-container-extra-classes' => 'inner-page',
+		'barba-namespace'               => 'idea',
 	)
 );
 ?>
