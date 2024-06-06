@@ -9,7 +9,7 @@
             "aria-label": "",
             "type": "text",
             "instructions": "Add Utopian role.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -17,7 +17,7 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
+            "maxlength": 30,
             "placeholder": "",
             "prepend": "",
             "append": ""
@@ -57,7 +57,7 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
+            "maxlength": 400,
             "rows": "",
             "placeholder": "",
             "new_lines": ""
@@ -81,5 +81,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1714839069
+    "modified": 1717582542
 }

@@ -43,7 +43,7 @@
                     "aria-label": "",
                     "type": "url",
                     "instructions": "Add link to Buy Button.",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -68,7 +68,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
+                    "maxlength": 20,
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
@@ -115,7 +115,7 @@
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Add location name.",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -123,7 +123,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
+                    "maxlength": 30,
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
@@ -329,7 +329,7 @@
             ],
             "return_format": "object",
             "min": "",
-            "max": "",
+            "max": 9,
             "elements": "",
             "bidirectional": 0,
             "bidirectional_target": []
@@ -358,7 +358,7 @@
             ],
             "return_format": "object",
             "min": "",
-            "max": "",
+            "max": 4,
             "elements": "",
             "bidirectional": 0,
             "bidirectional_target": []
@@ -382,5 +382,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1716986088
+    "modified": 1717584280
 }

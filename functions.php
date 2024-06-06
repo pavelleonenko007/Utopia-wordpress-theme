@@ -995,23 +995,48 @@ function utopia_validate_default_wordpress_fields( $post ) {
 		}
 	</style>
 	<script type="text/javascript">
+		const POST_TYPE = <?php echo wp_json_encode( $post->post_type ); ?>;
 		document.addEventListener('DOMContentLoaded', function() {
 			const postForm = document.querySelector('form#post');
 
 			postForm.addEventListener('submit', function(event) {
 				const requiredFieldsSelectors = [
 					'#title',
-					'#content',
 				];
+
+				if (POST_TYPE !== 'page') {
+					requiredFieldsSelectors.push('#content');
+				}
+
+				if ( POST_TYPE === 'concert' || POST_TYPE === 'utopian' ) {
+					requiredFieldsSelectors.push('#_thumbnail_id');
+				}
 
 				const failedFields = requiredFieldsSelectors.some(selector => {
 					const field = document.querySelector(selector);
 
 					if (field) {
-						if (!field.value) {
+						if (!field.value || 
+							(POST_TYPE === 'post' && selector === '#title' && field.value.length > 70) ||
+							(POST_TYPE === 'concert' && selector === '#title' && field.value.length < 3) ||
+							(POST_TYPE === 'concert' && selector === '#title' && field.value.length > 50) || 
+							(POST_TYPE === 'utopian' && selector === '#title' && field.value.length > 30) || 
+							(selector === '#_thumbnail_id' && parseInt(field.value) < 0)) {
 							event.preventDefault();
 
-							let errorBlock = selector === '#content' ? field.previousElementSibling : field;
+							let errorBlock;
+
+							switch (selector) {
+								case '#content':
+								case '#_thumbnail_id': {
+									errorBlock = field.previousElementSibling;
+									break;
+								}
+								default: {
+									errorBlock = field;
+									break;
+								}
+							}
 
 							field.focus();
 							field.onchange = () => errorBlock.classList.remove('wp-input-error');
@@ -1030,8 +1055,109 @@ function utopia_validate_default_wordpress_fields( $post ) {
 
 add_filter( 'acf/validate_value/type=url', 'utopia_acf_validate_url', 10, 3 );
 function utopia_acf_validate_url( $valid, $value, $field ) {
-	if ( ! preg_match( '/^(http|https):\/\/([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-z]{2,4}(\/.*)?$/', $value ) ) {
+	if ( strlen( $value ) > 0 && ! preg_match( '/^(http|https):\/\/([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-z]{2,6}(\/.*)?$/', $value ) ) {
 		return 'Please enter a valid URL';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_66476fd756dda', 'utopia_acf_validate_main_page_quote', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647700e56ddf', 'utopia_acf_validate_main_page_quote', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647701656de4', 'utopia_acf_validate_main_page_quote', 10, 3 );
+function utopia_acf_validate_main_page_quote( $valid, $value, $field ) {
+	$value = preg_replace( '/\s+/', '', $value );
+
+	if ( strlen( $value ) > 0 && ( strlen( $value ) < 3 || strlen( $value ) > 50 ) ) {
+		return 'The quote should be between 3 and 50 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_66476fe556ddb', 'utopia_acf_validate_main_page_quote_author', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647700e56de0', 'utopia_acf_validate_main_page_quote_author', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647701656de5', 'utopia_acf_validate_main_page_quote_author', 10, 3 );
+function utopia_acf_validate_main_page_quote_author( $valid, $value, $field ) {
+	$value = preg_replace( '/\s+/', '', $value );
+
+	if ( strlen( $value ) > 0 && ( strlen( $value ) < 3 || strlen( $value ) > 230 ) ) {
+		return 'The author name should be between 3 and 230 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_6647711156df6', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647714056dfb', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647714356e00', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647714556e05', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647714856e0a', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647714a56e0f', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647714d56e14', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+add_filter( 'acf/validate_value/key=field_6647714f56e19', 'utopia_acf_validate_main_page_image_description', 10, 3 );
+function utopia_acf_validate_main_page_image_description( $valid, $value, $field ) {
+	$value = preg_replace( '/\s+/', '', $value );
+
+	if ( strlen( $value ) > 0 && ( strlen( $value ) < 3 || strlen( $value ) > 65 ) ) {
+		return 'The description should be between 3 and 65 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_663e135da1743', 'utopia_acf_validate_lead', 10, 3 );
+add_filter( 'acf/validate_value/key=field_66365ddb54a81', 'utopia_acf_validate_lead', 10, 3 );
+function utopia_acf_validate_lead( $valid, $value, $field ) {
+	$value = str_replace( ' ', '', $value );
+
+	if ( strlen( $value ) < 100 ) {
+		return 'The lead should be up to 100 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_6636398d8dd00', 'utopia_acf_validate_role', 10, 3 );
+function utopia_acf_validate_role( $valid, $value, $field ) {
+	$value = str_replace( ' ', '', $value );
+
+	if ( strlen( $value ) < 3 ) {
+		return 'The role should be at least 3 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_6641efd47d697', 'utopia_acf_validate_buy_button_text', 10, 3 );
+function utopia_acf_validate_buy_button_text( $valid, $value, $field ) {
+	$value = str_replace( ' ', '', $value );
+
+	if ( strlen( $value ) > 0 && strlen( $value ) < 3 ) {
+		return 'The role should be empty or at least 3 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_6641f0c27d69a', 'utopia_acf_validate_location_name', 10, 3 );
+function utopia_acf_validate_location_name( $valid, $value, $field ) {
+	$value = str_replace( ' ', '', $value );
+
+	if ( strlen( $value ) < 3 ) {
+		return 'The name of location should be at least 3 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_6641f0f27d69c', 'utopia_acf_validate_track_list', 10, 3 );
+function utopia_acf_validate_track_list( $valid, $value, $field ) {
+	$value = str_replace( ' ', '', $value );
+	$len   = strlen( $value );
+
+	if ( $len < 30 || $len > 200 ) {
+		return 'The name of location should be at least 30 and at most 200 characters without spaces.';
 	}
 
 	return true;
