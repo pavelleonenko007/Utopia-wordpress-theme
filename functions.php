@@ -1068,8 +1068,8 @@ add_filter( 'acf/validate_value/key=field_6647701656de4', 'utopia_acf_validate_m
 function utopia_acf_validate_main_page_quote( $valid, $value, $field ) {
 	$value = preg_replace( '/\s+/', '', $value );
 
-	if ( strlen( $value ) > 0 && ( strlen( $value ) < 3 || strlen( $value ) > 50 ) ) {
-		return 'The quote should be between 3 and 50 characters without spaces.';
+	if ( strlen( $value ) > 0 && ( strlen( $value ) < 3 || strlen( $value ) > 230 ) ) {
+		return 'The quote should be between 3 and 230 characters without spaces.';
 	}
 
 	return true;
@@ -1081,8 +1081,8 @@ add_filter( 'acf/validate_value/key=field_6647701656de5', 'utopia_acf_validate_m
 function utopia_acf_validate_main_page_quote_author( $valid, $value, $field ) {
 	$value = preg_replace( '/\s+/', '', $value );
 
-	if ( strlen( $value ) > 0 && ( strlen( $value ) < 3 || strlen( $value ) > 230 ) ) {
-		return 'The author name should be between 3 and 230 characters without spaces.';
+	if ( strlen( $value ) > 0 && ( strlen( $value ) < 3 || strlen( $value ) > 50 ) ) {
+		return 'The author name should be between 3 and 50 characters without spaces.';
 	}
 
 	return true;
