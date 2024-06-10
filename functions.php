@@ -498,7 +498,7 @@ function utopia_filter_archive_title( string $title ): string {
  *
  * @since 1.0.0
  */
-function utopia_header_code(): void {
+function utopia_head_code(): void {
 	/**
 	 * Enqueue scripts and styles.
 	 */
@@ -507,7 +507,7 @@ function utopia_header_code(): void {
 	/**
 	 * Get header code from ACF field.
 	 */
-	the_field( 'header_code', 'option' );
+	the_field( 'head_code', 'option' );
 }
 
 /**

@@ -25,7 +25,7 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 				background: transparent !important;
 			}
 		</style>
-		<?php utopia_header_code(); ?>
+		<?php utopia_head_code(); ?>
 	</head>
 	<body class="body">
 		<?php utopia_after_body(); ?>
