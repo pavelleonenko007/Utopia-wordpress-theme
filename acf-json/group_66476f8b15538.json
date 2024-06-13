@@ -40,6 +40,26 @@
             "append": ""
         },
         {
+            "key": "field_666aad1e24bfb",
+            "label": "Read Button Text",
+            "name": "read_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Add read button text. By default it is \"Read\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_664b2d45a5fa8",
             "label": "Idea 1",
             "name": "idea_1",
@@ -1525,5 +1545,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1716203003
+    "modified": 1718267310
 }

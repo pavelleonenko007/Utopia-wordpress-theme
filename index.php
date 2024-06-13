@@ -86,7 +86,8 @@ $photo_8 = get_field( 'photo_8' );
 											<div class="top-abs">
 												<div class="p-14-20 _2"><?php echo $idea_0; ?></div>
 												<div class="u-link u-i w-inline-block">
-													<div class="p-16-120 _2 _33">read</div>
+													<?php $read_button_text = ! empty( get_field( 'read_button_text' ) ) ? get_field( 'read_button_text' ) : 'read'; ?>
+													<div class="p-16-120 _2 _33"><?php echo esc_html( $read_button_text ); ?></div>
 												</div>
 											</div>
 										<?php endif; ?>
