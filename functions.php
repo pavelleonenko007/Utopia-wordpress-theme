@@ -1162,3 +1162,5 @@ function utopia_acf_validate_track_list( $valid, $value, $field ) {
 
 	return true;
 }
+
+add_filter( 'acf/the_field/allow_unsafe_html', '__return_true' );
