@@ -30,7 +30,7 @@ jobs:
           server: ${{ secrets.SFTP_SERVER_IP }}
           username: ${{ secrets.SFTP_LOGIN }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          server-dir: /domains/a0984460.xsph.ru/public_html/wp-content/themes/utopia/
+          server-dir: /public_html/utopia-orchestra.org/wp-content/themes/utopia/
           log-level: verbose
           exclude: |
             **/.git*
