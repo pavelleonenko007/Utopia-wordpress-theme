@@ -18,6 +18,7 @@ import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
 import { initSearchForm } from './components/SearchForm.js';
 import { initSubscribeForm } from './components/SubscribeForm.js';
+import { initVideoPlayers } from './components/VideoPlayer.js';
 import {
 	getPreviousPanCoordinates,
 	rememberPreviousPanCoordinates,
@@ -717,6 +718,7 @@ function initBarba() {
 							document.body.style.pointerEvents = null;
 						}, 2_000);
 					});
+					initVideoPlayers();
 					initThumbnailGallery();
 					initContentGalleries();
 					initPostGalleries();
@@ -878,6 +880,7 @@ function initBarba() {
 		initThumbnailGallery();
 		initContentGalleries();
 		initPostGalleries();
+		initVideoPlayers();
 		initSubscribeForm();
 		updateDataWfPage(data.next.html);
 	});

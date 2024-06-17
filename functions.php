@@ -1164,3 +1164,26 @@ function utopia_acf_validate_track_list( $valid, $value, $field ) {
 }
 
 add_filter( 'acf/the_field/allow_unsafe_html', '__return_true' );
+
+function utopia_get_page_title( $post = null ) {
+	if ( ! $post ) {
+		global $post;
+	}
+
+	return ! empty( get_field( 'title', $post ) ) ? get_field( 'title', $post ) : get_the_title( $post );
+}
+
+// В functions.php добавляем следующие функции:
+
+function my_mce_buttons( $buttons ) {
+	array_push( $buttons, 'utopia_image_right' ); // Добавляем нашу кнопку
+	return $buttons;
+}
+
+function my_mce_external_plugins( $plugins ) {
+	$plugins['utopia_mce_plugin'] = TEMPLATE_PATH . '/build/js/mce.js';
+	return $plugins;
+}
+
+add_filter( 'mce_buttons', 'my_mce_buttons' );
+add_filter( 'mce_external_plugins', 'my_mce_external_plugins' );

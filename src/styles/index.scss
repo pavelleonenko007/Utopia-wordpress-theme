@@ -185,16 +185,19 @@ button.link {
 	max-width: 100%;
 	max-height: 100%;
 	border: none;
+	display: none;
+	justify-content: center;
+	align-items: center;
 	background-color: rgba(var(--color-dark) / 0.95);
 	color: rgb(var(--color-gray));
 	outline: none;
 
-	@include mobile {
-		&[open] {
-			display: flex;
+	&[open] {
+		display: flex;
+
+		@include mobile {
 			flex-direction: column;
 			justify-content: space-between;
-			align-items: center;
 			row-gap: 70rem;
 		}
 	}
@@ -270,12 +273,21 @@ button.link {
 	}
 
 	&__body {
-		width: 100%;
-		height: 100%;
+		max-width: 76.25%;
+		max-height: 100%;
 		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		@include mobile {
+			max-width: 100%;
+		}
+
+		& iframe {
+			width: 1098rem;
+			aspect-ratio: 16 / 9;
+		}
 	}
 
 	&__list {
@@ -423,6 +435,132 @@ button.link {
 		& .a-dot > img {
 			filter: invert(1);
 		}
+	}
+}
+
+.video-player {
+	--timeline-scale-y: 1;
+
+	width: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	& video {
+		display: block;
+		width: 100%;
+		height: auto;
+		cursor: pointer;
+	}
+
+	&__controls {
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+
+	&__buttons {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__button {
+		padding: 8rem;
+		border: none;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		background-color: transparent;
+		cursor: pointer;
+
+		&--play {
+			.video-player--is-playing & {
+				display: none;
+			}
+		}
+
+		&--pause {
+			display: none;
+
+			.video-player--is-playing & {
+				display: inline-flex;
+			}
+		}
+
+		&--volume {
+			margin-left: auto;
+
+			svg:last-child {
+				display: none;
+			}
+
+			.video-player--is-muted & {
+				svg:first-child {
+					display: none;
+				}
+
+				svg:last-child {
+					display: inline;
+				}
+			}
+		}
+
+		&--fullscreen {
+			svg:last-child {
+				display: none;
+			}
+
+			.video-player--is-fullscreen & {
+				svg:first-child {
+					display: none;
+				}
+
+				svg:last-child {
+					display: inline;
+				}
+			}
+		}
+	}
+
+	&__timeline {
+		margin-bottom: -8rem;
+		padding-block: 8rem;
+		width: 100%;
+		cursor: pointer;
+
+		@include hover {
+			--timeline-scale-y: 3;
+
+			.video-player__ghost {
+				display: block;
+			}
+		}
+	}
+
+	&__line {
+		width: 100%;
+		position: relative;
+		background-color: rgb(var(--color-gray));
+		scale: 1 var(--timeline-scale-y);
+		transition: scale 0.3s ease;
+	}
+
+	&__progress {
+		height: 2rem;
+		width: 0%;
+		background-color: rgb(var(--color-white));
+	}
+
+	&__ghost {
+		position: absolute;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: rgb(var(--color-white) / 0.25);
+		display: none;
+		pointer-events: none;
 	}
 }
 
