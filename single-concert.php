@@ -31,16 +31,16 @@ $buy_button = get_field( 'buy_button' );
 							<h1 class="h1-single n-pc"><?php the_title(); ?></h1>
 							<div class="p-24-120 mnd"><?php echo esc_html( gmdate( 'l', $start_date ) ); ?></div>
 							<?php
-							$location = get_field( 'location' );
-							if ( ! empty( $location['location_name'] ) ) :
+							$venue = get_field( 'venue' );
+							if ( ! empty( $venue['title'] ) && ! empty( $venue['url'] ) ) :
 								?>
-								<a href="<?php echo ! empty( $location['link'] ) ? esc_url( $location['link'] ) : '#'; ?>" class="p-24-120"><?php echo esc_html( $location['location_name'] ); ?></a>
+								<a href="<?php echo esc_url( $venue['url'] ); ?>" class="p-24-120" target="<?php echo esc_attr( $venue['target'] ); ?>"><?php echo esc_html( $venue['title'] ); ?></a>
 							<?php endif; ?>
 							<?php
-							$city = get_field( 'city' );
-							if ( ! empty( $city ) ) :
+							$location = get_field( 'location' );
+							if ( ! empty( $location ) ) :
 								?>
-								<div class="p-24-120 grey"><?php echo esc_html( $city ); ?></div>
+								<div class="p-24-120 grey"><?php echo esc_html( $location ); ?></div>
 							<?php endif; ?>
 							<?php if ( time() < $start_date && ! empty( $buy_button['link'] ) ) : ?>
 								<a href="<?php echo esc_url( $buy_button['link'] ); ?>" class="link-shos ll hvr single-page w-inline-block">
@@ -49,30 +49,54 @@ $buy_button = get_field( 'buy_button' );
 								</a>
 							<?php endif; ?>
 							<div class="other-info">
-								<div class="rich-left-single w-richtext">
-									<?php the_field( 'track_list' ); ?>
+								<div class="concert-sidebar rich-left-single">
 									<?php
+									$track_list = get_field( 'track_list' );
+									if ( ! empty( $track_list ) ) :
+										?>
+										<ol class="concert-track-list">
+											<?php
+											foreach ( $track_list as $track ) :
+												if ( ! empty( $track['track'] ) ) :
+													?>
+												<li class="concert-track-list__item"><?php echo esc_html( $track['track'] ); ?></li>
+													<?php
+												endif;
+											endforeach;
+											?>
+										</ol>
+										<?php
+									endif;
 									$participants = get_field( 'participants' );
 									if ( ! empty( $participants ) ) :
-										foreach ( $participants as $participant ) :
-											?>
-											<p><?php echo $participant['participant']; ?></p>
+										?>
+										<ol class="concert-participants">
 											<?php
-										endforeach;
+											foreach ( $participants as $participant ) :
+												if ( ! empty( $participant['participant'] ) ) :
+													?>
+													<li class="concert-participants__item"><?php echo esc_html( $participant['participant'] ); ?></li>
+														<?php
+												endif;
+											endforeach;
+											?>
+										</ol>
+										<?php
 									endif;
 									?>
-								</div>
-								<div class="pc-block">
 									<?php
 									if ( ! empty( $support ) ) :
 										?>
-										<div class="rich-left-single pc w-richtext">
-											<p><?php echo $support; ?></p>
+										<div class="concert-support hidden-mobile">
+											<?php
+											// phpcs:ignore WordPress.Security.EscapeOutput
+											echo $support;
+											?>
 										</div>
 									<?php endif; ?>
 									<?php if ( ! empty( $disclaimer ) ) : ?>
-										<div class="rich-left-single-lst lst pc w-richtext">
-											<p>‍<em class="italic-text">* <?php echo esc_html( $disclaimer ); ?></em></p>
+										<div class="concert-disclaimer hidden-mobile">
+											<p><em>* <?php echo esc_html( $disclaimer ); ?></em></p>
 										</div>
 									<?php endif; ?>
 								</div>
@@ -81,8 +105,10 @@ $buy_button = get_field( 'buy_button' );
 						<div class="div-block-4">
 							<div class="concert-right">
 								<h1 class="h1-single n-mob"><?php the_title(); ?></h1>
-								<div class="rich-right-side w-richtext">
-									<?php the_content(); ?>
+								<div class="concert-content flow">
+									<?php
+									echo utopia_wrap_long_text( get_field( 'content' ) );
+									?>
 								</div>
 								<?php
 								$gallery = get_field( 'gallery' );
@@ -118,7 +144,7 @@ $buy_button = get_field( 'buy_button' );
 									</div>
 								</div>
 								<?php endif; ?>
-								<div class="pc-block mob-blk">
+								<div class="concert-additional pc-block mob-blk">
 									<?php if ( ! empty( $support ) ) : ?>
 										<div class="rich-left-single pc w-richtext">
 											<p><?php echo $support; ?></p>

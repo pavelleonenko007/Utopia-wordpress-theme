@@ -1,13 +1,6 @@
 @import '../webflow/css/main.css', '../webflow/css/custom.css';
-@import 'mixins', 'media';
-
-:root {
-	--color-white: 255 255 255;
-	--color-dark: 22 22 22;
-	--color-light-gray: 129 129 129;
-	--color-gray: 117 117 117;
-	--color-error: 176 0 32;
-}
+@import 'variables', 'mixins', 'media', 'utils', 'globals';
+@import 'pages/concert';
 
 .w-input {
 	color: rgb(var(--color-white));

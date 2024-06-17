@@ -1006,7 +1006,7 @@ function utopia_validate_default_wordpress_fields( $post ) {
 					'#title',
 				];
 
-				if (POST_TYPE !== 'page') {
+				if (POST_TYPE !== 'page' && POST_TYPE !== 'concert') {
 					requiredFieldsSelectors.push('#content');
 				}
 
@@ -1153,13 +1153,12 @@ function utopia_acf_validate_location_name( $valid, $value, $field ) {
 	return true;
 }
 
-add_filter( 'acf/validate_value/key=field_6641f0f27d69c', 'utopia_acf_validate_track_list', 10, 3 );
-function utopia_acf_validate_track_list( $valid, $value, $field ) {
+add_filter( 'acf/validate_value/key=field_6670346691059', 'utopia_acf_validate_concert_content', 10, 3 );
+function utopia_acf_validate_concert_content( $valid, $value, $field ) {
 	$value = str_replace( ' ', '', $value );
-	$len   = strlen( $value );
 
-	if ( $len < 30 || $len > 200 ) {
-		return 'The name of location should be at least 30 and at most 200 characters without spaces.';
+	if ( strlen( $value ) < 100 ) {
+		return 'The content should be up to 100 characters without spaces.';
 	}
 
 	return true;
@@ -1173,4 +1172,23 @@ function utopia_get_page_title( $post = null ) {
 	}
 
 	return ! empty( get_field( 'title', $post ) ) ? get_field( 'title', $post ) : get_the_title( $post );
+}
+
+
+function utopia_wrap_long_text( $text ) {
+	if ( strlen( $text ) > 685 ) {
+		$trimmed_text        = substr( $text, 0, 685 );
+		$last_space_position = strrpos( $trimmed_text, ' ' );
+
+		if ( false !== $last_space_position ) {
+			$trimmed_text = substr( $trimmed_text, 0, $last_space_position );
+		}
+
+		$remaining_text      = substr( $text, $last_space_position );
+		$concert_more_text   = '<span class="concert-more-text" hidden>' . $remaining_text . '</span>';
+		$concert_more_button = ' <button class="concert-more-button" onclick="this.previousElementSibling.hidden = false; this.hidden = true;">more</button>';
+		return $trimmed_text . $concert_more_text . $concert_more_button;
+	} else {
+		return $text;
+	}
 }

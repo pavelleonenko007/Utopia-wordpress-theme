@@ -1,0 +1,19 @@
+.hidden-mobile {
+	@include mobile {
+		display: none !important;
+	}
+}
+
+.visible-mobile {
+	@include mobile-above {
+		display: none !important;
+	}
+}
+
+.flow {
+	--flow-space: 40rem;
+
+	& > * + * {
+		margin-top: var(--flow-space, 32rem);
+	}
+}

@@ -3,6 +3,26 @@
     "title": "Concerts",
     "fields": [
         {
+            "key": "field_6670346691059",
+            "label": "Content",
+            "name": "content",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 18,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
             "key": "field_663e198ac9269",
             "label": "Start date",
             "name": "start_date",
@@ -76,12 +96,12 @@
             ]
         },
         {
-            "key": "field_6641f0537d698",
-            "label": "Location",
-            "name": "location",
+            "key": "field_66703764b341b",
+            "label": "Venue",
+            "name": "venue",
             "aria-label": "",
-            "type": "group",
-            "instructions": "",
+            "type": "link",
+            "instructions": "Add the venue of the concert (include a link to a map and the name of the venue)",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -89,51 +109,12 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_6641f0b17d699",
-                    "label": "Link",
-                    "name": "link",
-                    "aria-label": "",
-                    "type": "url",
-                    "instructions": "Add link to location",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_6641f0c27d69a",
-                    "label": "Location name",
-                    "name": "location_name",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "Add location name.",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": 30,
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                }
-            ]
+            "return_format": "array"
         },
         {
-            "key": "field_664200392c9f4",
-            "label": "City",
-            "name": "city",
+            "key": "field_6641f0537d698",
+            "label": "Location",
+            "name": "location",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -155,7 +136,7 @@
             "label": "Track List",
             "name": "track_list",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "repeater",
             "instructions": "Add track list to the concert.",
             "required": 1,
             "conditional_logic": 0,
@@ -164,11 +145,36 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "layout": "table",
+            "pagination": 0,
+            "min": 1,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_66703735b3419",
+                    "label": "Track",
+                    "name": "track",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6641f0f27d69c"
+                }
+            ]
         },
         {
             "key": "field_6641f11c7d69d",
@@ -378,9 +384,11 @@
     "style": "default",
     "label_placement": "left",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1717584280
+    "modified": 1718630425
 }
