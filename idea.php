@@ -17,9 +17,16 @@ get_header(
 
 the_post();
 
-$video_block       = get_field( 'video' );
-$video_type        = $video_block['type'];
-$video             = 'file' === $video_type ? $video_block['video_file'] : $video_block['video_url'];
+$video_block = get_field( 'video' );
+$video_type  = ! empty( $video_block['type'] ) ? $video_block['type'] : '';
+$video       = '';
+
+if ( 'file' === $video_type ) {
+	$video = $video_block['video_file'];
+} elseif ( 'url' === $video_type ) {
+	$video = $video_block['video_url'];
+}
+
 $video_poster      = ! empty( $video_block['video_poster'] ) ? $video_block['video_poster'] : '';
 $video_description = ! empty( $video_block['description'] ) ? $video_block['description'] : '';
 ?>
