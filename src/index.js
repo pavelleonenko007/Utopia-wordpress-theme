@@ -459,6 +459,7 @@ import {
 
 let panzoomInstance;
 let panzoomObserver;
+let maxPanZoom;
 /**
  * A function that calculates the position of an element inside its parent.
  *
@@ -502,10 +503,6 @@ function setupPanzoomObserver() {
 					'uto-block--unobserved',
 					!entry.isIntersecting
 				);
-				// if (entry.isIntersecting) {
-				// 	$(entry.target).removeClass('opview');
-				// } else {
-				// }
 			});
 		},
 		{
@@ -576,8 +573,14 @@ function initPanzoom() {
 	const panzoomCoordinates = getPreviousPanCoordinates();
 	const { width: panzoomElWidth, height: panzoomElHeight } =
 		panzoomEl.getBoundingClientRect();
+	const logo = document.querySelector('.uto-block._0');
+	const { width: logoWidth, height: logoHeight } = logo.getBoundingClientRect();
+
 	const minZoom = window.innerHeight / panzoomElHeight;
-	const maxZoom = panzoomCoordinates ? panzoomCoordinates.scale : 1;
+
+	maxPanZoom = window.innerWidth / logoWidth / 2;
+
+	const maxZoom = panzoomCoordinates ? panzoomCoordinates.scale : maxPanZoom;
 
 	fixPanzoomOnMouseDown();
 
@@ -714,7 +717,8 @@ function initBarba() {
 						);
 
 						setTimeout(() => {
-							panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
+							panzoomEl.style.transition =
+								'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
 							document.body.style.pointerEvents = null;
 						}, 2_000);
 					});
@@ -811,7 +815,7 @@ function initBarba() {
 					panzoomInstance.zoomAbs(
 						window.innerWidth / 2,
 						window.innerHeight / 2,
-						1
+						maxPanZoom
 					);
 					moveZoomSlider(0, 0.5);
 
@@ -822,7 +826,7 @@ function initBarba() {
 						// scale: 1.5,
 						duration: 0.5,
 						onComplete: () => {
-							panzoomInstance.setMaxZoom(1);
+							panzoomInstance.setMaxZoom(maxPanZoom);
 						},
 					});
 				},
