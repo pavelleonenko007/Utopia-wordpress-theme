@@ -84,6 +84,9 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 														// phpcs:ignore
 														echo utopia_remove_dimension_image_attributes( wp_get_attachment_image( $image, 'full', false, array( 'loading' => 'lazy' ) ) ); ?>
 													</div>
+													<?php if ( ! empty( $image_description ) ) : ?>
+														<figcaption><?php echo esc_html( $image_description ); ?></figcaption>
+													<?php endif; ?>
 												</figure>
 											<?php else : ?>
 												<figure class="w-richtext-align-center w-richtext-figure-type-image">
