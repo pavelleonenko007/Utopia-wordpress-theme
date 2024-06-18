@@ -557,6 +557,45 @@ button.link {
 	}
 }
 
+.logo {
+	@include hover {
+		* {
+			fill: #757575;
+		}
+	}
+}
+
+.top-abs {
+	.p-16-120._2._33 {
+		position: relative;
+	}
+
+	.p-16-120._2._33::after {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 0;
+		height: 1px;
+		background: #757575;
+		transition: all 300ms ease;
+		scale: 0 1;
+		width: 100%;
+	}
+
+	@include hover {
+		& .p-16-120._2._33::after {
+			scale: 1 1;
+		}
+	}
+
+	* {
+		@include hover {
+			color: #757575;
+			fill: #757575;
+		}
+	}
+}
+
 /* Thevogne Start */
 .div-block-3 {
 	width: 100vw;
@@ -568,10 +607,10 @@ button.link {
 	height: calc(6240rem + 100vh);
 }
 
-.uto-block._0:hover * {
-	color: #757575;
-	fill: #757575;
-}
+// .uto-block._0:hover * {
+// 	color: #757575;
+// 	fill: #757575;
+// }
 .uto-block._0 * {
 	transition:
 		all 0.3s ease,
