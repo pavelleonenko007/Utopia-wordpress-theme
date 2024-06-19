@@ -16,6 +16,7 @@ import {
 } from './components/LeftMenu.js';
 import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
+import { closeMobileMenu, initMobileMenu } from './components/MobileMenu.js';
 import { initSearchForm } from './components/SearchForm.js';
 import { initSubscribeForm } from './components/SubscribeForm.js';
 import { initVideoPlayers } from './components/VideoPlayer.js';
@@ -722,6 +723,7 @@ function initBarba() {
 							document.body.style.pointerEvents = null;
 						}, 2_000);
 					});
+					initMobileMenu();
 					initVideoPlayers();
 					initThumbnailGallery();
 					initContentGalleries();
@@ -874,6 +876,10 @@ function initBarba() {
 				},
 			},
 		],
+	});
+
+	barba.hooks.beforeLeave(() => {
+		closeMobileMenu();
 	});
 
 	barba.hooks.afterLeave(() => {

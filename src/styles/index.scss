@@ -596,6 +596,33 @@ button.link {
 	}
 }
 
+.open-mobile-menu {
+	.div-block-9,
+	.top-m {
+		// display: none;
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.dopmenu {
+		display: flex;
+		// visibility: visible;
+		opacity: 1;
+		// pointer-events: all;
+	}
+
+	.omen-menu {
+		:first-child {
+			display: none;
+		}
+
+		:last-child {
+			display: block;
+		}
+	}
+}
+
 /* Thevogne Start */
 .div-block-3 {
 	width: 100vw;
