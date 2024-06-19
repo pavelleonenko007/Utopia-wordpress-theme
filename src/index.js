@@ -579,7 +579,8 @@ function initLeftMenu() {
 
 			const panzoomEl = document.querySelector('.mapa');
 
-			panzoomEl.style.transition = 'transform 1s cubic-bezier(0.45, 0, 0.55, 1)';
+			panzoomEl.style.transition =
+				'transform 1s cubic-bezier(0.45, 0, 0.55, 1)';
 
 			const targetZoom = dotLink.classList.contains('_1')
 				? panzoomInstance.getMinZoom()
@@ -592,7 +593,8 @@ function initLeftMenu() {
 			);
 
 			setTimeout(() => {
-				panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
+				panzoomEl.style.transition =
+					'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
 			}, 1_200);
 		};
 	});
@@ -607,8 +609,7 @@ function initPanzoom() {
 	}
 
 	const panzoomCoordinates = getPreviousPanCoordinates();
-	const { width: panzoomElWidth, height: panzoomElHeight } =
-		panzoomEl.getBoundingClientRect();
+	const { height: panzoomElHeight } = panzoomEl.getBoundingClientRect();
 	const logo = document.querySelector('.uto-block._0');
 	const { width: logoWidth, height: logoHeight } = logo.getBoundingClientRect();
 
@@ -617,6 +618,10 @@ function initPanzoom() {
 	maxPanZoom = window.innerWidth / logoWidth / 2;
 
 	const maxZoom = panzoomCoordinates ? panzoomCoordinates.scale : maxPanZoom;
+
+	panzoomEl.style.width = `calc(8952rem + (25vw / ${minZoom}))`;
+
+	const { width: panzoomElWidth } = panzoomEl.getBoundingClientRect();
 
 	fixPanzoomOnMouseDown();
 
@@ -657,6 +662,8 @@ function initPanzoom() {
 
 	function panEndHandler(e) {
 		const { x, y } = e.getTransform();
+
+		console.log({ x, y });
 
 		const width = panzoomEl.getBoundingClientRect().width - window.innerWidth;
 		const height =
