@@ -36,6 +36,7 @@ $utopian_2     = get_field( 'utopian_2' );
 $utopian_3     = get_field( 'utopian_3' );
 $utopian_4     = get_field( 'utopian_4' );
 $utopian_5     = get_field( 'utopian_5' );
+$utopian_6     = get_field( 'utopian_6' );
 $utopians_link = get_post_type_archive_link( 'utopian' );
 
 $concert_1     = get_field( 'concert_1' );
