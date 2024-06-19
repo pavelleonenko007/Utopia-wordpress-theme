@@ -80,3 +80,13 @@ export class FormValidator {
 		return email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
 	}
 }
+
+
+export class UrlValidator {
+	static isCurrentUrl(url) {
+		const currentUrl = window.location.href.split('?')[0];
+		const parsedUrl = new URL(url, window.location.origin).href.split('?')[0];
+
+		return currentUrl === parsedUrl;
+	}
+}

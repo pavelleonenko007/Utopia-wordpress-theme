@@ -72,13 +72,13 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 										<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65fd3f8809f4adcb3a38c081_Unionjh.svg' ); ?>" loading="lazy" alt class="img-arr">
 									</div>
 								</div>
-								<a data-w-id="80008aa7-ecff-174b-98ba-e874be983bec" href="/" aria-current="page" class="dot-zoom _3 opgs w-inline-block w--current">
+								<a data-w-id="80008aa7-ecff-174b-98ba-e874be983bec" href="#" class="dot-zoom _3 opgs barba-prevent w-inline-block">
 									<div class="dot-zoom-dot"></div>
 								</a>
-								<a data-w-id="98347db9-7deb-161e-019f-56b5f46dc922" href="/" aria-current="page" class="dot-zoom _2 opgs w-inline-block w--current">
+								<a data-w-id="98347db9-7deb-161e-019f-56b5f46dc922" href="#" class="dot-zoom _2 opgs barba-prevent w-inline-block">
 									<div class="dot-zoom-dot"></div>
 								</a>
-								<a data-w-id="53652b2f-2989-7556-15dc-ba7a37ea03f1" href="/" aria-current="page" class="dot-zoom _1 opgs w-inline-block w--current">
+								<a data-w-id="53652b2f-2989-7556-15dc-ba7a37ea03f1" href="#" class="dot-zoom _1 opgs barba-prevent w-inline-block">
 									<div class="dot-zoom-dot"></div>
 								</a>
 							</div>

@@ -26,6 +26,7 @@ import {
 	resetPreviousPanCoordinates,
 } from './state/index.js';
 import {
+	UrlValidator,
 	calculateZoomPercent,
 	calculateZoomSliderTransform,
 	debounce,
@@ -563,6 +564,40 @@ function setupTransformOrigin() {
 		});
 }
 
+function initLeftMenu() {
+	const dotLinks = document.querySelectorAll('.dot-zoom');
+
+	dotLinks.forEach((dotLink) => {
+		dotLink.onclick = (event) => {
+			event.preventDefault();
+			event.stopPropagation();
+
+			if (!UrlValidator.isCurrentUrl(window.location.origin)) {
+				barba.go(window.location.origin);
+				return;
+			}
+
+			const panzoomEl = document.querySelector('.mapa');
+
+			panzoomEl.style.transition = 'transform 1s cubic-bezier(0.45, 0, 0.55, 1)';
+
+			const targetZoom = dotLink.classList.contains('_1')
+				? panzoomInstance.getMinZoom()
+				: panzoomInstance.getMaxZoom();
+
+			panzoomInstance.zoomAbs(
+				window.innerWidth / 2,
+				window.innerHeight / 2,
+				targetZoom
+			);
+
+			setTimeout(() => {
+				panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
+			}, 1_200);
+		};
+	});
+}
+
 function initPanzoom() {
 	const panzoomEl = document.querySelector('.mapa');
 
@@ -691,8 +726,9 @@ function initBarba() {
 	window.history.scrollRestoration = 'manual';
 
 	barba.init({
-		debug: false,
-		prevent: ({ el }) => el.closest('#wpadminbar'),
+		debug: true,
+		prevent: ({ el }) =>
+			el.closest('#wpadminbar') || el.closest('.barba-prevent'),
 		views: [
 			{
 				namespace: 'idea',
@@ -723,6 +759,7 @@ function initBarba() {
 							document.body.style.pointerEvents = null;
 						}, 2_000);
 					});
+					initLeftMenu();
 					initMobileMenu();
 					initVideoPlayers();
 					initThumbnailGallery();
@@ -886,17 +923,24 @@ function initBarba() {
 		unhighlightLeftMenu();
 	});
 
-	barba.hooks.enter((data) => {
+	barba.hooks.enter(({ current, next }) => {
+		if (current.namespace === next.namespace) {
+			console.log('pizda');
+			return;
+		}
+
 		initThumbnailGallery();
 		initContentGalleries();
 		initPostGalleries();
 		initVideoPlayers();
 		initSubscribeForm();
-		updateDataWfPage(data.next.html);
+		updateDataWfPage(next.html);
 	});
 
-	barba.hooks.after(() => {
-		refreshWebflowScripts();
+	barba.hooks.after(({ current, next }) => {
+		if (current.namespace !== next.namespace) {
+			refreshWebflowScripts();
+		}
 	});
 }
 
