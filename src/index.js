@@ -712,9 +712,9 @@ function initPanzoom() {
 		}
 	}
 
-	const debouncedPanEndHandler = debounce(panEndHandler, 50);
+	const debouncedPanEndHandler = debounce(panEndHandler, 1_350);
 
-	function zoomHandler(e) {
+	function zoomHandler(e, ) {
 		const { scale } = e.getTransform();
 
 		moveZoomSlider(
@@ -724,7 +724,7 @@ function initPanzoom() {
 			0.3
 		);
 
-		// debouncedPanEndHandler(e);
+		debouncedPanEndHandler(e);
 	}
 
 	panzoomInstance.on('panend', panEndHandler);
