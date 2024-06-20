@@ -27,7 +27,7 @@ get_header(
 							endwhile;
 						else :
 							?>
-							<p>There is no concerts yet!</p>
+							<p><?php pll_e( 'There is no concerts yet!' ); ?></p>
 						<?php endif; ?>
 					</div>
 					<?php get_template_part( 'inc/components/footer' ); ?>

@@ -15,8 +15,8 @@ get_header(
 	)
 );
 
-$idea_page_id  = 12;
-$idea_page_url = get_the_permalink( $idea_page_id );
+$idea_page     = pll_get_post( 12 );
+$idea_page_url = get_the_permalink( $idea_page );
 $idea_0        = get_field( 'idea_0' );
 $idea_1        = get_field( 'idea_1' );
 $idea_2        = get_field( 'idea_2' );
@@ -87,7 +87,7 @@ $photo_8 = get_field( 'photo_8' );
 											<div class="top-abs">
 												<div class="p-14-20 _2"><?php echo $idea_0; ?></div>
 												<div class="u-link u-i w-inline-block">
-													<?php $read_button_text = ! empty( get_field( 'read_button_text' ) ) ? get_field( 'read_button_text' ) : 'read'; ?>
+													<?php $read_button_text = ! empty( get_field( 'read_button_text' ) ) ? get_field( 'read_button_text' ) : pll__( 'read' ); ?>
 													<div class="p-16-120 _2 _33"><?php echo esc_html( $read_button_text ); ?></div>
 												</div>
 											</div>
@@ -97,7 +97,7 @@ $photo_8 = get_field( 'photo_8' );
 										<div class="uto-block _1">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_1 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_1 ) ); ?></div>
-												<div class="p-16-120 _2">utopian</div>
+												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
 												<?php
 												echo get_the_post_thumbnail(
 													$utopian_1,
@@ -143,7 +143,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $quote_1 ) && ! empty( $quote_1['quote'] ) ) :
 										$quote     = $quote_1['quote'];
 										$url       = ! empty( $quote_1['url'] ) ? $quote_1['url'] : '#';
-										$link_text = ! empty( $quote_1['link_text'] ) ? $quote_1['link_text'] : 'read';
+										$link_text = ! empty( $quote_1['link_text'] ) ? $quote_1['link_text'] : pll__( 'read' );
 										$author    = ! empty( $quote_1['author'] ) ? $quote_1['author'] : '';
 										?>
 										<div class="uto-block _3">
@@ -190,7 +190,7 @@ $photo_8 = get_field( 'photo_8' );
 										<div class="uto-block _6">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_3 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_3 ) ); ?></div>
-												<div class="p-16-120 _2">utopian</div>
+												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -211,7 +211,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_4 ) && ! empty( $photo_4['photo'] ) ) :
 										$url         = ! empty( $photo_4['url'] ) ? $photo_4['url'] : '#';
 										$description = ! empty( $photo_4['description'] ) ? $photo_4['description'] : '';
-										$link_text   = ! empty( $photo_4['link_text'] ) ? $photo_4['link_text'] : 'read';
+										$link_text   = ! empty( $photo_4['link_text'] ) ? $photo_4['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _7">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -239,7 +239,7 @@ $photo_8 = get_field( 'photo_8' );
 									<?php if ( ! empty( $utopians_link ) ) : ?>
 										<div class="uto-block _8">
 											<a href="<?php echo esc_url( $utopians_link ); ?>" class="u-link u-i w-inline-block">
-												<div class="p-56-105 _2">Utopians</div>
+												<div class="p-56-105 _2"><?php pll_e( 'Utopians' ); ?></div>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -253,7 +253,7 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $publication_3 ) ); ?>" class="u-link u-p w-inline-block">
 												<div class="ev-mom">
 													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_3 ) ); ?></div>
-													<div class="p-16-120 _2">read</div>
+													<div class="p-16-120 _2"><?php pll_e( 'read' ); ?></div>
 												</div>
 											</a>
 											<div class="rtz-checker">
@@ -290,7 +290,7 @@ $photo_8 = get_field( 'photo_8' );
 										<div class="uto-block _11">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_5 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_5 ) ); ?></div>
-												<div class="p-16-120 _2">utopian</div>
+												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -311,7 +311,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_6 ) && ! empty( $photo_6['photo'] ) ) :
 										$url         = ! empty( $photo_6['url'] ) ? $photo_6['url'] : '#';
 										$description = ! empty( $photo_6['description'] ) ? $photo_6['description'] : '';
-										$link_text   = ! empty( $photo_6['link_text'] ) ? $photo_6['link_text'] : 'read';
+										$link_text   = ! empty( $photo_6['link_text'] ) ? $photo_6['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _12">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -340,7 +340,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_2 ) && ! empty( $photo_2['photo'] ) ) :
 										$url         = ! empty( $photo_2['url'] ) ? $photo_2['url'] : '#';
 										$description = ! empty( $photo_2['descrioption'] ) ? $photo_2['descrioption'] : '';
-										$link_text   = ! empty( $photo_2['link_text'] ) ? $photo_2['link_text'] : 'read';
+										$link_text   = ! empty( $photo_2['link_text'] ) ? $photo_2['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _13">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -369,7 +369,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_1 ) && ! empty( $photo_1['photo'] ) ) :
 										$url         = ! empty( $photo_1['url'] ) ? $photo_1['url'] : '#';
 										$description = ! empty( $photo_1['description'] ) ? $photo_1['description'] : '';
-										$link_text   = ! empty( $photo_1['link_text'] ) ? $photo_1['link_text'] : 'read';
+										$link_text   = ! empty( $photo_1['link_text'] ) ? $photo_1['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _14">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -406,7 +406,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_3 ) && ! empty( $photo_3['photo'] ) ) :
 										$url         = ! empty( $photo_3['url'] ) ? $photo_3['url'] : '#';
 										$description = ! empty( $photo_3['description'] ) ? $photo_3['description'] : '';
-										$link_text   = ! empty( $photo_3['link_text'] ) ? $photo_3['link_text'] : 'read';
+										$link_text   = ! empty( $photo_3['link_text'] ) ? $photo_3['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _16">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -472,7 +472,7 @@ $photo_8 = get_field( 'photo_8' );
 										<div class="uto-block _19">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_2 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_2 ) ); ?></div>
-												<div class="p-16-120 _2">utopian</div>
+												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -493,7 +493,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $quote_2 ) && ! empty( $quote_2['quote'] ) ) :
 										$quote     = $quote_2['quote'];
 										$url       = ! empty( $quote_2['url'] ) ? $quote_2['url'] : '#';
-										$link_text = ! empty( $quote_2['link_text'] ) ? $quote_2['link_text'] : 'read';
+										$link_text = ! empty( $quote_2['link_text'] ) ? $quote_2['link_text'] : pll__( 'read' );
 										$author    = ! empty( $quote_2['author'] ) ? $quote_2['author'] : '';
 										?>
 										<div class="uto-block _20">
@@ -516,7 +516,7 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $publication_2 ) ); ?>" class="u-link u-p w-inline-block">
 												<div class="ev-mom">
 													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_2 ) ); ?></div>
-													<div class="p-16-120 _2">read</div>
+													<div class="p-16-120 _2"><?php pll_e( 'read' ); ?></div>
 												</div>
 											</a>
 											<div class="rtz-checker">
@@ -528,7 +528,7 @@ $photo_8 = get_field( 'photo_8' );
 										<div class="uto-block _22">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_4 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_4 ) ); ?></div>
-												<div class="p-16-120 _2">utopian</div>
+												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -549,7 +549,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_5 ) && ! empty( $photo_5['photo'] ) ) :
 										$url         = ! empty( $photo_5['url'] ) ? $photo_5['url'] : '#';
 										$description = ! empty( $photo_5['description'] ) ? $photo_5['description'] : '';
-										$link_text   = ! empty( $photo_5['link_text'] ) ? $photo_5['link_text'] : 'read';
+										$link_text   = ! empty( $photo_5['link_text'] ) ? $photo_5['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _23">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -599,7 +599,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_7 ) && ! empty( $photo_7['photo'] ) ) :
 										$url         = ! empty( $photo_7['url'] ) ? $photo_7['url'] : '#';
 										$description = ! empty( $photo_7['description'] ) ? $photo_7['description'] : '';
-										$link_text   = ! empty( $photo_7['link_text'] ) ? $photo_7['link_text'] : 'read';
+										$link_text   = ! empty( $photo_7['link_text'] ) ? $photo_7['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _26">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -653,7 +653,7 @@ $photo_8 = get_field( 'photo_8' );
 										<div class="uto-block _28">
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_6 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_6 ) ); ?></div>
-												<div class="p-16-120 _2">utopian</div>
+												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -674,7 +674,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $photo_8 ) && ! empty( $photo_8['photo'] ) ) :
 										$url         = ! empty( $photo_8['url'] ) ? $photo_8['url'] : '#';
 										$description = ! empty( $photo_8['description'] ) ? $photo_8['description'] : '';
-										$link_text   = ! empty( $photo_8['link_text'] ) ? $photo_8['link_text'] : 'read';
+										$link_text   = ! empty( $photo_8['link_text'] ) ? $photo_8['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _29">
 											<a href="<?php echo esc_url( $url ); ?>" class="u-link u-img w-inline-block">
@@ -703,7 +703,7 @@ $photo_8 = get_field( 'photo_8' );
 									if ( ! empty( $quote_3 ) && ! empty( $quote_3['quote'] ) ) :
 										$quote     = ! empty( $quote_3['quote'] ) ? $quote_3['quote'] : '';
 										$url       = ! empty( $quote_3['url'] ) ? $quote_3['url'] : '#';
-										$link_text = ! empty( $quote_3['link_text'] ) ? $quote_3['link_text'] : 'read';
+										$link_text = ! empty( $quote_3['link_text'] ) ? $quote_3['link_text'] : pll__( 'read' );
 										$author    = ! empty( $quote_3['author'] ) ? $quote_3['author'] : '';
 										?>
 										<div class="uto-block _30">
@@ -794,8 +794,8 @@ $photo_8 = get_field( 'photo_8' );
 		<a href="#" class="rest w-inline-block"></a>
 		<div class="hello-screen">
 			<div class="hello-screen__body">
-				<div class="hello-screen__text">utopia is gathering wait till first bar</div>
-				<div class="hello-screen__text hello-screen__text--hidden">ZOOM and drag to navigate</div>
+				<div class="hello-screen__text"><?php pll_e( 'Utopia is gathering wait till first bar' ); ?></div>
+				<div class="hello-screen__text hello-screen__text--hidden"><?php pll_e( 'Zoom and drag to navigate' ); ?></div>
 				<div class="hello-screen__loader"></div>
 			</div>
 		</div>

@@ -1192,3 +1192,18 @@ function utopia_wrap_long_text( $text ) {
 		return $text;
 	}
 }
+
+function utopia_get_language_switcher() {
+	$lang      = pll_current_language();
+	$languages = pll_the_languages( array( 'raw' => 1 ) );
+
+	foreach ( $languages as $key => $language ) {
+		if ( $key !== $lang ) {
+			return $languages[ $key ];
+		}
+	}
+
+	return array();
+}
+
+require_once get_template_directory() . '/inc/translations.php';

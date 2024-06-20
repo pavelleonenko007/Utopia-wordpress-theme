@@ -41,7 +41,7 @@ get_header(
 								endwhile;
 							else :
 								?>
-								<p>No Utopians found</p>
+								<p><?php pll_e( 'No Utopians found' ); ?></p>
 							<?php endif; ?>
 						</div>
 					</div>

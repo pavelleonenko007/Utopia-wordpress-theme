@@ -25,7 +25,7 @@ $buy_button = get_field( 'buy_button' );
 					<div class="concert-single">
 						<div class="concert-left">
 							<a href="<?php echo esc_url( get_post_type_archive_link( 'concert' ) ); ?>" class="gery-link w-inline-block">
-								<div class="text-block">all concerts</div>
+								<div class="text-block"><?php pll_e( 'all concerts' ); ?></div>
 							</a>
 							<div class="p-56-105 sing"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
 							<h1 class="h1-single n-pc"><?php the_title(); ?></h1>
@@ -44,7 +44,7 @@ $buy_button = get_field( 'buy_button' );
 							<?php endif; ?>
 							<?php if ( time() < $start_date && ! empty( $buy_button['link'] ) ) : ?>
 								<a href="<?php echo esc_url( $buy_button['link'] ); ?>" class="link-shos ll hvr single-page w-inline-block">
-									<div class="btn-xtx"><?php echo ! empty( $buy_button['button_text'] ) ? esc_html( $buy_button['button_text'] ) : 'buy tickets'; ?></div>
+									<div class="btn-xtx"><?php echo ! empty( $buy_button['button_text'] ) ? esc_html( $buy_button['button_text'] ) : pll__( 'buy tickets' ); ?></div>
 									<div class="hover-liner"></div>
 								</a>
 							<?php endif; ?>
@@ -181,14 +181,6 @@ $buy_button = get_field( 'buy_button' );
 								foreach ( $related_articles as $post ) :
 									setup_postdata( $post );
 									get_template_part( 'inc/components/article-card' );
-									?>
-								<!-- <div id="w-node-_07d73132-fc6d-cb50-a71f-39b9d09d1dc3-634e5a7e" class="artic-item">
-									<a href="#" class="artic-link w-inline-block">
-										<div class="p-16-120 w">Mezzo-soprano Dominika Hirschler has written in depth about her experience of performing the Utopia choir...</div>
-										<div class="p-16-120">by Opera Wire</div>
-									</a>
-								</div> -->
-									<?php
 								endforeach;
 								wp_reset_postdata();
 								?>
@@ -213,7 +205,7 @@ $buy_button = get_field( 'buy_button' );
 								</svg>
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span>Close</span>
+								<span><?php pll_e( 'Close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body">
@@ -229,8 +221,8 @@ $buy_button = get_field( 'buy_button' );
 								<?php endforeach; ?>
 							</ul>
 						</div>
-						<button type="button" class="image-gallery__nav image-gallery__nav--prev"><span class="sr-only">Previous</span></button>
-						<button type="button" class="image-gallery__nav image-gallery__nav--next"><span class="sr-only">Next</span></button>
+						<button type="button" class="image-gallery__nav image-gallery__nav--prev"><span class="sr-only"><?php pll_e( 'Previous' ); ?></span></button>
+						<button type="button" class="image-gallery__nav image-gallery__nav--next"><span class="sr-only"><?php pll_e( 'Next' ); ?></span></button>
 					</dialog>
 				<?php endif; ?>
 				<?php get_footer(); ?>

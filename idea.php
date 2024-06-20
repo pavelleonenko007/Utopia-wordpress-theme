@@ -151,7 +151,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 					if ( $articles_query->have_posts() ) :
 						?>
 						<div id="blog" class="usual-page-idea def-color">
-							<h2 class="h2-idea">Our world</h2>
+							<h2 class="h2-idea"><?php pll_e( 'Our world' ); ?></h2>
 							<div class="iaea-page ltr">
 								<div class="conc-core in-page idea-page">
 									<?php
@@ -160,7 +160,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 										?>
 										<div id="w-node-e4e544f0-71e8-0317-502c-21d5e098212b-8bd9f3e0" class="conc-card min">
 											<a href="<?php the_permalink(); ?>" class="conc-link min idea-link w-inline-block">
-												<div class="p-17">Article</div>
+												<div class="p-17"><?php pll_e( 'Article' ); ?></div>
 												<?php
 												the_post_thumbnail(
 													'full',
@@ -172,7 +172,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 												?>
 												<div class="p-28-120 _3"><?php the_title(); ?></div>
 												<div class="link-shos ll _3 hvr">
-													<div class="btn-xtx">read article</div>
+													<div class="btn-xtx"><?php pll_e( 'read article' ); ?></div>
 													<div class="hover-liner"></div>
 												</div>
 											</a>
@@ -186,7 +186,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 								// TODO: add ajax for load more!
 								if ( $articles_query->max_num_pages > 1 ) :
 									?>
-									<button type="button" data-button="load-more" data-type="article" class="link">load more</button>
+									<button type="button" data-button="load-more" data-type="article" class="link"><?php pll_e( 'load more' ); ?></button>
 								<?php endif; ?>
 							</div>
 							<?php get_template_part( 'inc/components/footer' ); ?>
@@ -237,7 +237,6 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 														</clipPath>
 													</defs>
 													</svg>
-
 											</button>
 											<button type="button" class="video-player__button video-player__button--fullscreen">
 												<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

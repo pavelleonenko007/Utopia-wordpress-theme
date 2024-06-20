@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 $data_wf_page                  = ! empty( $args['data-wf-page'] ) ? $args['data-wf-page'] : '';
 $barba_container_extra_classes = ! empty( $args['barba-container-extra-classes'] ) ? $args['barba-container-extra-classes'] : '';
 $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['barba-namespace'] : '';
-
+$current_language              = pll_current_language();
 ?>
 <!DOCTYPE html>
 <html data-wf-page="<?php echo esc_attr( $data_wf_page ); ?>" data-wf-site="<?php echo esc_attr( DATA_WF_SITE ); ?>" <?php language_attributes(); ?>>
@@ -32,26 +32,30 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 		<div data-animation="default" data-collapse="none" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
 			<header class="header">
 				<a href="<?php echo esc_url( get_home_url( null, '/' ) ); ?>" class="brand w-nav-brand"></a>
-				<nav role="navigation" class="nav-menu w-nav-menu">
-					<a href="#" class="w-nav-link">Home</a>
-					<a href="#" class="w-nav-link">About</a>
-					<a href="#" class="w-nav-link">Contact</a>
-				</nav>
+				<?php
+				$main_menu_name  = 'Main menu ' . strtolower( $current_language );
+				$main_menu_items = wp_get_nav_menu_items( $main_menu_name );
+				if ( ! empty( $main_menu_items ) ) :
+					?>
+					<nav role="navigation" class="nav-menu w-nav-menu">
+						<?php foreach ( $main_menu_items as $main_menu_item ) : ?>
+							<a href="<?php echo esc_url( $main_menu_item->url ); ?>" class="w-nav-link"><?php echo esc_html( $main_menu_item->title ); ?></a>
+						<?php endforeach; ?>
+					</nav>
+				<?php endif; ?>
 				<div class="menu-button w-nav-button">
 					<div class="w-icon-nav-menu"></div>
 				</div>
 				<div class="left-menu">
+					<?php if ( ! empty( $main_menu_items ) ) : ?>
 					<div class="dopmenu">
-						<a href="/concerts" class="us-link w-inline-block">
-							<div>concerts</div>
-						</a>
-						<a href="/idea" class="us-link w-inline-block">
-							<div>idea</div>
-						</a>
-						<a href="/utopians" class="us-link w-inline-block">
-							<div>utopians</div>
-						</a>
+						<?php foreach ( $main_menu_items as $main_menu_item ) : ?>
+							<a href="<?php echo esc_url( $main_menu_item->url ); ?>" class="us-link w-inline-block">
+								<div><?php echo esc_html( $main_menu_item->title ); ?></div>
+							</a>
+						<?php endforeach; ?>
 					</div>
+					<?php endif; ?>
 					<div class="div-block-9">
 						<div class="zoomzoom">
 							<div class="zoom-mom">
@@ -86,34 +90,39 @@ $namespace                     = ! empty( $args['barba-namespace'] ) ? $args['ba
 					</div>
 					<div class="top-m">
 						<a data-w-id="abca3ef8-89fd-419b-96ff-5437a51c3d48" href="#" class="search-btn w-inline-block" onclick="window.searchDialog.hasAttribute('open') ? window.searchDialog.close() : window.searchDialog.showModal();">
-							<div>search</div>
+							<div><?php pll_e( 'Search' ); ?></div>
 						</a>
-						<a href="#" class="lang w-inline-block">
-							<div>DE</div>
-						</a>
+						<?php
+						$translation = utopia_get_language_switcher();
+						if ( ! empty( $translation ) ) :
+							?>
+							<a href="<?php echo esc_url( $translation['url'] ); ?>" class="lang barba-prevent w-inline-block">
+								<div><?php echo esc_html( strtoupper( $translation['slug'] ) ); ?></div>
+							</a>
+						<?php endif; ?>
 					</div>
-					<a href="#" class="omen-menu w-inline-block">
+					<button type="button" class="omen-menu w-inline-block">
 						<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/6630adc6066c2de7d1e3ada7_i.svg' ); ?>" loading="lazy" alt class="open-m ravno">
 						<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/6630adc6c69faae0e10f4d93_Frame202087326858.svg' ); ?>" loading="lazy" alt class="open-m crest">
-					</a>
+					</button>
 				</div>
 			</header>
 			<dialog class="search-block" id="searchDialog">
 				<div class="search-block__controls">
-					<div class="search-block__title">Search</div>
+					<div class="search-block__title"><?php pll_e( 'Search' ); ?></div>
 					<form method="dialog" class="search-block__close-button-wrapper">
 						<button class="search-block__close-btn" type="submit">
 							<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="currentColor"/>
 							</svg>
-							<span class="sr-only">Close</span>
+							<span class="sr-only"><?php pll_e( 'Close' ); ?></span>
 						</button>
 					</form>
 				</div>
-				<div class="text-block-6">Search in utopia</div>
+				<div class="text-block-6"><?php pll_e( 'Search in Utopia' ); ?></div>
 				<div class="serch-form">
 					<form role="search" id="searchform" data-wf-page-id="65e57c8082e6072b394e6a12" data-wf-element-id="a14c8d4c-d230-02dc-0c8c-ea633d30d88d">
-						<input class="search-input w-input" autofocus="true" maxlength="256" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="What are you looking for?" type="search">
+						<input class="search-input w-input" autofocus="true" maxlength="256" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="<?php pll_e( 'What are you looking for?' ); ?>" type="search">
 						<input type="hidden" name="action" value="search">
 						<?php wp_nonce_field( 'search_action', 'search_nonce', false ); ?>
 					</form>

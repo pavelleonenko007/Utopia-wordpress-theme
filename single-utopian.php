@@ -20,7 +20,7 @@ the_post();
 					<div class="article-page">
 						<div class="top-line-article">
 							<a href="<?php echo esc_url( get_post_type_archive_link( 'utopian' ) ); ?>" class="gery-link art-p w-inline-block">
-								<div class="text-block">all utopians</div>
+								<div class="text-block"><?php pll_e( 'all utopians' ); ?></div>
 							</a>
 						</div>
 						<div class="article-midle">
@@ -65,7 +65,7 @@ the_post();
 							<div class="image-gallery__counter gallery-counter">
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span>Close</span>
+								<span><?php pll_e( 'Close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body">

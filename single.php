@@ -23,7 +23,7 @@ $gallery = get_field( 'gallery' );
 						<div class="top-line-article">
 							<?php $idea_page_id = 12; ?>
 							<a href="<?php echo esc_url( get_the_permalink( $idea_page_id ) . '#blog' ); ?>" class="gery-link art-p w-inline-block">
-								<div class="text-block">Articles in Our World</div>
+								<div class="text-block"><?php pll_e( 'articles in Our World' ); ?></div>
 							</a>
 							<div class="art-top">
 								<div class="text-block grey"><?php the_date( 'j F Y' ); ?></div>
@@ -115,6 +115,7 @@ $gallery = get_field( 'gallery' );
 								?>
 								<div class="conc-core in-page art-page">
 									<?php
+									//phpcs:ignore
 									foreach ( $concerts as $post ) :
 										setup_postdata( $post );
 										get_template_part( 'inc/components/concert-card-min' );
@@ -129,6 +130,7 @@ $gallery = get_field( 'gallery' );
 								?>
 								<div class="artic-core min">
 									<?php
+									//phpcs:ignore
 									foreach ( $related_articles as $post ) :
 										setup_postdata( $post );
 										get_template_part( 'inc/components/article-card' );
@@ -144,7 +146,7 @@ $gallery = get_field( 'gallery' );
 								<p class="paragraph"><?php echo esc_html( $footer_text ); ?></p>
 							<?php endif; ?>
 							<a href="#top" class="link-shos ll hvr w-inline-block">
-								<div class="btn-xtx">back to top</div>
+								<div class="btn-xtx"><?php pll_e( 'back to top' ); ?></div>
 								<div class="hover-liner"></div>
 							</a>
 						</div>
@@ -188,7 +190,7 @@ $gallery = get_field( 'gallery' );
 								</svg>
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span>Close</span>
+								<span><?php pll_e( 'Close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body">
@@ -204,8 +206,8 @@ $gallery = get_field( 'gallery' );
 								<?php endforeach; ?>
 							</ul>
 						</div>
-						<button type="button" class="image-gallery__nav image-gallery__nav--prev"><span class="sr-only">Previous</span></button>
-						<button type="button" class="image-gallery__nav image-gallery__nav--next"><span class="sr-only">Next</span></button>
+						<button type="button" class="image-gallery__nav image-gallery__nav--prev"><span class="sr-only"><?php pll_e( 'Previous' ); ?></span></button>
+						<button type="button" class="image-gallery__nav image-gallery__nav--next"><span class="sr-only"><?php pll_e( 'Next' ); ?></span></button>
 					</dialog>
 				<?php endif; ?>
 				<?php get_footer(); ?>
