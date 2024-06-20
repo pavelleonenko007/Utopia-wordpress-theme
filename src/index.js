@@ -29,11 +29,10 @@ import {
 	UrlValidator,
 	calculateZoomPercent,
 	calculateZoomSliderTransform,
-	debounce,
 	refreshWebflowScripts,
 	setCorrectTransformOrigin,
 	updateDataWfPage,
-	wait,
+	wait
 } from './utils/index.js';
 
 // let panzoomEl;
@@ -664,6 +663,13 @@ function initPanzoom() {
 		panzoomEl.style.transition = 'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
 	}, 300);
 
+	panzoomEl.ontransitionend = (event) => {
+		if (event.target !== event.currentTarget) {
+			return; // Ignore it
+		}
+		panEndHandler(panzoomInstance);
+	};
+
 	function panEndHandler(e) {
 		const { x, y } = e.getTransform();
 
@@ -712,9 +718,9 @@ function initPanzoom() {
 		}
 	}
 
-	const debouncedPanEndHandler = debounce(panEndHandler, 1_350);
+	// const debouncedPanEndHandler = debounce(panEndHandler, 1_350);
 
-	function zoomHandler(e, ) {
+	function zoomHandler(e) {
 		const { scale } = e.getTransform();
 
 		moveZoomSlider(
@@ -724,7 +730,7 @@ function initPanzoom() {
 			0.3
 		);
 
-		debouncedPanEndHandler(e);
+		// debouncedPanEndHandler(e);
 	}
 
 	panzoomInstance.on('panend', panEndHandler);
