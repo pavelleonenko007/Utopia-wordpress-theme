@@ -623,6 +623,18 @@ button.link {
 	}
 }
 
+.zoom-mom {
+	.zoom-viewer > .a-dot {
+		transition: opacity 0.3s ease;
+	}
+
+	@include hover {
+		.zoom-viewer > .a-dot {
+			opacity: 0.5;
+		}
+	}
+}
+
 /* Thevogne Start */
 .div-block-3 {
 	width: 100vw;
