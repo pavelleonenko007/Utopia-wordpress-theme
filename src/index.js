@@ -608,7 +608,7 @@ function initPanzoom() {
 		return;
 	}
 
-	const panzoomCoordinates = getPreviousPanCoordinates();
+	const previousCoordinates = getPreviousPanCoordinates();
 	const { height: panzoomElHeight } = panzoomEl.getBoundingClientRect();
 	const logo = document.querySelector('.uto-block._0');
 	const { width: logoWidth, height: logoHeight } = logo.getBoundingClientRect();
@@ -617,7 +617,9 @@ function initPanzoom() {
 
 	maxPanZoom = window.innerWidth / logoWidth / 2;
 
-	const maxZoom = panzoomCoordinates ? panzoomCoordinates.scale : maxPanZoom;
+	const maxZoom = previousCoordinates
+		? previousCoordinates.targetCoordinates.scale
+		: maxPanZoom;
 
 	panzoomEl.style.width = `calc(8952rem + (25vw / ${minZoom}))`;
 
@@ -629,13 +631,15 @@ function initPanzoom() {
 		panzoomInstance.dispose();
 	}
 
-	const initialX = panzoomCoordinates
-		? panzoomCoordinates.x
+	const initialX = previousCoordinates
+		? previousCoordinates.targetCoordinates.x
 		: -(panzoomElWidth * minZoom - window.innerWidth) / 2;
-	const initialY = panzoomCoordinates
-		? panzoomCoordinates.y
+	const initialY = previousCoordinates
+		? previousCoordinates.targetCoordinates.y
 		: -(panzoomElHeight * minZoom - window.innerHeight) / 2;
-	const initialZoom = panzoomCoordinates ? panzoomCoordinates.scale : minZoom;
+	const initialZoom = previousCoordinates
+		? previousCoordinates.targetCoordinates.scale
+		: minZoom;
 
 	panzoomInstance = panzoom(panzoomEl, {
 		boundsDisabledForZoom: true,
@@ -662,8 +666,6 @@ function initPanzoom() {
 
 	function panEndHandler(e) {
 		const { x, y } = e.getTransform();
-
-		console.log({ x, y });
 
 		const width = panzoomEl.getBoundingClientRect().width - window.innerWidth;
 		const height =
@@ -795,10 +797,13 @@ function initBarba() {
 					const blockElement = trigger.closest('.uto-block');
 					const { width, height, top, left } =
 						blockElement.getBoundingClientRect();
-
+					const coordinates = {};
 					const panzoomEl = document.querySelector('.mapa');
 					panzoomEl.style.transition =
 						'transform 2s cubic-bezier(0.65, 0, 0.35, 1)';
+
+					coordinates.startCoordinates = { ...panzoomInstance.getTransform() };
+
 					panzoomInstance.setMaxZoom(7);
 
 					setTimeout(() => {
@@ -807,7 +812,9 @@ function initBarba() {
 
 					await wait(1_000);
 
-					rememberPreviousPanCoordinates(panzoomInstance.getTransform());
+					coordinates.targetCoordinates = { ...panzoomInstance.getTransform() };
+
+					rememberPreviousPanCoordinates(coordinates);
 
 					return gsap.to(current.container, {
 						opacity: 0,
@@ -852,27 +859,33 @@ function initBarba() {
 						opacity: 0,
 					});
 
+					moveZoomSlider(0, 0.3);
+
+					await wait(300);
+
 					initPanzoom();
 					setupTransformOrigin();
 					setupPanzoomObserver();
+
+					panzoomInstance.setMaxZoom(maxPanZoom);
+
+					const { startCoordinates } = getPreviousPanCoordinates();
 
 					await wait(300);
 
 					panzoomInstance.zoomAbs(
 						window.innerWidth / 2,
 						window.innerHeight / 2,
-						maxPanZoom
+						startCoordinates.scale
 					);
-					moveZoomSlider(0, 0.5);
 
 					resetPreviousPanCoordinates();
 
 					return gsap.to(next.container, {
 						autoAlpha: 1,
-						// scale: 1.5,
 						duration: 0.5,
 						onComplete: () => {
-							panzoomInstance.setMaxZoom(maxPanZoom);
+							// panzoomInstance.setMaxZoom(maxPanZoom);
 						},
 					});
 				},
@@ -932,7 +945,6 @@ function initBarba() {
 
 	barba.hooks.enter(({ current, next }) => {
 		if (current.namespace === next.namespace) {
-			console.log('pizda');
 			return;
 		}
 

@@ -12,5 +12,6 @@ export function moveZoomSlider(percent, duration = 0) {
 	gsap.to(slider, {
 		x: percent + '%',
 		duration,
+		overwrite: true,
 	});
 }
