@@ -3,8 +3,8 @@ import './webflow/js/main.js';
 
 import barba from '@barba/core';
 import gsap from 'gsap';
-
 import panzoom from 'panzoom';
+
 import {
 	initContentGalleries,
 	initPostGalleries,
@@ -29,10 +29,11 @@ import {
 	UrlValidator,
 	calculateZoomPercent,
 	calculateZoomSliderTransform,
+	debounce,
 	refreshWebflowScripts,
 	setCorrectTransformOrigin,
 	updateDataWfPage,
-	wait
+	wait,
 } from './utils/index.js';
 
 // let panzoomEl;
@@ -608,7 +609,7 @@ function initPanzoom() {
 	}
 
 	const previousCoordinates = getPreviousPanCoordinates();
-	const { height: panzoomElHeight } = panzoomEl.getBoundingClientRect();
+	const { width, height: panzoomElHeight } = panzoomEl.getBoundingClientRect();
 	const logo = document.querySelector('.uto-block._0');
 	const { width: logoWidth, height: logoHeight } = logo.getBoundingClientRect();
 
@@ -620,7 +621,25 @@ function initPanzoom() {
 		? previousCoordinates.targetCoordinates.scale
 		: maxPanZoom;
 
-	panzoomEl.style.width = `calc(8952rem + (25vw / ${minZoom}))`;
+	const panzoomWidthWithMinZoom = width * minZoom;
+
+	// console.log(
+	// 	width,
+	// 	panzoomWidthWithMinZoom,
+	// 	(((window.innerWidth - panzoomWidthWithMinZoom) / window.innerWidth) *
+	// 		100) /
+	// 		minZoom
+	// );
+
+	if (window.innerWidth > 1079) {
+		panzoomEl.style.width = `calc(8952rem + ${
+			(((window.innerWidth - panzoomWidthWithMinZoom) / window.innerWidth) *
+				100) /
+			minZoom
+		}vw)`;
+	} else {
+		panzoomEl.style.width = 'calc(8952rem + 100vw)';
+	}
 
 	const { width: panzoomElWidth } = panzoomEl.getBoundingClientRect();
 
@@ -667,6 +686,7 @@ function initPanzoom() {
 		if (event.target !== event.currentTarget) {
 			return; // Ignore it
 		}
+		console.log('panzoomEl.ontransitionend');
 		panEndHandler(panzoomInstance);
 	};
 
@@ -718,7 +738,7 @@ function initPanzoom() {
 		}
 	}
 
-	// const debouncedPanEndHandler = debounce(panEndHandler, 1_350);
+	const debouncedPanEndHandler = debounce(panEndHandler, 1_350);
 
 	function zoomHandler(e) {
 		const { scale } = e.getTransform();
