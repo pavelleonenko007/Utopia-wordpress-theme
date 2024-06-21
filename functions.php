@@ -1022,7 +1022,7 @@ function utopia_validate_default_wordpress_fields( $post ) {
 							(POST_TYPE === 'post' && selector === '#title' && field.value.length > 70) ||
 							(POST_TYPE === 'concert' && selector === '#title' && field.value.length < 3) ||
 							(POST_TYPE === 'concert' && selector === '#title' && field.value.length > 50) || 
-							(POST_TYPE === 'utopian' && selector === '#title' && field.value.length > 30) || 
+							(POST_TYPE === 'utopian' && selector === '#title' && (field.value.length < 3 ||field.value.length > 30)) || 
 							(selector === '#_thumbnail_id' && parseInt(field.value) < 0)) {
 							event.preventDefault();
 
@@ -1159,6 +1159,28 @@ function utopia_acf_validate_concert_content( $valid, $value, $field ) {
 
 	if ( strlen( $value ) < 100 ) {
 		return 'The content should be up to 100 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_66703735b3419', 'utopia_acf_validate_track_length', 10, 3 );
+function utopia_acf_validate_track_length( $valid, $value, $field ) {
+	$value = str_replace( ' ', '', $value );
+
+	if ( strlen( $value ) < 20 ) {
+		return 'The track length should be up to 20 characters without spaces.';
+	}
+
+	return true;
+}
+
+add_filter( 'acf/validate_value/key=field_6641f1367d69e', 'utopia_acf_validate_participant_length', 10, 3 );
+function utopia_acf_validate_participant_length( $valid, $value, $field ) {
+	$value = str_replace( ' ', '', $value );
+
+	if ( strlen( $value ) < 10 ) {
+		return 'The track length should be up to 10 characters without spaces.';
 	}
 
 	return true;
