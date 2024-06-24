@@ -3,6 +3,26 @@
     "title": "Articles",
     "fields": [
         {
+            "key": "field_66793b60f67b4",
+            "label": "Author",
+            "name": "author",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_663e135da1743",
             "label": "Lead",
             "name": "lead",
@@ -256,5 +276,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1717579623
+    "modified": 1719221109
 }

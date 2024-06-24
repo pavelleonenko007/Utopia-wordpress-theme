@@ -166,7 +166,12 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $publication_1 ) ); ?>" class="u-link u-p w-inline-block">
 												<div class="ev-mom">
 													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_1 ) ); ?></div>
-													<div class="p-16-120 _2">by <?php echo esc_html( get_the_author( $publication_1 ) ); ?></div>
+													<?php
+													$author = get_field( 'author', $publication_1 );
+													if ( ! empty( $author ) ) :
+														?>
+														<div class="p-16-120 _2">by <?php echo esc_html( $author ); ?></div>
+													<?php endif; ?>
 												</div>
 											</a>
 											<div class="rtz-checker">

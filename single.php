@@ -33,8 +33,12 @@ $gallery = get_field( 'gallery' );
 									?>
 									<div class="text-block grey"><?php echo esc_html( $tags[0]->name ); ?></div>
 								<?php endif; ?>
-								<?php $author = get_the_author(); ?>
-								<div class="text-block grey">by <?php echo esc_html( $author ); ?></div>
+								<?php
+								$author = get_field( 'author' );
+								if ( ! empty( $author ) ) :
+									?>
+									<div class="text-block grey">by <?php echo esc_html( $author ); ?></div>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="article-midle single-article">
