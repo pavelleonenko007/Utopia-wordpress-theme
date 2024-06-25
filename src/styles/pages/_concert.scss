@@ -46,9 +46,33 @@
 	}
 
 	&-more-button {
+		position: relative;
+		padding: 0;
 		margin: 0;
 		background-color: transparent;
 		color: rgb(var(--color-light-gray));
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgb(var(--color-white));
+			mix-blend-mode: difference;
+			scale: 0 1;
+			transition: scale 0.3s;
+			transform-style: preserve-3d;
+		}
+
+		@include hover {
+			color: rgb(var(--color-white));
+
+			&::after {
+				scale: 1 1;
+			}
+		}
 	}
 
 	&-additional {
