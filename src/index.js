@@ -17,6 +17,7 @@ import {
 import { moveZoomSlider } from './components/LevelSlider.js';
 import { initLoader } from './components/Loader.js';
 import { closeMobileMenu, initMobileMenu } from './components/MobileMenu.js';
+import { initPanzoomElements } from './components/PanzoomElements.js';
 import { initSearchForm } from './components/SearchForm.js';
 import { initSubscribeForm } from './components/SubscribeForm.js';
 import { initVideoPlayers } from './components/VideoPlayer.js';
@@ -686,7 +687,6 @@ function initPanzoom() {
 		if (event.target !== event.currentTarget) {
 			return; // Ignore it
 		}
-		console.log('panzoomEl.ontransitionend');
 		panEndHandler(panzoomInstance);
 	};
 
@@ -792,6 +792,7 @@ function initBarba() {
 							panzoomEl.style.transition =
 								'transform 1s cubic-bezier(0.01, 0.39, 0, 1)';
 							document.body.style.pointerEvents = null;
+							initPanzoomElements();
 						}, 2_000);
 					});
 					initLeftMenu();
@@ -911,6 +912,7 @@ function initBarba() {
 						autoAlpha: 1,
 						duration: 0.5,
 						onComplete: () => {
+							initPanzoomElements();
 							// panzoomInstance.setMaxZoom(maxPanZoom);
 						},
 					});

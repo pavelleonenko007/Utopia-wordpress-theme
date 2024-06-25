@@ -179,12 +179,26 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<?php if ( ! empty( $idea_2 ) ) : ?>
-										<div class="uto-block _5">
+									<?php if ( ! empty( $idea_2 ) && ! empty( $idea_2['phrase'] ) ) : ?>
+										<div class="uto-block _5" data-hover="image">
 											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
-												<div class="p-36-36 _2"><?php echo $idea_2; ?></div>
-												<?php // TODO: remove useless image? ?>
-												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+												<div class="p-36-36 _2"><?php echo esc_html( $idea_2['phrase'] ); ?></div>
+												<?php
+												if ( ! empty( $idea_2['image_on_hover'] ) ) {
+													//phpcs:ignore
+													echo utopia_remove_dimension_image_attributes(
+														wp_get_attachment_image(
+															$idea_2['image_on_hover'],
+															'full',
+															false,
+															array(
+																'class' => 'hidden-img',
+																'loading' => 'eager',
+															)
+														)
+													);
+												}
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -436,12 +450,26 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<?php if ( ! empty( $idea_1 ) ) : ?>
-										<div class="uto-block _17">
+									<?php if ( ! empty( $idea_1 ) && ! empty( $idea_1['phrase'] ) ) : ?>
+										<div class="uto-block _17" data-hover="image">
 											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
-												<div class="p-36-36 _2"><?php echo $idea_1; ?></div>
-												<?php // TODO: remove useless img? ?>
-												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+												<div class="p-36-36 _2"><?php echo esc_html( $idea_1['phrase'] ); ?></div>
+												<?php
+												if ( ! empty( $idea_1['image_on_hover'] ) ) {
+													//phpcs:ignore
+													echo utopia_remove_dimension_image_attributes(
+														wp_get_attachment_image(
+															$idea_1['image_on_hover'],
+															'full',
+															false,
+															array(
+																'class' => 'hidden-img',
+																'loading' => 'eager',
+															)
+														)
+													);
+												}
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -589,11 +617,26 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<?php if ( ! empty( $idea_3 ) ) : ?>
-										<div class="uto-block _25">
+									<?php if ( ! empty( $idea_3 ) && ! empty( $idea_3['phrase'] ) ) : ?>
+										<div class="uto-block _25" data-hover="image">
 											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
-												<div class="p-36-36 _2"><?php echo $idea_3; ?></div>
-												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+												<div class="p-36-36 _2"><?php echo esc_html( $idea_3['phrase'] ); ?></div>
+												<?php
+												if ( ! empty( $idea_3['image_on_hover'] ) ) {
+													//phpcs:ignore
+													echo utopia_remove_dimension_image_attributes(
+														wp_get_attachment_image(
+															$idea_3['image_on_hover'],
+															'full',
+															false,
+															array(
+																'class'   => 'hidden-img',
+																'loading' => 'eager',
+															)
+														)
+													);
+												}
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -726,12 +769,26 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<?php if ( ! empty( $idea_4 ) ) : ?>
-										<div class="uto-block _31">
+									<?php if ( ! empty( $idea_4 ) && ! empty( $idea_4['phrase'] ) ) : ?>
+										<div class="uto-block _31" data-hover="image">
 											<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
-												<div class="p-36-36 _2"><?php echo $idea_4; ?></div>
-												<?php // TODO: remove useless img? ?>
-												<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65ef11d8aedf8fc3de0d5740_9.png' ); ?>" loading="eager" alt class="hidden-img">
+												<div class="p-36-36 _2"><?php echo esc_html( $idea_4['phrase'] ); ?></div>
+												<?php
+												if ( ! empty( $idea_4['image_on_hover'] ) ) {
+													//phpcs:ignore
+													echo utopia_remove_dimension_image_attributes(
+														wp_get_attachment_image(
+															$idea_4['image_on_hover'],
+															'full',
+															false,
+															array(
+																'class' => 'hidden-img',
+																'loading' => 'eager',
+															)
+														)
+													);
+												}
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>

@@ -15,7 +15,6 @@ export let previousPanCoordinates = null;
  */
 export const rememberPreviousPanCoordinates = (coordinates) => {
 	previousPanCoordinates = coordinates;
-	console.log('rememberPreviousPanCoordinates:', previousPanCoordinates);
 };
 
 export const getPreviousPanCoordinates = () => previousPanCoordinates;
