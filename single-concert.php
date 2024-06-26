@@ -139,7 +139,7 @@ $buy_button = get_field( 'buy_button' );
 											</a>
 										<?php endforeach; ?>
 									</div>
-									<div class="p-24-120 grey slider-in">
+									<div class="p-24-120 grey slider-in" data-image-index="0" data-gallery="gallery">
 										<span class="visible-slides"><?php echo esc_html( $counter ); ?></span>/<span class="count-slides"><?php echo count( $gallery ); ?></span>
 									</div>
 								</div>
