@@ -334,6 +334,28 @@
                     "append": ""
                 }
             ]
+        },
+        {
+            "key": "field_667bfec95b5e6",
+            "label": "Modules",
+            "name": "modules",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "field_666bf07002f3e"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -356,5 +378,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1718702971
+    "modified": 1719403459
 }

@@ -1006,9 +1006,9 @@ function utopia_validate_default_wordpress_fields( $post ) {
 					'#title',
 				];
 
-				if (POST_TYPE !== 'page' && POST_TYPE !== 'concert') {
-					requiredFieldsSelectors.push('#content');
-				}
+				// if (POST_TYPE !== 'page' && POST_TYPE !== 'concert') {
+				// 	requiredFieldsSelectors.push('#content');
+				// }
 
 				if ( POST_TYPE === 'concert' || POST_TYPE === 'utopian' ) {
 					requiredFieldsSelectors.push('#_thumbnail_id');

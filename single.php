@@ -64,9 +64,75 @@ $gallery = get_field( 'gallery' );
 								?>
 								<p class="descr-art"><?php echo esc_html( $lead ); ?></p>
 							<?php endif; ?>
+							<?php
+							$content_modules = get_field( 'content_modules' );
+							if ( ! empty( $content_modules ) ) :
+								?>
 							<div class="rich-right-side w-richtext">
-								<?php the_content(); ?>
+								<?php
+								$image_counter = 0;
+								foreach ( $content_modules as $index => $content_module ) :
+									if ( 'blockquote_module' === $content_module['acf_fc_layout'] && ! empty( $content_module['text'] ) ) :
+										?>
+										<blockquote><?php echo esc_html( $content_module['text'] ); ?></blockquote>
+									<?php elseif ( 'question_module' === $content_module['acf_fc_layout'] && ! empty( $content_module['text'] ) ) : ?>
+										<p><em><?php echo esc_html( $content_module['text'] ); ?></em></p>
+										<?php
+									elseif ( 'image_module' === $content_module['acf_fc_layout'] && ! empty( $content_module['image'] ) ) :
+											$image_type        = $content_module['image_type'];
+											$image_description = $content_module['image_description'];
+
+										if ( 'small' === $image_type ) :
+											?>
+												<figure data-image-index="<?php echo esc_attr( $image_counter ); ?>" data-gallery="content" class="w-richtext-align-center w-richtext-figure-type-image">
+													<div>
+													<?php
+													echo utopia_remove_dimension_image_attributes(
+														wp_get_attachment_image(
+															$content_module['image'],
+															'full',
+															false,
+															array(
+																'loading' => 'lazy',
+															)
+														)
+													);
+													?>
+													</div>
+													<?php if ( ! empty( $image_description ) ) : ?>
+														<figcaption><?php echo esc_html( $image_description ); ?></figcaption>
+													<?php endif; ?>
+												</figure>
+											<?php elseif ( 'fullwidth' === $image_type ) : ?>
+												<figure data-image-index="<?php echo esc_attr( $image_counter ); ?>" data-gallery="content" class="w-richtext-align-fullwidth w-richtext-figure-type-image">
+													<div>
+														<?php
+														echo utopia_remove_dimension_image_attributes(
+															wp_get_attachment_image(
+																$content_module['image'],
+																'full',
+																false,
+																array(
+																	'loading' => 'lazy',
+																)
+															)
+														);
+														?>
+													</div>
+													<?php if ( ! empty( $image_description ) ) : ?>
+														<figcaption><?php echo esc_html( $image_description ); ?></figcaption>
+													<?php endif; ?>
+												</figure>
+												<?php
+											endif;
+											++$image_counter;
+											?>
+									<?php elseif ( 'text_module' === $content_module['acf_fc_layout'] && ! empty( $content_module['text'] ) ) : ?>
+										<?php echo $content_module['text']; ?>
+									<?php endif; ?>
+								<?php endforeach; ?>
 							</div>
+							<?php endif; ?>
 							<?php if ( ! empty( $gallery ) ) : ?>
 								<div class="concert-slider-line arc-line">
 									<div class="concert-slider-line_core">

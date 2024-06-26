@@ -14,3 +14,10 @@
 		}
 	}
 }
+
+@mixin flow($margin: 1em) {
+	--flow-margin: #{$margin};
+	& > * + * {
+		margin-top: var(--flow-margin);
+	}
+}

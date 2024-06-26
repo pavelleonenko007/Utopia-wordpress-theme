@@ -1,4 +1,4 @@
-p	{
+p {
 	margin: 0;
 }
 
@@ -8,4 +8,37 @@ a {
 
 a.p-24-120 {
 	text-decoration: none;
+}
+
+.art-rich {
+	color: rgb(var(--color-white));
+
+	.w-richtext {
+		p {
+			color: inherit;
+			margin-top: 80rem;
+
+			&:where(:has(em)) + p {
+				text-indent: 2.5ch;
+				margin-top: 32rem;
+			}
+		}
+
+		h2 + p,
+		h3 + p,
+		h4 + p,
+		h5 + p,
+		h6 + p,
+		blockquote + p {
+			text-indent: 2.5ch;
+		}
+	}
+}
+
+.w-richtext-align-center img {
+	max-width: 218rem;
+
+	@include mobile {
+		max-width: 163rem;
+	}
 }

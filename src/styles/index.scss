@@ -646,10 +646,6 @@ button.link {
 	height: calc(6240rem + 100vh);
 }
 
-// .uto-block._0:hover * {
-// 	color: #757575;
-// 	fill: #757575;
-// }
 .uto-block._0 * {
 	transition:
 		all 0.3s ease,
@@ -773,13 +769,6 @@ html .rich-right-side.w-richtext figure.w-richtext-align-fullwidth figcaption {
 .rich-right-side h2 + p,
 .rich-right-side blockquote + p {
 	text-indent: 2.5ch;
-}
-
-.rich-right-side em {
-	display: block;
-	margin-bottom: calc(-80rem + 80rem);
-
-	padding-top: 40rem;
 }
 
 .p-24-120.mnd {
