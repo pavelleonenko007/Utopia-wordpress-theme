@@ -161,16 +161,27 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<?php if ( ! empty( $publication_1 ) ) : ?>
+									<?php
+									if ( ! empty( $publication_1 ) && ! empty( $publication_1['publication_text'] ) ) :
+										$link            = ! empty( $publication_1['publication_link'] ) ? $publication_1['publication_link'] : array();
+										$link_title      = ! empty( $link['title'] ) ? $link['title'] : 'read';
+										$link_attributes = '';
+										if ( ! empty( $link['url'] ) ) {
+											$link_attributes = 'href="' . esc_url( $link['url'] ) . '"';
+										}
+
+										if ( ! empty( $link['target'] ) ) {
+											$link_attributes .= ' target="' . esc_attr( $link['target'] ) . '"';
+										}
+										?>
 										<div class="uto-block _4">
-											<a href="<?php echo esc_url( get_the_permalink( $publication_1 ) ); ?>" class="u-link u-p w-inline-block">
+											<a <?php echo $link_attributes; ?> class="u-link u-p w-inline-block">
 												<div class="ev-mom">
-													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_1 ) ); ?></div>
+													<div class="p-16-120 _2 pol"><?php echo esc_html( $publication_1['publication_text'] ); ?></div>
 													<?php
-													$author = get_field( 'author', $publication_1 );
-													if ( ! empty( $author ) ) :
+													if ( ! empty( $link_title ) ) :
 														?>
-														<div class="p-16-120 _2">by <?php echo esc_html( $author ); ?></div>
+														<div class="p-16-120 _2"><?php echo esc_html( $link_title ); ?></div>
 													<?php endif; ?>
 												</div>
 											</a>
@@ -267,12 +278,26 @@ $photo_8 = get_field( 'photo_8' );
 											<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/65eef9c50fd2d28579087377_31.png' ); ?>" loading="eager" alt class="uu-image">
 										</div>
 									<?php endif; ?>
-									<?php if ( ! empty( $publication_3 ) ) : ?>
+									<?php
+									if ( ! empty( $publication_3 ) && ! empty( $publication_3['publication_text'] ) ) :
+										$link            = ! empty( $publication_3['publication_link'] ) ? $publication_3['publication_link'] : array();
+										$link_title      = ! empty( $link['title'] ) ? $link['title'] : 'read';
+										$link_attributes = '';
+										if ( ! empty( $link['url'] ) ) {
+											$link_attributes = 'href="' . esc_url( $link['url'] ) . '"';
+										}
+
+										if ( ! empty( $link['target'] ) ) {
+											$link_attributes .= ' target="' . esc_attr( $link['target'] ) . '"';
+										}
+										?>
 										<div class="uto-block _9">
-											<a href="<?php echo esc_url( get_the_permalink( $publication_3 ) ); ?>" class="u-link u-p w-inline-block">
+											<a <?php echo $link_attributes; ?> class="u-link u-p w-inline-block">
 												<div class="ev-mom">
-													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_3 ) ); ?></div>
-													<div class="p-16-120 _2"><?php pll_e( 'read' ); ?></div>
+													<div class="p-16-120 _2 pol"><?php echo esc_html( $publication_3['publication_text'] ); ?></div>
+													<?php if ( ! empty( $link_title ) ) : ?>
+														<div class="p-16-120 _2"><?php echo esc_html( $link_title ); ?></div>
+													<?php endif; ?>
 												</div>
 											</a>
 											<div class="rtz-checker">
@@ -544,12 +569,26 @@ $photo_8 = get_field( 'photo_8' );
 											</div>
 										</div>
 									<?php endif; ?>
-									<?php if ( ! empty( $publication_2 ) ) : ?>
+									<?php
+									if ( ! empty( $publication_2 ) && ! empty( $publication_2['publication_text'] ) ) :
+										$link            = ! empty( $publication_2['publication_link'] ) ? $publication_2['publication_link'] : array();
+										$link_title      = ! empty( $link['title'] ) ? $link['title'] : 'read';
+										$link_attributes = '';
+										if ( ! empty( $link['url'] ) ) {
+											$link_attributes = 'href="' . esc_url( $link['url'] ) . '"';
+										}
+
+										if ( ! empty( $link['target'] ) ) {
+											$link_attributes .= ' target="' . esc_attr( $link['target'] ) . '"';
+										}
+										?>
 										<div class="uto-block _21">
-											<a href="<?php echo esc_url( get_the_permalink( $publication_2 ) ); ?>" class="u-link u-p w-inline-block">
+											<a <?php echo $link_attributes; ?> class="u-link u-p w-inline-block">
 												<div class="ev-mom">
-													<div class="p-16-120 _2 pol"><?php echo esc_html( get_the_title( $publication_2 ) ); ?></div>
-													<div class="p-16-120 _2"><?php pll_e( 'read' ); ?></div>
+													<div class="p-16-120 _2 pol"><?php echo esc_html( $publication_2['publication_text'] ); ?></div>
+													<?php if ( ! empty( $link_title ) ) : ?>
+														<div class="p-16-120 _2"><?php echo esc_html( $link_title ); ?></div>
+													<?php endif; ?>
 												</div>
 											</a>
 											<div class="rtz-checker">

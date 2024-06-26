@@ -1746,7 +1746,7 @@
             "label": "Publication 1",
             "name": "publication_1",
             "aria-label": "",
-            "type": "post_object",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -1755,24 +1755,52 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "post"
-            ],
-            "post_status": "",
-            "taxonomy": "",
-            "return_format": "id",
-            "multiple": 0,
-            "allow_null": 1,
-            "bidirectional": 0,
-            "ui": 1,
-            "bidirectional_target": []
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_667bd061e7aba",
+                    "label": "Publication Text",
+                    "name": "publication_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_667bd071e7abb",
+                    "label": "Publication Link",
+                    "name": "publication_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": ""
+                }
+            ]
         },
         {
-            "key": "field_66793a2594587",
+            "key": "field_667bd0a8e7abc",
             "label": "Publication 2",
             "name": "publication_2",
             "aria-label": "",
-            "type": "post_object",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -1781,24 +1809,52 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "post"
-            ],
-            "post_status": "",
-            "taxonomy": "",
-            "return_format": "id",
-            "multiple": 0,
-            "allow_null": 1,
-            "bidirectional": 0,
-            "ui": 1,
-            "bidirectional_target": []
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_667bd0a8e7abd",
+                    "label": "Publication Text",
+                    "name": "publication_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_667bd0a8e7abe",
+                    "label": "Publication Link",
+                    "name": "publication_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": ""
+                }
+            ]
         },
         {
-            "key": "field_66793a2894588",
+            "key": "field_667bd0abe7abf",
             "label": "Publication 3",
             "name": "publication_3",
             "aria-label": "",
-            "type": "post_object",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -1807,17 +1863,45 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "post"
-            ],
-            "post_status": "",
-            "taxonomy": "",
-            "return_format": "id",
-            "multiple": 0,
-            "allow_null": 1,
-            "bidirectional": 0,
-            "ui": 1,
-            "bidirectional_target": []
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_667bd0abe7ac0",
+                    "label": "Publication Text",
+                    "name": "publication_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_667bd0abe7ac1",
+                    "label": "Publication Link",
+                    "name": "publication_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
         }
     ],
     "location": [
@@ -1838,5 +1922,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1719310099
+    "modified": 1719394120
 }
