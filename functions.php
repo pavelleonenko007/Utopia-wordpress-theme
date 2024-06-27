@@ -1021,7 +1021,7 @@ function utopia_validate_default_wordpress_fields( $post ) {
 						if (!field.value || 
 							(POST_TYPE === 'post' && selector === '#title' && field.value.length > 70) ||
 							(POST_TYPE === 'concert' && selector === '#title' && field.value.length < 3) ||
-							(POST_TYPE === 'concert' && selector === '#title' && field.value.length > 50) || 
+							(POST_TYPE === 'concert' && selector === '#title' && field.value.length > 70) || 
 							(POST_TYPE === 'utopian' && selector === '#title' && (field.value.length < 3 ||field.value.length > 30)) || 
 							(selector === '#_thumbnail_id' && parseInt(field.value) < 0)) {
 							event.preventDefault();
