@@ -19,6 +19,10 @@ a.p-24-120 {
 		color: inherit;
 		margin-top: 80rem;
 
+		&:first-child {
+			margin-top: 0;
+		}
+
 		&:where(:has(em)) {
 			text-indent: 2.5ch;
 		}
@@ -26,6 +30,18 @@ a.p-24-120 {
 		&:where(:has(em)) + p {
 			text-indent: 2.5ch;
 			margin-top: 32rem;
+		}
+	}
+
+	&.utop {
+		padding-top: 180rem;
+
+		@include mobile {
+			padding-top: 136rem;
+		}
+
+		p:where(:has(em)) + p {
+			margin-top: 60rem;
 		}
 	}
 
