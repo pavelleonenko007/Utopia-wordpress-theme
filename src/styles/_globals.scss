@@ -45,6 +45,22 @@ a.p-24-120 {
 		}
 	}
 
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin-bottom: 0;
+	}
+
+	h2 + * {
+		margin-top: 180rem;
+
+		@include mobile {
+			margin-top: 32rem;
+		}
+	}
+
 	h2 + p:first-of-type,
 	h3 + p:first-of-type,
 	h4 + p:first-of-type,
