@@ -14,7 +14,7 @@ a.p-24-120 {
 	color: rgb(var(--color-white));
 }
 
-.w-richtext {
+.w-richtext:not(.rich-bottom) {
 	p {
 		color: inherit;
 		margin-top: 80rem;
