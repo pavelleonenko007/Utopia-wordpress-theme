@@ -867,7 +867,10 @@ $photo_8 = get_field( 'photo_8' );
 						</a>
 						<div class="marq-mom">
 							<div class="marq">
-								<?php for ( $i = 0; $i < 3; $i++ ) : ?>
+								<?php
+								$line_count = max( ceil( 10 / $closest_concerts->post_count ), 3 );
+								for ( $i = 0; $i < $line_count; $i++ ) :
+									?>
 									<div class="marq-line">
 											<?php
 											while ( $closest_concerts->have_posts() ) :
