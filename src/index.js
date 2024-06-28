@@ -176,7 +176,11 @@ function initPanzoom() {
 
 	const minZoom = window.innerHeight / panzoomElHeight;
 
-	maxPanZoom = window.innerWidth / logoWidth / 2;
+	if (window.innerWidth > 1024) {
+		maxPanZoom = window.innerWidth / logoWidth / 2;
+	} else {
+		maxPanZoom = window.innerWidth / logoWidth / 1.3;
+	}
 
 	const maxZoom = previousCoordinates
 		? previousCoordinates.targetCoordinates.scale
