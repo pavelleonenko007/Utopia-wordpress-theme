@@ -6056,35 +6056,35 @@ figcaption {
 }
 @font-face {
   font-family: 'Ppneuemontreal';
-  src: url('../fonts/65e57c8082e6072b394e6a22_PPNeueMontreal-Medium.otf') format('opentype');
+  src: url('../fonts/PPNeueMontreal-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Victorserif 60';
-  src: url('../fonts/65e57c8082e6072b394e6a24_VictorSerif-60Semibold.otf') format('opentype');
+  src: url('../fonts/VictorSerif-60Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Victorserif 30';
-  src: url('../fonts/65e57c8082e6072b394e6a25_VictorSerif-30Light.otf') format('opentype');
+  src: url('../fonts/VictorSerif-30Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Victorserif 40';
-  src: url('../fonts/65e57c8082e6072b394e6a26_VictorSerif-40Regular.otf') format('opentype');
+  src: url('../fonts/VictorSerif-40Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Utopia';
-  src: url('../fonts/65e5b76e8434b28e8e0bc191_Utopia.otf') format('opentype');
+  src: url('../fonts/Utopia-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

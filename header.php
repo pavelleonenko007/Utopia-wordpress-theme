@@ -27,7 +27,7 @@ $current_language              = pll_current_language();
 		</style>
 		<?php utopia_head_code(); ?>
 	</head>
-	<body class="body">
+	<body class="body opacity-0">
 		<?php utopia_after_body(); ?>
 		<div data-animation="default" data-collapse="none" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
 			<header class="header">
