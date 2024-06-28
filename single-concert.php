@@ -12,6 +12,7 @@ get_header(
 	array(
 		'data-wf-page'                  => '65e5e24540c1f882634e5a7e',
 		'barba-container-extra-classes' => 'inner-page',
+		'barba-namespace'               => 'single-concert',
 	)
 );
 
@@ -224,5 +225,6 @@ $buy_button = get_field( 'buy_button' );
 						<button type="button" class="image-gallery__nav image-gallery__nav--prev"><span class="sr-only"><?php pll_e( 'Previous' ); ?></span></button>
 						<button type="button" class="image-gallery__nav image-gallery__nav--next"><span class="sr-only"><?php pll_e( 'Next' ); ?></span></button>
 					</dialog>
+					<div class="concert-loader"></div>
 				<?php endif; ?>
 				<?php get_footer(); ?>

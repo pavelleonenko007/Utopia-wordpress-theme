@@ -21,6 +21,7 @@ import { initPanzoomElements } from './components/PanzoomElements.js';
 import { initSearchForm } from './components/SearchForm.js';
 import { initSubscribeForm } from './components/SubscribeForm.js';
 import { initVideoPlayers } from './components/VideoPlayer.js';
+import { alignContentAndSidebar } from './pages/ConcertPage.js';
 import {
 	getPreviousPanCoordinates,
 	rememberPreviousPanCoordinates,
@@ -810,6 +811,18 @@ function initBarba() {
 					if (next.namespace !== 'homepage') {
 						moveZoomSlider(-50);
 					}
+
+					if (next.namespace === 'single-concert') {
+						alignContentAndSidebar();
+
+						gsap.to('.concert-loader', {
+							autoAlpha: 0,
+							duration: 1,
+							onComplete: () => {
+								document.querySelector('.concert-loader').remove();
+							},
+						});
+					}
 				},
 			},
 			{
@@ -969,6 +982,13 @@ function initBarba() {
 
 	barba.hooks.afterLeave(() => {
 		unhighlightLeftMenu();
+	});
+
+	barba.hooks.beforeEnter(({ next }) => {
+		if (next.namespace === 'single-concert') {
+			document.querySelector('.concert-loader')?.remove();
+			alignContentAndSidebar();
+		}
 	});
 
 	barba.hooks.enter(({ current, next }) => {

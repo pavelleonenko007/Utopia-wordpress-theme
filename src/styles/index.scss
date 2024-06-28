@@ -2,6 +2,10 @@
 @import 'variables', 'mixins', 'media', 'utils', 'globals';
 @import 'pages/concert';
 
+.opacity-0 {
+	opacity: 0;
+}
+
 .w-input {
 	color: rgb(var(--color-white));
 }
