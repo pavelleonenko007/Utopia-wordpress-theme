@@ -1228,4 +1228,21 @@ function utopia_get_language_switcher() {
 	return array();
 }
 
+function utopia_get_concert_location( $concert ) {
+	$location = get_field( 'location', $concert );
+	$venue    = get_field( 'venue', $concert );
+
+	$location_name = '';
+
+	if ( ! empty( $location ) ) {
+		$location_name = $location;
+	}
+
+	if ( ! empty( $venue ) && ! empty( $venue['title'] ) ) {
+		$location_name = ! empty( $location ) ? $venue['title'] . ', ' . $location_name : $venue['title'];
+	}
+
+	return $location_name;
+}
+
 require_once get_template_directory() . '/inc/translations.php';
