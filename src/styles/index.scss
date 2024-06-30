@@ -561,6 +561,23 @@ button.link {
 	}
 }
 
+.videobox {
+	&--article {
+		display: block !important;
+		margin-top: 120rem !important;
+		margin-bottom: 98rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		@include mobile {
+			margin-top: 48rem !important;
+			margin-bottom: 48rem;
+		}
+	}
+}
+
 .logo {
 	@include hover {
 		* {
@@ -795,7 +812,7 @@ html .rich-right-side.w-richtext figure.w-richtext-align-fullwidth figcaption {
 	position: relative;
 }
 
-.rich-right-side a:after,
+.rich-right-side a:not(.videobox):after,
 .accbtn:after {
 	content: '';
 	z-index: 3;
@@ -833,7 +850,7 @@ html .rich-right-side.w-richtext figure.w-richtext-align-fullwidth figcaption {
 	background: transparent;
 }
 
-.rich-right-side a:after,
+.rich-right-side a:not(.videobox)::after,
 .accbtn:after {
 	content: '';
 	z-index: 3;
