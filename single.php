@@ -141,7 +141,7 @@ $gallery         = get_field( 'gallery' );
 										}
 
 										$video_poster      = ! empty( $content_module['video_poster'] ) ? $content_module['video_poster'] : '';
-										$video_description = ! empty( $content_module['description'] ) ? $content_module['description'] : '';
+										$video_description = ! empty( $content_module['video_description'] ) ? $content_module['video_description'] : '';
 										?>
 										<a href="#" onclick="window.videoModal<?php echo esc_attr( $video_counter ); ?>.showModal();" class="videobox videobox--article w-inline-block">
 											<div class="rel flex-center">
@@ -408,6 +408,7 @@ $gallery         = get_field( 'gallery' );
 								</div>
 							</dialog>
 							<?php
+							++$video_counter;
 						endif;
 					endforeach;
 				endif;
