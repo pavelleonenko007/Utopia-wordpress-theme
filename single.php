@@ -28,10 +28,10 @@ $gallery         = get_field( 'gallery' );
 							<div class="art-top">
 								<div class="text-block grey"><?php the_date( 'j F Y' ); ?></div>
 								<?php
-								$tags = get_the_tags( get_the_ID() );
-								if ( ! empty( $tags ) ) :
+								$categories = get_the_category( get_the_ID() );
+								if ( ! empty( $categories ) ) :
 									?>
-									<div class="text-block grey"><?php echo esc_html( $tags[0]->name ); ?></div>
+									<div class="text-block grey"><?php echo esc_html( $categories[0]->name ); ?></div>
 								<?php endif; ?>
 								<?php
 								$author = get_field( 'author' );
