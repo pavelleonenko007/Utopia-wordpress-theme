@@ -186,7 +186,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 								// TODO: add ajax for load more!
 								if ( $articles_query->max_num_pages > 1 ) :
 									?>
-									<button type="button" data-button="load-more" data-type="article" class="link"><?php pll_e( 'load more' ); ?></button>
+									<button type="button" data-button="load-more" data-type="article" data-current-page="1" data-max-pages="<?php echo esc_attr( $articles_query->max_num_pages ); ?>" class="link"><?php pll_e( 'load more' ); ?></button>
 								<?php endif; ?>
 							</div>
 							<?php get_template_part( 'inc/components/footer' ); ?>

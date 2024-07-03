@@ -1245,4 +1245,61 @@ function utopia_get_concert_location( $concert ) {
 	return $location_name;
 }
 
+add_action( 'wp_ajax_load_more_articles', 'utopia_load_more_articles_via_ajax' );
+add_action( 'wp_ajax_nopriv_load_more_articles', 'utopia_load_more_articles_via_ajax' );
+
+function utopia_load_more_articles_via_ajax() {
+	if ( empty( $_POST['page'] ) ) {
+		wp_send_json_error( array( 'message' => 'Bad request' ), 400 );
+	}
+
+	$articles_query_args = array(
+		'post_type'      => 'post',
+		'posts_per_page' => 6,
+		'paged'          => (int) $_POST['page'],
+	);
+
+	$articles_query = new WP_Query( $articles_query_args );
+
+	ob_start();
+
+	if ( $articles_query->have_posts() ) {
+		while ( $articles_query->have_posts() ) {
+			$articles_query->the_post();
+			?>
+			<div id="w-node-e4e544f0-71e8-0317-502c-21d5e098212b-8bd9f3e0" class="conc-card min">
+				<a href="<?php the_permalink(); ?>" class="conc-link min idea-link w-inline-block">
+					<div class="p-17"><?php pll_e( 'Article' ); ?></div>
+					<?php
+					the_post_thumbnail(
+						'full',
+						array(
+							'class'   => 'img-240-150',
+							'loading' => 'lazy',
+						)
+					);
+					?>
+					<div class="p-28-120 _3"><?php the_title(); ?></div>
+					<div class="link-shos ll _3 hvr">
+						<div class="btn-xtx"><?php pll_e( 'read article' ); ?></div>
+						<div class="hover-liner"></div>
+					</div>
+				</a>
+			</div>
+			<?php
+		}
+
+		wp_reset_postdata();
+	}
+
+	$html = ob_get_clean();
+
+	wp_send_json_success(
+		array(
+			'html'    => $html,
+			'message' => 'Success',
+		)
+	);
+}
+
 require_once get_template_directory() . '/inc/translations.php';

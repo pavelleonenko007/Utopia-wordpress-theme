@@ -22,6 +22,7 @@ import { initSearchForm } from './components/SearchForm.js';
 import { initSubscribeForm } from './components/SubscribeForm.js';
 import { initVideoPlayers } from './components/VideoPlayer.js';
 import { alignContentAndSidebar } from './pages/ConcertPage.js';
+import { initLoadMoreArticlesButton } from './pages/IdeaPage.js';
 import {
 	getPreviousPanCoordinates,
 	rememberPreviousPanCoordinates,
@@ -370,6 +371,7 @@ function initBarba() {
 
 					setupTransformOrigin();
 					setupPanzoomObserver();
+					initLoadMoreArticlesButton();
 
 					if (next.namespace !== 'homepage') {
 						moveZoomSlider(-50);
@@ -587,6 +589,7 @@ function initBarba() {
 		initPostGalleries();
 		initVideoPlayers();
 		initSubscribeForm();
+		initLoadMoreArticlesButton();
 		updateDataWfPage(next.html);
 	});
 
