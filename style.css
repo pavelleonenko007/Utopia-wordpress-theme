@@ -15,6 +15,73 @@ Description:
 	text-decoration: none;
 }
 
+.video-player__buttons button:hover path{fill:#757575}
+
+.article-midle.single-article{padding-bottom:170rem}
+.article-midle.single-article:has(.art-img){padding-bottom:0rem}
+
+
+.rich-right-side.utop > p:nth-child(1){
+	text-indent: 2.5ch;
+}
+
+.under-image{
+	width: 546rem;
+}
+
+.under-image div:nth-child(1){white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+   }
+
+
+.u-link.u-e .ev-mom {
+    padding-left: 46rem;
+}
+
+.art-top{
+    max-width: 767rem;
+    right: 0;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.div-block-4 {
+    grid-row-gap: 61rem;
+}
+
+.div-block-4 .concert-right {
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
+	
+}
+
+@media screen and (min-width: 1440px) {
+	.art-top{
+		max-width: 875rem;
+	}
+	
+	.div-block-4 {
+		grid-row-gap: 150rem;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	
+	.art-top{
+		max-width: 887rem;
+	}
+	
+	.concert-left {
+        margin-right: 150rem;
+    }
+
+   
+}
+
+
+
+
 .omen-menu {
 			background: none;
 	}
@@ -96,6 +163,11 @@ html {
 }
 }
 @media screen and (max-width: 991px) {
+	
+	
+	.article-midle.single-article:has(.art-img){padding-bottom:200px}
+	.article-midle.single-article{padding-bottom:200px}
+	
 	.uu-image {
 			display: block;
 			position: static;
@@ -133,6 +205,10 @@ html {
 }
 
 @media screen and (max-width: 479px) {
+	.concert-sidebar {
+		font-size: 17rem;
+	}
+	
 	html.w-mod-js .rich-right-side.w-richtext figure.w-richtext-align-fullwidth {
 			margin-bottom: 48rem !important;
 			margin-left: 0 !important;
@@ -234,6 +310,10 @@ color: #818181;
 }	
 
 @media screen and (max-width: 495px) {
+	
+	.article-midle.single-article:has(.art-img){padding-bottom:40rem}
+	.article-midle.single-article{padding-bottom:40rem}
+	
 	.conc-core.in-page.idea-page {
 			grid-template-columns: 1fr;
 			max-width: 100%;

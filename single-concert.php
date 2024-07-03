@@ -52,38 +52,17 @@ $buy_button = get_field( 'buy_button' );
 							<div class="other-info">
 								<div class="concert-sidebar rich-left-single">
 									<?php
-									$track_list = get_field( 'track_list' );
-									if ( ! empty( $track_list ) ) :
-										?>
-										<ol class="concert-track-list">
-											<?php
-											foreach ( $track_list as $track ) :
-												if ( ! empty( $track['track'] ) ) :
-													?>
-												<li class="concert-track-list__item"><?php echo esc_html( $track['track'] ); ?></li>
-													<?php
-												endif;
-											endforeach;
-											?>
-										</ol>
-										<?php
-									endif;
+									$track_list   = get_field( 'track_list' );
 									$participants = get_field( 'participants' );
-									if ( ! empty( $participants ) ) :
-										?>
-										<ol class="concert-participants">
-											<?php
-											foreach ( $participants as $participant ) :
-												if ( ! empty( $participant['participant'] ) ) :
-													?>
-													<li class="concert-participants__item"><?php echo esc_html( $participant['participant'] ); ?></li>
-														<?php
-												endif;
-											endforeach;
-											?>
-										</ol>
-										<?php
-									endif;
+									if ( ! empty( $track_list ) ) {
+										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										echo $track_list;
+									}
+
+									if ( ! empty( $participants ) ) {
+										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										echo $participants;
+									}
 									?>
 									<?php
 									if ( ! empty( $support ) ) :

@@ -136,7 +136,7 @@
             "label": "Track List",
             "name": "track_list",
             "aria-label": "",
-            "type": "repeater",
+            "type": "textarea",
             "instructions": "Add track list to the concert.",
             "required": 1,
             "conditional_logic": 0,
@@ -145,43 +145,18 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
-            "pagination": 0,
-            "min": 1,
-            "max": 0,
-            "collapsed": "",
-            "button_label": "Add Row",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_66703735b3419",
-                    "label": "Track",
-                    "name": "track",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_6641f0f27d69c"
-                }
-            ]
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
         },
         {
             "key": "field_6641f11c7d69d",
             "label": "Participants",
             "name": "participants",
             "aria-label": "",
-            "type": "repeater",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -190,36 +165,11 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "row",
-            "pagination": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "",
-            "button_label": "Add Row",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_6641f1367d69e",
-                    "label": "Participant",
-                    "name": "participant",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "Add participant using this pattern: Jeanine De Bique — Teculihuatzin \/ Doña Luisa",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_6641f11c7d69d"
-                }
-            ]
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
         },
         {
             "key": "field_6641f1cd7d69f",
@@ -390,5 +340,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1718630425
+    "modified": 1720011365
 }
