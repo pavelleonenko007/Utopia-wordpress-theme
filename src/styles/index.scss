@@ -1,5 +1,8 @@
 @import '../webflow/css/main.css', '../webflow/css/custom.css';
 @import 'variables', 'mixins', 'media', 'utils', 'globals';
+
+@import 'components/gdpr.scss';
+
 @import 'pages/concert';
 
 .opacity-0 {

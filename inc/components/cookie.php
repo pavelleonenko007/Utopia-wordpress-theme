@@ -13,7 +13,7 @@ $privacy_policy_page    = get_post( $privacy_policy_page_id );
 
 if ( null === $accepted ) : ?>
 
-	<dialog open aria-label="Cookie Policy" class="coocky-block">
+	<dialog open aria-label="Cookie Policy" class="coocky-block" style="display: none;">
 		<div class="text-block-7">By using this site, you are agreeing to our use of cookies</div>
 		<form method="dialog" onsubmit="document.cookie = 'cookie_accepted=yes; max-age=604800;'">
 			<button class="accbtn">Accept</button>
