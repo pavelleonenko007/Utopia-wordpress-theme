@@ -1120,6 +1120,17 @@ function utopia_acf_validate_lead( $valid, $value, $field ) {
 	return true;
 }
 
+add_filter( 'acf/validate_value/key=field_66365be62f501', 'utopia_acf_validate_utopian_concert_field', 10, 3 );
+function utopia_acf_validate_concert_content_field( $valid, $value, $field ) {
+	$value = preg_replace( '/\s+/', '', $value );
+
+	if ( strlen( $value ) < 3 ) {
+		return 'The concert field should be up to 3 characters without spaces.';
+	}
+
+	return true;
+}
+
 add_filter( 'acf/validate_value/key=field_6636398d8dd00', 'utopia_acf_validate_role', 10, 3 );
 function utopia_acf_validate_role( $valid, $value, $field ) {
 	$value = str_replace( ' ', '', $value );
