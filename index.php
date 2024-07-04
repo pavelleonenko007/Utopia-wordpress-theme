@@ -127,10 +127,10 @@ $photo_8 = get_field( 'photo_8' );
 													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_1 ) ); ?></div>
 													<div class="p-16-120 _2"> </div>
 													<?php
-													$location = get_field( 'location' );
-													if ( ! empty( $location['location_name'] ) ) :
+													$location_name = utopia_get_concert_location( $concert_1 );
+													if ( ! empty( $location_name ) ) :
 														?>
-														<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+														<div class="p-16-120 _2"><?php echo esc_html( $location_name ); ?></div>
 													<?php endif; ?>
 												</div>
 											</a>
@@ -318,10 +318,10 @@ $photo_8 = get_field( 'photo_8' );
 													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_3 ) ); ?></div>
 													<div class="p-16-120 _2"> </div>
 													<?php
-													$location = get_field( 'location' );
-													if ( ! empty( $location['location_name'] ) ) :
+													$location_name = utopia_get_concert_location( $concert_3 );
+													if ( ! empty( $location_name ) ) :
 														?>
-													<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+														<div class="p-16-120 _2"><?php echo esc_html( $location_name ); ?></div>
 													<?php endif; ?>
 												</div>
 											</a>
@@ -514,10 +514,10 @@ $photo_8 = get_field( 'photo_8' );
 													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_2 ) ); ?></div>
 													<div class="p-16-120 _2"> </div>
 													<?php
-													$location = get_field( 'location' );
-													if ( ! empty( $location['location_name'] ) ) :
+													$location_name = utopia_get_concert_location( $concert_2 );
+													if ( ! empty( $location_name ) ) :
 														?>
-														<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+														<div class="p-16-120 _2"><?php echo esc_html( $location_name ); ?></div>
 													<?php endif; ?>
 												</div>
 											</a>
@@ -724,10 +724,10 @@ $photo_8 = get_field( 'photo_8' );
 													<div class="p-36-36 _2 mmax"><?php echo esc_html( get_the_title( $concert_4 ) ); ?></div>
 													<div class="p-16-120 _2"> </div>
 													<?php
-													$location = get_field( 'location' );
-													if ( ! empty( $location['location_name'] ) ) :
+													$location_name = utopia_get_concert_location( $concert_4 );
+													if ( ! empty( $location_name ) ) :
 														?>
-														<div class="p-16-120 _2"><?php echo esc_html( $location['location_name'] ); ?></div>
+														<div class="p-16-120 _2"><?php echo esc_html( $location_name ); ?></div>
 													<?php endif; ?>
 												</div>
 											</a>
