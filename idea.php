@@ -45,8 +45,9 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 							the_post_thumbnail(
 								'full',
 								array(
-									'class'   => 'art-img idea-img',
-									'loading' => 'eager',
+									'data-gallery' => 'thumbnail',
+									'class'        => 'art-img idea-img',
+									'loading'      => 'eager',
 								)
 							);
 							?>
@@ -70,6 +71,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 								?>
 								<div class="rich-right-side uto idear w-richtext">
 									<?php
+									$image_counter = 0;
 									foreach ( $content_modules as $content_module ) :
 
 										if ( 'image_module' === $content_module['acf_fc_layout'] && ! empty( $content_module['image'] ) ) :
@@ -78,7 +80,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 											$image_description = $content_module['image_description'];
 											if ( 'fullwidth' === $image_type ) :
 												?>
-												<figure style="max-width:1280pxpx" class="w-richtext-align-fullwidth w-richtext-figure-type-image">
+												<figure style="max-width:1280pxpx" data-image-index="<?php echo esc_attr( $image_counter ); ?>" data-gallery="content" class="w-richtext-align-fullwidth w-richtext-figure-type-image">
 													<div>
 														<?php
 														// phpcs:ignore
@@ -89,7 +91,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 													<?php endif; ?>
 												</figure>
 											<?php else : ?>
-												<figure class="w-richtext-align-center w-richtext-figure-type-image">
+												<figure class="w-richtext-align-center w-richtext-figure-type-image" data-image-index="<?php echo esc_attr( $image_counter ); ?>" data-gallery="content">
 													<div>
 													<?php
 													// phpcs:ignore
@@ -101,6 +103,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 												</figure>
 												<?php
 										endif;
+											++$image_counter;
 										else :
 											// phpcs:ignore
 											echo $content_module['text'];
@@ -258,6 +261,28 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 							<?php else : ?>
 								<iframe src="<?php echo esc_attr( $video ); ?>" loading="lazy" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 							<?php endif; ?>
+						</div>
+					</dialog>
+				<?php endif; ?>
+				<?php if ( has_post_thumbnail() ) : ?>
+					<dialog class="image-gallery" id="thumbnailGallery">
+						<div class="image-gallery__header">
+							<div class="image-gallery__counter gallery-counter">
+							</div>
+							<button type="button" class="image-gallery__close-button">
+								<span>Close</span>
+							</button>
+						</div>
+						<div class="image-gallery__body">
+							<ul class="image-gallery__list">
+								<li class="image-gallery__item">
+									<figure class="image-gallery__element">
+										<div>
+											<?php the_post_thumbnail( 'full' ); ?>
+										</div>
+									</figure>
+								</li>
+							</ul>
 						</div>
 					</dialog>
 				<?php endif; ?>
