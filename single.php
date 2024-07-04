@@ -29,9 +29,13 @@ $gallery         = get_field( 'gallery' );
 								<div class="text-block grey"><?php the_date( 'j F Y' ); ?></div>
 								<?php
 								$categories = get_the_category( get_the_ID() );
-								if ( ! empty( $categories ) ) :
+								if ( ! empty( $categories ) && 1 !== $categories[0]->term_id ) :
 									?>
-									<div class="text-block grey"><?php echo esc_html( $categories[0]->name ); ?></div>
+									<div class="text-block grey">
+									<?php
+									echo esc_html( $categories[0]->name );
+									?>
+									</div>
 								<?php endif; ?>
 								<?php
 								$author = get_field( 'author' );
