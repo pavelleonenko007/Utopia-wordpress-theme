@@ -853,7 +853,7 @@ html .rich-right-side.w-richtext figure.w-richtext-align-fullwidth figcaption {
 	background: transparent;
 }
 
-.rich-right-side a:not(.videobox)::after,
+.rich-right-side a:where(:not(.videobox))::after,
 .accbtn:after {
 	content: '';
 	z-index: 3;
