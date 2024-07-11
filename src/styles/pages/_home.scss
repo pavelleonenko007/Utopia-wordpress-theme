@@ -1,0 +1,5 @@
+.logo {
+	@include mobile {
+		max-width: 78%;
+	}
+}
