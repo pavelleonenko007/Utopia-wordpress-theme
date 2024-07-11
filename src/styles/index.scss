@@ -3,7 +3,7 @@
 
 @import 'components/gdpr.scss';
 
-@import 'pages/concert';
+@import 'pages/concert', 'pages/article';
 
 .opacity-0 {
 	opacity: 0;
@@ -1050,6 +1050,11 @@ html .rich-right-side.w-richtext figure.w-richtext-align-fullwidth figcaption {
 }
 
 @media screen and (max-width: 479px) {
+	.p-24-120.grey.uto-t,
+	.p-24-120.grey.art-t {
+		margin-bottom: 16rem;
+	}
+
 	.p-24-120.mnd {
 		margin-top: 24rem;
 	}

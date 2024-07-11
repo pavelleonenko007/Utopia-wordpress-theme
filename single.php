@@ -17,6 +17,10 @@ get_header(
 the_post();
 $content_modules = get_field( 'content_modules' );
 $gallery         = get_field( 'gallery' );
+
+$post_date   = get_the_date( 'j F Y' );
+$post_author = get_field( 'author' );
+$categories  = get_the_category( get_the_ID() );
 ?>
 				<div class="usual-page">
 					<div id="top" class="article-page">
@@ -26,22 +30,14 @@ $gallery         = get_field( 'gallery' );
 								<div class="text-block"><?php pll_e( 'articles in Our World' ); ?></div>
 							</a>
 							<div class="art-top">
-								<div class="text-block grey"><?php the_date( 'j F Y' ); ?></div>
+								<div class="text-block grey"><?php echo esc_html( $post_date ); ?></div>
 								<?php
-								$categories = get_the_category( get_the_ID() );
 								if ( ! empty( $categories ) && 1 !== $categories[0]->term_id ) :
 									?>
-									<div class="text-block grey">
-									<?php
-									echo esc_html( $categories[0]->name );
-									?>
-									</div>
+									<div class="text-block grey"><?php echo esc_html( $categories[0]->name ); ?></div>
 								<?php endif; ?>
-								<?php
-								$author = get_field( 'author' );
-								if ( ! empty( $author ) ) :
-									?>
-									<div class="text-block grey">by <?php echo esc_html( $author ); ?></div>
+								<?php if ( ! empty( $post_author ) ) : ?>
+									<div class="text-block grey"><?php echo esc_html( $post_author ); ?></div>
 								<?php endif; ?>
 							</div>
 						</div>
@@ -49,6 +45,15 @@ $gallery         = get_field( 'gallery' );
 							<div class="vert art-vert">
 								<h1 class="h1-single art-h"><?php the_title(); ?></h1>
 								<div class="p-24-120 grey art-t"><?php the_field( 'description' ); ?></div>
+								<ul class="article-meta">
+									<li class="article-meta__item"><?php echo esc_html( $post_date ); ?></li>
+									<?php if ( ! empty( $categories ) && 1 !== $categories[0]->term_id ) : ?>
+										<li class="article-meta__item"><?php echo esc_html( $categories[0]->name ); ?></li>
+									<?php endif; ?>
+									<?php if ( ! empty( $post_author ) ) : ?>
+										<li class="article-meta__item"><?php echo esc_html( $post_author ); ?></li>
+									<?php endif; ?>
+								</ul>
 							</div>
 							<?php
 							the_post_thumbnail(
