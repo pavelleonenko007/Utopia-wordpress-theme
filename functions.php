@@ -1120,7 +1120,7 @@ function utopia_acf_validate_lead( $valid, $value, $field ) {
 	return true;
 }
 
-add_filter( 'acf/validate_value/key=field_66365be62f501', 'utopia_acf_validate_utopian_concert_field', 10, 3 );
+add_filter( 'acf/validate_value/key=field_66365be62f501', 'utopia_acf_validate_concert_content_field', 10, 3 );
 function utopia_acf_validate_concert_content_field( $valid, $value, $field ) {
 	$value = preg_replace( '/\s+/', '', $value );
 
