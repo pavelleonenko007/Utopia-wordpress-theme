@@ -101,7 +101,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo get_the_post_thumbnail(
 													$utopian_1,
-													'full',
+													'large',
 													array(
 														'loading' => 'eager',
 														'class'   => 'uu-image',
@@ -228,7 +228,7 @@ $photo_8 = get_field( 'photo_8' );
 											<?php
 											echo get_the_post_thumbnail(
 												$utopian_3,
-												'full',
+												'large',
 												array(
 													'class'   => 'uu-image',
 													'loading' => 'eager',
@@ -248,7 +248,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_4['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
@@ -342,7 +342,7 @@ $photo_8 = get_field( 'photo_8' );
 											<?php
 											echo get_the_post_thumbnail(
 												$utopian_5,
-												'full',
+												'large',
 												array(
 													'class'   => 'uu-image',
 													'loading' => 'eager',
@@ -362,7 +362,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_6['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
@@ -391,7 +391,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_2['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
@@ -420,7 +420,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_1['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
@@ -457,7 +457,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_3['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
@@ -538,7 +538,7 @@ $photo_8 = get_field( 'photo_8' );
 											<?php
 											echo get_the_post_thumbnail(
 												$utopian_2,
-												'full',
+												'large',
 												array(
 													'loading' => 'eager',
 													'class'   => 'uu-image',
@@ -628,7 +628,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_5['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
@@ -693,7 +693,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_7['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
@@ -748,7 +748,7 @@ $photo_8 = get_field( 'photo_8' );
 											<?php
 											echo get_the_post_thumbnail(
 												$utopian_6,
-												'full',
+												'large',
 												array(
 													'class'   => 'uu-image',
 													'loading' => 'eager',
@@ -768,7 +768,7 @@ $photo_8 = get_field( 'photo_8' );
 												<?php
 												echo wp_get_attachment_image(
 													$photo_8['photo'],
-													'full',
+													'large',
 													false,
 													array(
 														'class'   => 'u-image',
