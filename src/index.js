@@ -50,6 +50,8 @@ function fixPanzoomOnMouseDown() {
 }
 
 function setupPanzoomObserver() {
+	if (window.innerWidth < 768) return;
+	
 	const panzoomElements = document.querySelectorAll('.uto-block');
 
 	if (panzoomElements.length === 0) {
