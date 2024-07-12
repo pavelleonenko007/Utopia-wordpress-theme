@@ -36,7 +36,7 @@ export const initLoader = async (callback = () => {}) => {
 		opacity: 0,
 	});
 
-	tl.to(
+	return tl.to(
 		texts[0],
 		{
 			opacity: 0,
@@ -83,6 +83,7 @@ export const initLoader = async (callback = () => {}) => {
 			{
 				opacity: 1,
 				onComplete: () => {
+					console.log('callback');
 					callback();
 				},
 			},

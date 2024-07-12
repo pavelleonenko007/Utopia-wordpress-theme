@@ -42,6 +42,8 @@ import {
 let panzoomInstance;
 let panzoomObserver;
 let maxPanZoom;
+let isPanzoomObserverEnabled = false;
+let isTransitioning = false;
 
 function fixPanzoomOnMouseDown() {
 	document
@@ -50,8 +52,10 @@ function fixPanzoomOnMouseDown() {
 }
 
 function setupPanzoomObserver() {
-	if (window.innerWidth < 768) return;
-	
+	if (window.innerWidth < 768 || isTransitioning || isPanzoomObserverEnabled) {
+		return;
+	}
+
 	const panzoomElements = document.querySelectorAll('.uto-block');
 
 	if (panzoomElements.length === 0) {
@@ -60,7 +64,7 @@ function setupPanzoomObserver() {
 
 	panzoomObserver = new IntersectionObserver(
 		(entries) => {
-			entries.forEach(async (entry) => {
+			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					entry.target.classList.remove('opview');
 				}
@@ -80,10 +84,21 @@ function setupPanzoomObserver() {
 	panzoomElements.forEach((panzoomElement) => {
 		panzoomObserver.observe(panzoomElement);
 	});
+
+	isPanzoomObserverEnabled = true;
 }
 
 function disconnectPanzoomObserver() {
+	if (!isPanzoomObserverEnabled) {
+		return;
+	}
+
+	console.log('disconnectPanzoomObserver');
 	panzoomObserver?.disconnect();
+	document
+		.querySelectorAll('.uto-block')
+		.forEach((utoBlock) => utoBlock.classList.remove('uto-block--unobserved'));
+	isPanzoomObserverEnabled = false;
 }
 
 function setupTransformOrigin() {
@@ -310,12 +325,19 @@ function initPanzoom() {
 	function zoomHandler(e) {
 		const { scale } = e.getTransform();
 
-		moveZoomSlider(
-			calculateZoomSliderTransform(
-				calculateZoomPercent(scale, e.getMinZoom(), e.getMaxZoom())
-			),
-			0.3
+		const zoomPercent = calculateZoomPercent(
+			scale,
+			e.getMinZoom(),
+			e.getMaxZoom()
 		);
+
+		if (zoomPercent < 50) {
+			disconnectPanzoomObserver();
+		} else {
+			setupPanzoomObserver();
+		}
+
+		moveZoomSlider(calculateZoomSliderTransform(zoomPercent), 0.3);
 
 		// debouncedPanEndHandler(e);
 	}
@@ -361,7 +383,7 @@ function initBarba() {
 							document.body.style.pointerEvents = null;
 							initPanzoomElements();
 						}, 2_000);
-					});
+					})
 					initLeftMenu();
 					initMobileMenu();
 					initVideoPlayers();
@@ -372,7 +394,7 @@ function initBarba() {
 					initSearchForm();
 
 					setupTransformOrigin();
-					setupPanzoomObserver();
+					// setupPanzoomObserver();
 					initLoadMoreArticlesButton();
 
 					if (next.namespace !== 'homepage') {
@@ -424,6 +446,7 @@ function initBarba() {
 						next.namespace !== 'homepage',
 				},
 				async leave({ trigger, current }) {
+					isTransitioning = true;
 					const blockElement = trigger.closest('.uto-block');
 					const { width, height, top, left } =
 						blockElement.getBoundingClientRect();
@@ -461,6 +484,9 @@ function initBarba() {
 						opacity: 0,
 						scale: 0.5,
 						duration: 0.5,
+						onComplete: () => {
+							isTransitioning = false;
+						},
 					});
 				},
 			},
@@ -495,7 +521,6 @@ function initBarba() {
 
 					initPanzoom();
 					setupTransformOrigin();
-					setupPanzoomObserver();
 
 					panzoomInstance.setMaxZoom(maxPanZoom);
 
@@ -515,7 +540,9 @@ function initBarba() {
 						autoAlpha: 1,
 						duration: 0.5,
 						onComplete: () => {
+							isTransitioning = false;
 							initPanzoomElements();
+							// setupPanzoomObserver();
 							// panzoomInstance.setMaxZoom(maxPanZoom);
 						},
 					});
