@@ -1,0 +1,13 @@
+.uto-img-hide {
+	transition: opacity 0.8s ease-out;
+}
+
+.uto-item {
+	@media (hover: hover) {
+		:hover {
+			& .uto-img-hide {
+				opacity: 1;
+			}
+		}
+	}
+}
