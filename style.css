@@ -216,6 +216,11 @@ html {
 			max-width: 100% !important;
 	}
 
+	html .rich-right-side.w-richtext figure.w-richtext-align-fullwidth figcaption {
+		padding-left: 0;
+		font-size: 14rem;
+	}
+
 html .rich-right-side figure figcaption {
 	display: block !important;
 	position: absolute !important;
