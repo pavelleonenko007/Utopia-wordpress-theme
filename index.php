@@ -103,6 +103,7 @@ $photo_8 = get_field( 'photo_8' );
 													$utopian_1,
 													'large',
 													array(
+														'decoding' => 'sync',
 														'loading' => 'eager',
 														'class'   => 'uu-image',
 													)
@@ -203,6 +204,7 @@ $photo_8 = get_field( 'photo_8' );
 															'full',
 															false,
 															array(
+																'decoding' => 'sync',
 																'class' => 'hidden-img',
 																'loading' => 'eager',
 															)
@@ -230,6 +232,7 @@ $photo_8 = get_field( 'photo_8' );
 												$utopian_3,
 												'large',
 												array(
+													'decoding' => 'sync',
 													'class'   => 'uu-image',
 													'loading' => 'eager',
 												)
@@ -251,6 +254,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -365,6 +369,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -394,6 +399,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -423,6 +429,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -460,6 +467,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -488,6 +496,7 @@ $photo_8 = get_field( 'photo_8' );
 															'full',
 															false,
 															array(
+																'decoding' => 'sync',
 																'class' => 'hidden-img',
 																'loading' => 'eager',
 															)
@@ -540,6 +549,7 @@ $photo_8 = get_field( 'photo_8' );
 												$utopian_2,
 												'large',
 												array(
+													'decoding' => 'sync',
 													'loading' => 'eager',
 													'class'   => 'uu-image',
 												)
@@ -610,6 +620,7 @@ $photo_8 = get_field( 'photo_8' );
 												$utopian_4,
 												'full',
 												array(
+													'decoding' => 'sync',
 													'class'   => 'uu-image',
 													'loading' => 'eager',
 												)
@@ -631,6 +642,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -669,6 +681,7 @@ $photo_8 = get_field( 'photo_8' );
 															'full',
 															false,
 															array(
+																'decoding' => 'sync',
 																'class'   => 'hidden-img',
 																'loading' => 'eager',
 															)
@@ -696,6 +709,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -750,6 +764,7 @@ $photo_8 = get_field( 'photo_8' );
 												$utopian_6,
 												'large',
 												array(
+													'decoding' => 'sync',
 													'class'   => 'uu-image',
 													'loading' => 'eager',
 												)
@@ -771,6 +786,7 @@ $photo_8 = get_field( 'photo_8' );
 													'large',
 													false,
 													array(
+														'decoding' => 'sync',
 														'class'   => 'u-image',
 														'loading' => 'eager',
 													)
@@ -821,6 +837,7 @@ $photo_8 = get_field( 'photo_8' );
 															'full',
 															false,
 															array(
+																'decoding' => 'sync',
 																'class' => 'hidden-img',
 																'loading' => 'eager',
 															)
