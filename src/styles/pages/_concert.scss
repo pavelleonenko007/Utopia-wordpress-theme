@@ -73,6 +73,7 @@
 	}
 
 	&-additional {
+		color: rgb(var(--color-light-gray));
 		@include mobile {
 			&.pc-block.mob-blk {
 				display: flex;
