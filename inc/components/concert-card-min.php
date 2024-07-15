@@ -13,10 +13,10 @@ $start_date = get_field( 'start_date' );
 		<div class="p-28-120"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
 		<div class="p-28-120 _2"><?php the_title(); ?></div>
 		<?php
-		$location = get_field( 'location' );
-		if ( ! empty( $location['location_name'] ) ) :
+		$location_name = utopia_get_concert_location( get_the_ID() );
+		if ( ! empty( $location_name ) ) :
 			?>
-			<div class="p-16-120 _4 min"><?php echo esc_html( $location['location_name'] ); ?></div>
+			<div class="p-16-120 _4 min"><?php echo esc_html( $location_name ); ?></div>
 		<?php endif; ?>
 	</a>
 </div>
