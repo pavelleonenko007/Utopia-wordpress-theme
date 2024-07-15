@@ -279,43 +279,64 @@ function initPanzoom() {
 		const height =
 			panzoomEl.getBoundingClientRect().height - window.innerHeight;
 
-		if (x > 0 && y > 0) {
-			panzoomInstance.moveTo(0, 0, false);
+		const extraWidthOnMobile =
+			window.innerWidth < 768 ? window.innerWidth / 2 : 0;
+		const extraHeightOnMobile =
+			window.innerWidth < 768 ? window.innerHeight / 2 : 0;
+
+		if (x > extraWidthOnMobile && y > extraHeightOnMobile) {
+			panzoomInstance.moveTo(
+				extraWidthOnMobile / 2,
+				extraHeightOnMobile / 2,
+				false
+			);
 			return;
 		}
 
-		if (x < -width && y < -height) {
-			panzoomInstance.moveTo(-width, -height, false);
+		if (x < -width - extraWidthOnMobile && y < -height - extraHeightOnMobile) {
+			panzoomInstance.moveTo(
+				-width - extraWidthOnMobile / 2,
+				-height - extraHeightOnMobile / 2,
+				false
+			);
 			return;
 		}
 
-		if (x < -width && y > 0) {
-			panzoomInstance.moveTo(-width, 0, false);
+		if (x < -width - extraWidthOnMobile && y > extraHeightOnMobile) {
+			panzoomInstance.moveTo(
+				-width - extraWidthOnMobile / 2,
+				extraHeightOnMobile,
+				false
+			);
 			return;
 		}
 
-		if (x > 0 && y < -height) {
-			panzoomInstance.moveTo(0, -height, false);
+		if (x > extraWidthOnMobile && y < -height - extraHeightOnMobile) {
+			panzoomInstance.moveTo(
+				extraWidthOnMobile,
+				-height - extraHeightOnMobile / 2,
+				false
+			);
 			return;
 		}
 
-		if (x > 0) {
-			panzoomInstance.moveTo(0, y, false);
+		if (x > extraWidthOnMobile) {
+			panzoomInstance.moveTo(extraWidthOnMobile / 2, y, false);
 			return;
 		}
 
-		if (y > 0) {
-			panzoomInstance.moveTo(x, 0, false);
+		if (y > extraHeightOnMobile) {
+			panzoomInstance.moveTo(x, extraHeightOnMobile / 2, false);
 			return;
 		}
 
-		if (x < -width) {
-			panzoomInstance.moveTo(-width, y, false);
+		if (x < -width - extraWidthOnMobile) {
+			panzoomInstance.moveTo(-width - extraWidthOnMobile / 2, y, false);
 			return;
 		}
 
-		if (y < -height) {
-			panzoomInstance.moveTo(x, -height, false);
+		if (y < -height - extraHeightOnMobile) {
+			panzoomInstance.moveTo(x, -height - extraHeightOnMobile / 2, false);
 			return;
 		}
 	}
@@ -383,7 +404,7 @@ function initBarba() {
 							document.body.style.pointerEvents = null;
 							initPanzoomElements();
 						}, 2_000);
-					})
+					});
 					initLeftMenu();
 					initMobileMenu();
 					initVideoPlayers();
