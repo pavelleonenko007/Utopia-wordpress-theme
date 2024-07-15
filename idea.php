@@ -163,7 +163,11 @@ $video_description = ! empty( $video_block['video_description'] ) ? $video_block
 										?>
 										<div id="w-node-e4e544f0-71e8-0317-502c-21d5e098212b-8bd9f3e0" class="conc-card min">
 											<a href="<?php the_permalink(); ?>" class="conc-link min idea-link w-inline-block">
-												<div class="p-17"><?php pll_e( 'Article' ); ?></div>
+												<?php
+												$categories    = get_the_category( get_the_ID() );
+												$category_text = ! empty( $categories ) && ( 1 !== $categories[0]->term_id && 7 !== $categories[0]->term_id ) ? $categories[0]->name : pll__( 'Article' );
+												?>
+												<div class="p-17"><?php echo esc_html( $category_text ); ?></div>
 												<?php
 												the_post_thumbnail(
 													'full',
