@@ -348,7 +348,7 @@ $categories  = get_the_category( get_the_ID() );
 							}
 
 							$video_poster      = ! empty( $content_module['video_poster'] ) ? $content_module['video_poster'] : '';
-							$video_description = ! empty( $content_module['description'] ) ? $content_module['description'] : '';
+							$video_description = ! empty( $content_module['video_description'] ) ? $content_module['video_description'] : '';
 							?>
 							<dialog id="videoModal<?php echo esc_attr( $video_counter ); ?>" class="image-gallery" onclick="this.close();">
 								<div class="image-gallery__header">
@@ -358,7 +358,7 @@ $categories  = get_the_category( get_the_ID() );
 										<span>Close</span>
 									</button>
 								</div>
-								<div class="image-gallery__body" onclick="event.stopPropagation();">
+								<div class="image-gallery__body image-gallery__body--video" onclick="event.stopPropagation();">
 									<?php if ( 'file' === $video_type ) : ?>
 										<div class="video-player">
 											<video class="video-player__video">
@@ -413,6 +413,9 @@ $categories  = get_the_category( get_the_ID() );
 										</div>
 									<?php else : ?>
 										<iframe src="<?php echo esc_attr( $video ); ?>" loading="lazy" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+									<?php endif; ?>
+									<?php if ( ! empty( $video_description ) ) : ?>
+										<p class="video-player-caption"><?php echo esc_html( $video_description ); ?></p>
 									<?php endif; ?>
 								</div>
 							</dialog>

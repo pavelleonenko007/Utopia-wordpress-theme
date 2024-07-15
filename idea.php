@@ -28,7 +28,7 @@ if ( 'file' === $video_type ) {
 }
 
 $video_poster      = ! empty( $video_block['video_poster'] ) ? $video_block['video_poster'] : '';
-$video_description = ! empty( $video_block['description'] ) ? $video_block['description'] : '';
+$video_description = ! empty( $video_block['video_description'] ) ? $video_block['video_description'] : '';
 ?>
 				<div class="usual-page wh-bg">
 					<div class="iaea-page top">
@@ -205,7 +205,7 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 								<span>Close</span>
 							</button>
 						</div>
-						<div class="image-gallery__body" onclick="event.stopPropagation();">
+						<div class="image-gallery__body image-gallery__body--video" onclick="event.stopPropagation();">
 							<?php if ( 'file' === $video_type ) : ?>
 								<div class="video-player">
 									<video class="video-player__video">
@@ -260,6 +260,9 @@ $video_description = ! empty( $video_block['description'] ) ? $video_block['desc
 								</div>
 							<?php else : ?>
 								<iframe src="<?php echo esc_attr( $video ); ?>" loading="lazy" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+							<?php endif; ?>
+							<?php if ( ! empty( $video_description ) ) : ?>
+								<p class="video-player-caption"><?php echo esc_html( $video_description ); ?></p>
 							<?php endif; ?>
 						</div>
 					</dialog>
