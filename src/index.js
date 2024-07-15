@@ -192,7 +192,10 @@ function initPanzoom() {
 	const logo = document.querySelector('.uto-block._0');
 	const { width: logoWidth, height: logoHeight } = logo.getBoundingClientRect();
 
-	const minZoom = window.innerHeight / panzoomElHeight;
+	const minZoom =
+		window.innerWidth < 768
+			? (window.innerHeight / panzoomElHeight) * 1.4
+			: window.innerHeight / panzoomElHeight;
 
 	if (window.innerWidth > 1024) {
 		maxPanZoom = window.innerWidth / logoWidth / 2;
