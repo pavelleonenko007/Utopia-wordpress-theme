@@ -37,6 +37,7 @@ jobs:
             **/.git*/**
             **/node_modules/**
             **/vendor/**
+            /.style.css
 
       # - name: 📂 SFTP uploader # Upload to SFTP
       #   uses: wangyucode/sftp-upload-action@v2.0.2

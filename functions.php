@@ -263,6 +263,8 @@ function utopia_add_site_scripts() {
 
 	wp_enqueue_style( 'style', TEMPLATE_PATH . '/style.css', array( 'bundle' ), time() );
 
+	wp_enqueue_style( 'thevogne', '//thevogne.ru/clients/esh/utopia/style.css', array( 'style' ), time() );
+
 	// Deregister and register jQuery as core script.
 	wp_deregister_script( 'jquery-core' );
 	wp_register_script(
