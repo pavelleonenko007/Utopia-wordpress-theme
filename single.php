@@ -18,7 +18,7 @@ the_post();
 $content_modules = get_field( 'content_modules' );
 $gallery         = get_field( 'gallery' );
 
-$post_date   = get_the_date( 'j F Y' );
+$post_date   = get_field( 'publication_date' ); // get_the_date( 'j F Y' );
 $post_author = get_field( 'author' );
 $categories  = get_the_category( get_the_ID() );
 ?>

@@ -3,6 +3,24 @@
     "title": "Articles",
     "fields": [
         {
+            "key": "field_6694e1982c8f3",
+            "label": "Publication date",
+            "name": "publication_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "j F Y",
+            "return_format": "j F Y",
+            "first_day": 1
+        },
+        {
             "key": "field_66827266ae999",
             "label": "Description",
             "name": "description",
@@ -623,5 +641,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1719825098
+    "modified": 1721033174
 }
