@@ -1,6 +1,7 @@
 import { FormValidator } from '../utils';
 
 const SUBSCRIBE_FORM_SELECTOR = '#subscribe-form';
+const EMAIL_INPUT_SELECTOR = '[name="email"]';
 
 export const initSubscribeForm = () => {
 	const subscribeForm = document.querySelector(SUBSCRIBE_FORM_SELECTOR);
@@ -9,6 +10,7 @@ export const initSubscribeForm = () => {
 
 	const sendIcon = subscribeForm.querySelector('.pre-send');
 	const successIcon = subscribeForm.querySelector('.done-send');
+	const emailInput = subscribeForm.querySelector(EMAIL_INPUT_SELECTOR);
 
 	/**
 	 *
@@ -50,6 +52,8 @@ export const initSubscribeForm = () => {
 				if (successIcon) {
 					successIcon.style.display = 'block';
 				}
+
+				emailInput.value = 'email sent!';
 			})
 			.catch((error) => {
 				console.error(error.message);
