@@ -103,7 +103,7 @@ $current_language              = pll_current_language();
 					</div>
 					<button type="button" class="omen-menu w-inline-block">
 						<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/6630adc6066c2de7d1e3ada7_i.svg' ); ?>" loading="lazy" alt class="open-m ravno">
-						<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/6630adc6c69faae0e10f4d93_Frame202087326858.svg' ); ?>" loading="lazy" alt class="open-m crest">
+						<img src="<?php echo esc_url( TEMPLATE_PATH . '/build/images/close-mobile-menu.svg' ); ?>" loading="lazy" alt class="open-m crest">
 					</button>
 				</div>
 			</header>
