@@ -223,21 +223,21 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_3 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_3 ) ); ?></div>
 												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
+												<?php
+												echo get_the_post_thumbnail(
+													$utopian_3,
+													'large',
+													array(
+														'decoding' => 'sync',
+														'class'   => 'uu-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
 											</div>
-											<?php
-											echo get_the_post_thumbnail(
-												$utopian_3,
-												'large',
-												array(
-													'decoding' => 'sync',
-													'class'   => 'uu-image',
-													'loading' => 'eager',
-												)
-											);
-											?>
 										</div>
 									<?php endif; ?>
 									<?php
@@ -339,20 +339,20 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_5 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_5 ) ); ?></div>
 												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
+												<?php
+												echo get_the_post_thumbnail(
+													$utopian_5,
+													'large',
+													array(
+														'class'   => 'uu-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
 											</div>
-											<?php
-											echo get_the_post_thumbnail(
-												$utopian_5,
-												'large',
-												array(
-													'class'   => 'uu-image',
-													'loading' => 'eager',
-												)
-											);
-											?>
 										</div>
 									<?php endif; ?>
 									<?php
@@ -540,21 +540,21 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_2 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_2 ) ); ?></div>
 												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
+												<?php
+												echo get_the_post_thumbnail(
+													$utopian_2,
+													'large',
+													array(
+														'decoding' => 'sync',
+														'loading' => 'eager',
+														'class'   => 'uu-image',
+													)
+												);
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
 											</div>
-											<?php
-											echo get_the_post_thumbnail(
-												$utopian_2,
-												'large',
-												array(
-													'decoding' => 'sync',
-													'loading' => 'eager',
-													'class'   => 'uu-image',
-												)
-											);
-											?>
 										</div>
 									<?php endif; ?>
 									<?php
@@ -611,21 +611,21 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_4 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_4 ) ); ?></div>
 												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
+												<?php
+													echo get_the_post_thumbnail(
+														$utopian_4,
+														'full',
+														array(
+															'decoding' => 'sync',
+															'class'   => 'uu-image',
+															'loading' => 'eager',
+														)
+													);
+													?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
 											</div>
-											<?php
-											echo get_the_post_thumbnail(
-												$utopian_4,
-												'full',
-												array(
-													'decoding' => 'sync',
-													'class'   => 'uu-image',
-													'loading' => 'eager',
-												)
-											);
-											?>
 										</div>
 									<?php endif; ?>
 									<?php
@@ -755,21 +755,21 @@ $photo_8 = get_field( 'photo_8' );
 											<a href="<?php echo esc_url( get_the_permalink( $utopian_6 ) ); ?>" class="u-link u-u w-inline-block">
 												<div class="p-36-36 _2"><?php echo esc_html( get_the_title( $utopian_6 ) ); ?></div>
 												<div class="p-16-120 _2"><?php pll_e( 'utopian' ); ?></div>
+												<?php
+												echo get_the_post_thumbnail(
+													$utopian_6,
+													'large',
+													array(
+														'decoding' => 'sync',
+														'class'   => 'uu-image',
+														'loading' => 'eager',
+													)
+												);
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
 											</div>
-											<?php
-											echo get_the_post_thumbnail(
-												$utopian_6,
-												'large',
-												array(
-													'decoding' => 'sync',
-													'class'   => 'uu-image',
-													'loading' => 'eager',
-												)
-											);
-											?>
 										</div>
 									<?php endif; ?>
 									<?php
