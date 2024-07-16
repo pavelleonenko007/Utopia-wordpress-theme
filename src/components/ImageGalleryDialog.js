@@ -31,6 +31,7 @@ class ImageGalleryDialog {
 
 				const figure = media.cloneNode(true);
 				figure.className = 'image-gallery__element';
+				figure.removeAttribute('data-gallery');
 
 				li.append(figure);
 
@@ -200,6 +201,10 @@ export const initPostGalleries = () => {
 		document.querySelectorAll('[data-gallery="gallery"]')
 	);
 
+	if (mediaElements.length === 0) {
+		return;
+	}
+
 	const ImageGallery = new ImageGalleryDialog({
 		dialog: document.getElementById('postGallery'),
 	});
@@ -209,5 +214,11 @@ export const initPostGalleries = () => {
 			const index = parseInt(element.dataset.imageIndex);
 			ImageGallery.open(index);
 		});
+	});
+};
+
+export const cleanupImageGalleryDialogs = () => {
+	document.querySelectorAll('dialog.image-gallery').forEach((dialog) => {
+		dialog.remove();
 	});
 };

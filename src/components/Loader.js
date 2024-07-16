@@ -83,7 +83,6 @@ export const initLoader = async (callback = () => {}) => {
 			{
 				opacity: 1,
 				onComplete: () => {
-					console.log('callback');
 					callback();
 				},
 			},

@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import panzoom from 'panzoom';
 
 import {
+	cleanupImageGalleryDialogs,
 	initContentGalleries,
 	initPostGalleries,
 	initThumbnailGallery,
@@ -93,7 +94,6 @@ function disconnectPanzoomObserver() {
 		return;
 	}
 
-	console.log('disconnectPanzoomObserver');
 	panzoomObserver?.disconnect();
 	document
 		.querySelectorAll('.uto-block')
@@ -619,6 +619,10 @@ function initBarba() {
 
 	barba.hooks.beforeLeave(() => {
 		closeMobileMenu();
+	});
+
+	barba.hooks.leave(() => {
+		cleanupImageGalleryDialogs();
 	});
 
 	barba.hooks.afterLeave(() => {
