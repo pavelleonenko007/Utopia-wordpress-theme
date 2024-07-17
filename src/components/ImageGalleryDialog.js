@@ -33,6 +33,9 @@ class ImageGalleryDialog {
 				figure.className = 'image-gallery__element';
 				figure.removeAttribute('data-gallery');
 
+				const image = figure.querySelector('img');
+				image.removeAttribute('loading');
+
 				li.append(figure);
 
 				this.list.append(li);
