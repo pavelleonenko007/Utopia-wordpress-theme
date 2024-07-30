@@ -898,7 +898,7 @@ function utopia_subscribe_user_via_ajax() {
 	$message = 'Please confirm your subscription by clicking on the link: ' . $confirm_link;
 	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 
-	wp_mail( $email, $subject, $message, $headers );
+	// wp_mail( $email, $subject, $message, $headers );
 
 	wp_send_json_success( array( 'message' => 'Subscription successful' ), 200 );
 }
@@ -948,7 +948,7 @@ function utopia_manage_subscriptions() {
 	}
 }
 
-add_action( 'publish_concert', 'utopia_notify_subscribers', 10, 2 );
+// add_action( 'publish_concert', 'utopia_notify_subscribers', 10, 2 );
 /**
  * Notify subscribers about new concerts
  *
