@@ -28,8 +28,18 @@ $start_date = get_field( 'start_date' );
 			?>
 			<div class="p-16-120 _4"><?php echo esc_html( $location_name ); ?></div>
 		<?php endif; ?>
-		<div class="link-shos ll hvr">
-			<div class="btn-xtx">buy tickets</div>
+		<?php
+		$buy_button           = get_field( 'buy_button' );
+		$buy_button_link_attr = ! empty( $buy_button['link'] ) ? 'data-href="' . esc_url( $buy_button['link'] ) . '"' : '';
+		$buy_button_text      = ! empty( $buy_button['button_text'] ) ? $buy_button['button_text'] : pll__( 'buy tickets' );
+		?>
+		<div 
+			class="link-shos ll hvr" 
+			<?php
+			// phpcs:ignore
+			echo $buy_button_link_attr; ?>
+		>
+			<div class="btn-xtx"><?php echo esc_html( $buy_button_text ); ?></div>
 			<div class="hover-liner"></div>
 		</div>
 	</a>

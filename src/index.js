@@ -5,6 +5,7 @@ import barba from '@barba/core';
 import gsap from 'gsap';
 import panzoom from 'panzoom';
 
+import { initCustomLinks } from './components/CustomLink.js';
 import {
 	cleanupImageGalleryDialogs,
 	initContentGalleries,
@@ -408,6 +409,7 @@ function initBarba() {
 							initPanzoomElements();
 						}, 2_000);
 					});
+					initCustomLinks();
 					initLeftMenu();
 					initMobileMenu();
 					initVideoPlayers();
@@ -648,6 +650,7 @@ function initBarba() {
 		initSubscribeForm();
 		initLoadMoreArticlesButton();
 		updateDataWfPage(next.html);
+		initCustomLinks();
 	});
 
 	barba.hooks.after(({ current, next }) => {
