@@ -282,7 +282,7 @@ $categories  = get_the_category( get_the_ID() );
 							<div class="image-gallery__counter gallery-counter">
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span>Close</span>
+								<span><?php pll_e( 'close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body">
@@ -313,7 +313,7 @@ $categories  = get_the_category( get_the_ID() );
 								</svg>
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span><?php pll_e( 'Close' ); ?></span>
+								<span><?php pll_e( 'close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body">
@@ -355,7 +355,7 @@ $categories  = get_the_category( get_the_ID() );
 									<div class="image-gallery__counter gallery-counter">
 									</div>
 									<button type="button" class="image-gallery__close-button">
-										<span>Close</span>
+										<span><?php pll_e( 'close' ); ?></span>
 									</button>
 								</div>
 								<div class="image-gallery__body image-gallery__body--video" onclick="event.stopPropagation();">

@@ -21,6 +21,7 @@ pll_register_string( 'archive-utopian', 'No Utopians found', 'archive-utopian', 
 // Header.
 pll_register_string( 'header', 'Search', 'header', true );
 pll_register_string( 'header', 'Close', 'header', true );
+pll_register_string( 'header', 'close', 'header', true );
 pll_register_string( 'header', 'Search in Utopia', 'header', true );
 pll_register_string( 'header', 'What are you looking for?', 'header', true );
 

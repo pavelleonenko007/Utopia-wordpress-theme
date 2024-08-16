@@ -75,7 +75,7 @@ class ImageGalleryDialog {
 					</svg>
 				</div>
 				<button type="button" class="image-gallery__close-button">
-					<span>Close</span>
+					<span>close</span>
 				</button>
 			</div>
 			<div class="image-gallery__body">

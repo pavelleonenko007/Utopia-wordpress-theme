@@ -206,7 +206,7 @@ $video_description = ! empty( $video_block['video_description'] ) ? $video_block
 							<div class="image-gallery__counter gallery-counter">
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span>Close</span>
+								<span><?php pll_e( 'close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body image-gallery__body--video" onclick="event.stopPropagation();">
@@ -277,7 +277,7 @@ $video_description = ! empty( $video_block['video_description'] ) ? $video_block
 							<div class="image-gallery__counter gallery-counter">
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span>Close</span>
+								<span><?php pll_e( 'close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body">

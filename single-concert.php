@@ -185,7 +185,7 @@ $buy_button = get_field( 'buy_button' );
 								</svg>
 							</div>
 							<button type="button" class="image-gallery__close-button">
-								<span><?php pll_e( 'Close' ); ?></span>
+								<span><?php pll_e( 'close' ); ?></span>
 							</button>
 						</div>
 						<div class="image-gallery__body">
