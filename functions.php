@@ -9,6 +9,8 @@ defined( 'ABSPATH' ) || exit;
 
 define( 'DATA_WF_SITE', '65e57c8082e6072b394e6a13' );
 define( 'TEMPLATE_PATH', get_template_directory_uri() );
+define( 'BEEHIIV_PUBLICATION_ID', 'pub_e3350db7-aee2-4087-80f8-7644602af36c' );
+define( 'BEEHIIV_API_KEY', 'On3RsDkq8viZgvfc3vT03WnKAHKhGtukNpzWfTScYaz3o8RmCgYBjaRJGEl7dHwx' );
 
 add_action( 'after_setup_theme', 'utopia_setup_theme' );
 function utopia_setup_theme(): void {
@@ -868,115 +870,40 @@ function utopia_subscribe_user_via_ajax() {
 		wp_send_json_error( array( 'message' => 'Invalid email address' ), 400 );
 	}
 
-	global $wpdb;
-
-	$table_name = $wpdb->prefix . 'utopia_subscribers';
-	$email      = sanitize_email( wp_unslash( $_POST['email'] ) );
-	$token      = wp_generate_uuid4();
-
-	$subscriber = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE email = %s", $email ) );
-
-	if ( $subscriber ) {
-			wp_send_json_success( array( 'message' => 'Already subscribed' ), 200 );
-	}
-
-	$wpdb->insert(
-		$table_name,
-		array(
-			'email' => $email,
-			'token' => $token,
+	$request_url      = 'https://api.beehiiv.com/v2/publications/' . BEEHIIV_PUBLICATION_ID . '/subscriptions';
+	$request_args     = array(
+		'headers'   => array(
+			'Accept'        => 'application/json',
+			'Authorization' => 'Bearer ' . BEEHIIV_API_KEY,
 		),
-		array( '%s', '%s' )
+		'body'      => array(
+			'email'          => sanitize_text_field( wp_unslash( $_POST['email'] ) ),
+			'referring_site' => home_url(),
+		),
+		'sslverify' => false,
+	);
+	$beehiiv_response = wp_remote_post(
+		$request_url,
+		$request_args
 	);
 
-	$confirm_link = add_query_arg(
-		array( 'utopia_subscribe_confirm' => $token ),
-		home_url()
-	);
-
-	$subject = 'Utopia Subscription confirmation';
-	$message = 'Please confirm your subscription by clicking on the link: ' . $confirm_link;
-	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
-
-	// wp_mail( $email, $subject, $message, $headers );
-
-	wp_send_json_success( array( 'message' => 'Subscription successful' ), 200 );
-}
-
-add_action( 'init', 'utopia_manage_subscriptions' );
-function utopia_manage_subscriptions() {
-
-	if ( isset( $_GET['utopia_subscribe_confirm'] ) ) {
-		$token = sanitize_text_field( $_GET['utopia_subscribe_confirm'] );
-		global $wpdb;
-		$table_name = $wpdb->prefix . 'utopia_subscribers';
-
-		$subscriber = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE token = %s", $token ) );
-		if ( $subscriber ) {
-				$wpdb->update(
-					$table_name,
-					array( 'confirmed' => 1 ),
-					array( 'token' => $token ),
-					array( '%d' ),
-					array( '%s' )
-				);
-
-				echo '<p>Subscription confirmed!</p>';
-				exit;
-		} else {
-				echo '<p>There is no such subscription.</p>';
-				exit;
-		}
-	}
-
-	if ( isset( $_GET['utopia_unsubscribe'] ) ) {
-		$token = sanitize_text_field( $_GET['utopia_unsubscribe'] );
-		global $wpdb;
-		$table_name = $wpdb->prefix . 'utopia_subscribers';
-
-		$subscriber = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE token = %s", $token ) );
-		if ( $subscriber ) {
-				$wpdb->delete(
-					$table_name,
-					array( 'token' => $token ),
-					array( '%s' )
-				);
-
-				echo "<p>You've unsubscribed from the newsletter.</p>";
-				exit;
-		}
-	}
-}
-
-// add_action( 'publish_concert', 'utopia_notify_subscribers', 10, 2 );
-/**
- * Notify subscribers about new concerts
- *
- * @since 0.0.1
- *
- * @param int     $post_id Post ID of the new concert
- * @param WP_Post $post Post object of the new concert
- */
-function utopia_notify_subscribers( $post_id, $post ) {
-	global $wpdb;
-
-	$table_name  = $wpdb->prefix . 'utopia_subscribers';
-	$subscribers = $wpdb->get_results( "SELECT email, token FROM $table_name WHERE confirmed = 1" );
-
-	$subject = 'New Utopia concert';
-	$message = 'Find out more about the new utopia concert: ' . get_permalink( $post_id );
-	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
-
-	foreach ( $subscribers as $subscriber ) {
-		$unsubscribe_link = add_query_arg(
-			array( 'utopia_unsubscribe' => $subscriber->token ),
-			home_url()
+	if ( is_wp_error( $beehiiv_response ) || 300 <= wp_remote_retrieve_response_code( $beehiiv_response ) ) {
+		wp_send_json_error(
+			array(
+				'message' => 'Something went wrong',
+				'data'    => json_decode( wp_remote_retrieve_body( $beehiiv_response ) ),
+			),
+			! empty( $beehiiv_response['response']['code'] ) ? $beehiiv_response['response']['code'] : 500
 		);
-
-		$message_with_unsubscribe = $message . '<br><br><a href="' . $unsubscribe_link . '">Unsubscribe</a>';
-
-		wp_mail( $subscriber->email, $subject, $message_with_unsubscribe, $headers );
 	}
+
+	wp_send_json_success(
+		array(
+			'message' => 'Successfully subscribed',
+			'data'    => ( json_decode( wp_remote_retrieve_body( $beehiiv_response ) ) )->data,
+		),
+		wp_remote_retrieve_response_code( $beehiiv_response )
+	);
 }
 
 add_action( 'edit_page_form', 'utopia_validate_default_wordpress_fields' );
