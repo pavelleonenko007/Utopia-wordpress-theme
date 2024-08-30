@@ -447,7 +447,7 @@ $photo_8 = get_field( 'photo_8' );
 									<?php endif; ?>
 									<div class="uto-block _15">
 										<a href="<?php echo esc_url( $idea_page_url ); ?>" class="u-link u-i w-inline-block">
-											<div class="p-56-105 _2">idea</div>
+											<div class="p-56-105 _2"><?php echo esc_html( get_the_title( $idea_page ) ); ?></div>
 										</a>
 										<div class="rtz-checker">
 											<div class="rtz-checl"></div>
@@ -621,7 +621,7 @@ $photo_8 = get_field( 'photo_8' );
 															'loading' => 'eager',
 														)
 													);
-													?>
+												?>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -661,7 +661,7 @@ $photo_8 = get_field( 'photo_8' );
 									<?php if ( ! empty( $concerts_link ) ) : ?>
 										<div class="uto-block _24">
 											<a href="<?php echo esc_url( $concerts_link ); ?>" class="u-link u-i w-inline-block">
-												<div class="p-56-105 _2">Concerts</div>
+												<div class="p-56-105 _2"><?php pll_e( 'Concerts' ); ?></div>
 											</a>
 											<div class="rtz-checker">
 												<div class="rtz-checl"></div>
@@ -879,7 +879,7 @@ $photo_8 = get_field( 'photo_8' );
 					?>
 					<div class="bottom-home">
 						<a href="<?php echo esc_url( get_post_type_archive_link( 'concert' ) ); ?>" class="link-shos bottmer hvr w-inline-block">
-							<div class="btn-xtx">discover upcoming tour</div>
+							<div class="btn-xtx"><?php pll_e( 'discover upcoming tour' ); ?></div>
 							<div class="hover-liner"></div>
 						</a>
 						<div class="marq-mom">
