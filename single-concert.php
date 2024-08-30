@@ -28,9 +28,9 @@ $buy_button = get_field( 'buy_button' );
 							<a href="<?php echo esc_url( get_post_type_archive_link( 'concert' ) ); ?>" class="gery-link w-inline-block">
 								<div class="text-block"><?php pll_e( 'all concerts' ); ?></div>
 							</a>
-							<div class="p-56-105 sing"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
+							<div class="p-56-105 sing"><?php echo esc_html( gmdate( 'j', $start_date ) ) . ' ' . esc_html( pll__( gmdate( 'M', $start_date ) ) ); ?></div>
 							<h1 class="h1-single n-pc"><?php the_title(); ?></h1>
-							<div class="p-24-120 mnd"><?php echo esc_html( gmdate( 'l', $start_date ) ); ?></div>
+							<div class="p-24-120 mnd"><?php echo esc_html( pll__( gmdate( 'l', $start_date ) ) ); ?></div>
 							<?php
 							$venue = get_field( 'venue' );
 							if ( ! empty( $venue['title'] ) && ! empty( $venue['url'] ) ) :
@@ -45,7 +45,7 @@ $buy_button = get_field( 'buy_button' );
 							<?php endif; ?>
 							<?php if ( time() < $start_date && ! empty( $buy_button['link'] ) ) : ?>
 								<a href="<?php echo esc_url( $buy_button['link'] ); ?>" class="link-shos ll hvr single-page w-inline-block">
-									<div class="btn-xtx"><?php echo ! empty( $buy_button['button_text'] ) ? esc_html( $buy_button['button_text'] ) : pll__( 'buy tickets' ); ?></div>
+									<div class="btn-xtx"><?php echo ! empty( $buy_button['button_text'] ) ? esc_html( $buy_button['button_text'] ) : esc_html( pll__( 'buy tickets' ) ); ?></div>
 									<div class="hover-liner"></div>
 								</a>
 							<?php endif; ?>
@@ -87,6 +87,7 @@ $buy_button = get_field( 'buy_button' );
 								<h1 class="h1-single n-mob"><?php the_title(); ?></h1>
 								<div class="concert-content flow">
 									<?php
+									// phpcs:ignore WordPress.Security.EscapeOutput
 									echo utopia_wrap_long_text( get_field( 'content' ) );
 									?>
 								</div>
