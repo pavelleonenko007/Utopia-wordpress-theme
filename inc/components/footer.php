@@ -67,7 +67,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="vert foo-vert">
 				<div class="p-16-120 m11"><?php pll_e( 'Become a part of our world by donating to us' ); ?></div>
 				<a href="<?php echo esc_url( $donate_button['link'] ); ?>" class="link-shos ll foo-link hvr w-inline-block">
-					<div class="btn-xtx"><?php echo ! empty( $donate_button['button_text'] ) ? esc_html( $donate_button['button_text'] ) : esc_html( pll__( 'support the utopia' ) ); ?></div>
+					<div class="btn-xtx"><?php echo ! empty( $donate_button['button_text'] ) ? esc_html( pll__( $donate_button['button_text'] ) ) : esc_html( pll__( 'support the utopia' ) ); ?></div>
 					<div class="hover-liner"></div>
 				</a>
 			</div>
