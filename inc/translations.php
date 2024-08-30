@@ -54,3 +54,4 @@ pll_register_string( 'single', 'back to top', 'single', true );
 pll_register_string( 'footer', 'Subscribe to be the first to know about upcoming concerts', 'Polylang', true );
 pll_register_string( 'footer', 'your email', 'Polylang', true );
 pll_register_string( 'footer', 'Become a part of our world by donating to us', 'Polylang', true );
+pll_register_string( 'footer', 'support the utopia', 'Polylang', true );
