@@ -10,8 +10,8 @@ $start_date = get_field( 'start_date' );
 ?>
 <div id="w-node-_9e7eefe4-b340-cc4e-91d8-16ae6d3c2620-b6fdfdcd" class="conc-card">
 	<a href="<?php the_permalink(); ?>" class="conc-link w-inline-block">
-		<div class="p-16-120 w"><?php echo esc_html( gmdate( 'l', $start_date ) ); ?></div>
-		<div class="p-36-36 in-card"><?php echo esc_html( gmdate( 'j M', $start_date ) ); ?></div>
+		<div class="p-16-120 w"><?php echo esc_html( pll__( gmdate( 'l', $start_date ) ) ); ?></div>
+		<div class="p-36-36 in-card"><?php echo esc_html( gmdate( 'j', $start_date ) ) . ' ' . esc_html( pll__( gmdate( 'M', $start_date ) ) ); ?></div>
 		<?php
 		the_post_thumbnail(
 			'full',

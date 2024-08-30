@@ -57,3 +57,25 @@ pll_register_string( 'footer', 'Subscribe to be the first to know about upcoming
 pll_register_string( 'footer', 'your email', 'Polylang', true );
 pll_register_string( 'footer', 'Become a part of our world by donating to us', 'Polylang', true );
 pll_register_string( 'footer', 'support the utopia', 'Polylang', true );
+
+// Dates.
+pll_register_string( 'date', 'Monday', 'Polylang', true );
+pll_register_string( 'date', 'Tuesday', 'Polylang', true );
+pll_register_string( 'date', 'Wednesday', 'Polylang', true );
+pll_register_string( 'date', 'Thursday', 'Polylang', true );
+pll_register_string( 'date', 'Friday', 'Polylang', true );
+pll_register_string( 'date', 'Saturday', 'Polylang', true );
+pll_register_string( 'date', 'Sunday', 'Polylang', true );
+
+pll_register_string( 'date', 'Jan', 'Polylang', true );
+pll_register_string( 'date', 'Feb', 'Polylang', true );
+pll_register_string( 'date', 'Mar', 'Polylang', true );
+pll_register_string( 'date', 'Apr', 'Polylang', true );
+pll_register_string( 'date', 'May', 'Polylang', true );
+pll_register_string( 'date', 'Jun', 'Polylang', true );
+pll_register_string( 'date', 'Jul', 'Polylang', true );
+pll_register_string( 'date', 'Aug', 'Polylang', true );
+pll_register_string( 'date', 'Sep', 'Polylang', true );
+pll_register_string( 'date', 'Oct', 'Polylang', true );
+pll_register_string( 'date', 'Nov', 'Polylang', true );
+pll_register_string( 'date', 'Dec', 'Polylang', true );

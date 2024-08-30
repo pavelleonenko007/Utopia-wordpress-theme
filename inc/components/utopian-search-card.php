@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 		?>
 		<div class="vert servf">
 			<div class="p-24-120 sercg"><?php the_title(); ?></div>
-			<div class="p-16-120">read</div>
+			<div class="p-16-120"><?php pll_e( 'read' ); ?></div>
 		</div>
 	</a>
 </div>
