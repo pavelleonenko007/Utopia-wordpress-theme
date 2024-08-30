@@ -11,12 +11,12 @@ defined( 'ABSPATH' ) || exit;
 <footer class="footer">
 	<div class="sub-from">
 		<form id="subscribe-form" class="form" data-wf-page-id="65ef0726d2531bad1f44ea0e" data-wf-element-id="175357ac-dc97-ffe8-4592-427bd0633297">
-			<p class="p-24-120 subs">Subscribe to be the first to know about upcoming concerts</p>
+			<p class="p-24-120 subs"><?php pll_e( 'Subscribe to be the first to know about upcoming concerts' ); ?></p>
 			<input 
 				class="sub-input w-input" 
 				maxlength="256" 
 				name="email" 
-				placeholder="your email" 
+				placeholder="<?php pll_e( 'your email' ); ?>" 
 				type="email" 
 				id="email" 
 				pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
@@ -65,7 +65,7 @@ defined( 'ABSPATH' ) || exit;
 		if ( ! empty( $donate_button['link'] ) ) :
 			?>
 			<div class="vert foo-vert">
-				<div class="p-16-120 m11">Become a part of our world by donating to us</div>
+				<div class="p-16-120 m11"><?php pll_e( 'Become a part of our world by donating to us' ); ?></div>
 				<a href="<?php echo esc_url( $donate_button['link'] ); ?>" class="link-shos ll foo-link hvr w-inline-block">
 					<div class="btn-xtx"><?php echo ! empty( $donate_button['button_text'] ) ? esc_html( $donate_button['button_text'] ) : 'support the utopia'; ?></div>
 					<div class="hover-liner"></div>
