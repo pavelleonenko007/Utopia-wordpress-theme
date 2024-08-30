@@ -57,6 +57,7 @@ pll_register_string( 'footer', 'Subscribe to be the first to know about upcoming
 pll_register_string( 'footer', 'your email', 'Polylang', true );
 pll_register_string( 'footer', 'Become a part of our world by donating to us', 'Polylang', true );
 pll_register_string( 'footer', 'support the utopia', 'Polylang', true );
+pll_register_string( 'footer', 'support us', 'Polylang', true );
 
 // Dates.
 pll_register_string( 'date', 'Monday', 'Polylang', true );
