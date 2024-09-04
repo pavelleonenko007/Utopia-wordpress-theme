@@ -305,7 +305,9 @@ function utopia_add_site_scripts() {
 		'bundle',
 		'UTOPIA',
 		array(
-			'AJAX_URL' => admin_url( 'admin-ajax.php' ),
+			'AJAX_URL'         => admin_url( 'admin-ajax.php' ),
+			'CURRENT_LANGUAGE' => pll_current_language(),
+			'HOME_URL'         => home_url( '/' ),
 		)
 	);
 }

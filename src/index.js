@@ -152,8 +152,8 @@ function initLeftMenu() {
 			event.preventDefault();
 			event.stopPropagation();
 
-			if (!UrlValidator.isCurrentUrl(window.location.origin)) {
-				barba.go(window.location.origin);
+			if (!UrlValidator.isCurrentUrl(UTOPIA.HOME_URL)) {
+				barba.go(UTOPIA.HOME_URL);
 				return;
 			}
 
