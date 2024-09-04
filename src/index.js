@@ -371,6 +371,37 @@ function initPanzoom() {
 	panzoomInstance.on('zoom', zoomHandler);
 }
 
+async function updateLanguageSwitcherUrl() {
+	const formData = new FormData();
+
+	formData.append('action', 'get_translation_for_page');
+	formData.append('url', window.location.href);
+
+	try {
+		const response = await fetch(UTOPIA.AJAX_URL, {
+			method: 'POST',
+			body: formData,
+		});
+
+		if (!response.ok) {
+			throw new Error(response.statusText);
+		}
+
+		// const data= await response.text();
+		const { success, data } = await response.json();
+
+		console.log(data);
+
+		const languageSwitchers = document.querySelectorAll('a.lang');
+
+		languageSwitchers.forEach((languageSwitcher) => {
+			languageSwitcher.setAttribute('href', data.url);
+		});
+	} catch (error) {
+		console.error(error);
+	}
+}
+
 function initBarba() {
 	window.history.scrollRestoration = 'manual';
 
@@ -651,6 +682,7 @@ function initBarba() {
 		initLoadMoreArticlesButton();
 		updateDataWfPage(next.html);
 		initCustomLinks();
+		updateLanguageSwitcherUrl();
 	});
 
 	barba.hooks.after(({ current, next }) => {

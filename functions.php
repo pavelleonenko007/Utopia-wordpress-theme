@@ -1244,4 +1244,58 @@ function utopia_load_more_articles_via_ajax() {
 	);
 }
 
+function utopia_remove_language_slug( $url ) {
+	$pattern                   = '/^(https?:\/\/[^\/]+)\/[a-z]{2}\/(.*)$/i';
+	$replacement               = '$1/$2';
+	$url_without_language_slug = preg_replace( $pattern, $replacement, $url );
+
+	return $url_without_language_slug;
+}
+
+
+function utopia_generate_language_url( $url, $lang ) {
+	$normalized_url = utopia_remove_language_slug( $url );
+	$url_schema     = parse_url( $normalized_url );
+
+	if ( 'en' === $lang ) {
+		return $normalized_url;
+	} else {
+		return $url_schema['scheme'] . '://' . $url_schema['host'] . '/' . $lang . $url_schema['path'];
+	}
+}
+
+add_action( 'wp_ajax_get_translation_for_page', 'utopia_get_translation_for_page_via_ajax' );
+add_action( 'wp_ajax_nopriv_get_translation_for_page', 'utopia_get_translation_for_page_via_ajax' );
+
+function utopia_get_translation_for_page_via_ajax() {
+	$post_types               = array( 'utopian', 'concert' );
+	$current_language         = pll_current_language();
+	$language_for_translation = $current_language === 'en' ? 'de' : 'en';
+
+	$post_id = url_to_postid( $_POST['url'] );
+
+	$url_to_return = utopia_generate_language_url( home_url(), $language_for_translation );
+
+	if ( 0 < $post_id ) {
+		$translated_post_id = pll_get_post( $post_id, $language_for_translation );
+
+		if ( 0 < $translated_post_id ) {
+			$url_to_return = get_permalink( $translated_post_id );
+		}
+	} else {
+		$post_types_url = array_map(
+			function ( $post_type ) {
+				return get_post_type_archive_link( $post_type );
+			},
+			$post_types
+		);
+
+		if ( in_array( $_POST['url'], $post_types_url ) ) {
+			$url_to_return = utopia_generate_language_url( $_POST['url'], $language_for_translation );
+		}
+	}
+
+	wp_send_json_success( array( 'url' => $url_to_return ), 200 );
+}
+
 require_once get_template_directory() . '/inc/translations.php';
