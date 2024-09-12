@@ -25,8 +25,8 @@ $categories  = get_the_category( get_the_ID() );
 				<div class="usual-page">
 					<div id="top" class="article-page">
 						<div class="top-line-article">
-							<?php $idea_page_id = 12; ?>
-							<a href="<?php echo esc_url( get_the_permalink( $idea_page_id ) . '#blog' ); ?>" class="gery-link art-p w-inline-block">
+							<?php $idea_page = pll_get_post( 12 ); ?>
+							<a href="<?php echo esc_url( get_the_permalink( $idea_page ) . '#blog' ); ?>" class="gery-link art-p w-inline-block">
 								<div class="text-block"><?php pll_e( 'articles in Our World' ); ?></div>
 							</a>
 							<div class="art-top">
