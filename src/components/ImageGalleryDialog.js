@@ -75,7 +75,7 @@ class ImageGalleryDialog {
 					</svg>
 				</div>
 				<button type="button" class="image-gallery__close-button">
-					<span>close</span>
+					<span>${UTOPIA.CURRENT_LANGUAGE === 'en' ? 'close' : 'schließen'}</span>
 				</button>
 			</div>
 			<div class="image-gallery__body">
