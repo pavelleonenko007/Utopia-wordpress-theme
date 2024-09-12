@@ -49,6 +49,9 @@ pll_register_string( 'single-concert', 'Next', 'single-concert', true );
 // Single Utopian.
 pll_register_string( 'single-utopian', 'all utopians', 'single-utopian', true );
 
+// Single Concert.
+pll_register_string( 'single-concert', 'more', 'single-concert', true );
+
 // Single.
 pll_register_string( 'single', 'articles in Our World', 'single', true );
 pll_register_string( 'single', 'back to top', 'single', true );

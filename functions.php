@@ -1150,7 +1150,7 @@ function utopia_wrap_long_text( $text ) {
 
 		$remaining_text      = substr( $text, $last_space_position );
 		$concert_more_text   = '<span class="concert-more-text" hidden>' . $remaining_text . '</span>';
-		$concert_more_button = ' <button class="concert-more-button" onclick="this.previousElementSibling.hidden = false; this.hidden = true;">more</button>';
+		$concert_more_button = ' <button class="concert-more-button" onclick="this.previousElementSibling.hidden = false; this.hidden = true;">' . pll__( 'more' ) . '</button>';
 		return $trimmed_text . $concert_more_text . $concert_more_button;
 	} else {
 		return $text;
