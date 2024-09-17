@@ -147,7 +147,7 @@ $buy_button = get_field( 'buy_button' );
 									<?php
 									foreach ( $related_concerts as $post ) :
 										setup_postdata( $post );
-										get_template_part( 'inc/components/concert-card-min' );
+										get_template_part( 'inc/components/concert-card-min', null, array( 'parent' => 'single-concert' ) );
 									endforeach;
 									wp_reset_postdata();
 									?>

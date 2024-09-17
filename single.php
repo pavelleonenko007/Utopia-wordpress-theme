@@ -241,7 +241,7 @@ $categories  = get_the_category( get_the_ID() );
 									//phpcs:ignore
 									foreach ( $concerts as $post ) :
 										setup_postdata( $post );
-										get_template_part( 'inc/components/concert-card-min' );
+										get_template_part( 'inc/components/concert-card-min', null, array( 'parent' => 'single' ) );
 									endforeach;
 									wp_reset_postdata();
 									?>
