@@ -18,6 +18,10 @@ Description:
 	min-width: 100%;
 }
 
+.rich-right-side p em {
+	font-style: italic;
+}
+
 .barba-container.inner-page[data-barba-namespace='single-concert']
 	.conc-link.min._w-fix {
 	padding-left: 16rem;
