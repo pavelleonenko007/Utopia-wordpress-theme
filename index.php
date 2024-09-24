@@ -388,7 +388,7 @@ $photo_8 = get_field( 'photo_8' );
 									<?php
 									if ( ! empty( $photo_2 ) && ! empty( $photo_2['photo'] ) ) :
 										$url         = ! empty( $photo_2['url'] ) ? $photo_2['url'] : '#';
-										$description = ! empty( $photo_2['descrioption'] ) ? $photo_2['descrioption'] : '';
+										$description = ! empty( $photo_2['description'] ) ? $photo_2['description'] : '';
 										$link_text   = ! empty( $photo_2['link_text'] ) ? $photo_2['link_text'] : pll__( 'read' );
 										?>
 										<div class="uto-block _13">
