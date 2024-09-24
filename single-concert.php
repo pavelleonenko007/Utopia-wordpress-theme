@@ -59,6 +59,8 @@ $buy_button = get_field( 'buy_button' );
 										echo $track_list;
 									}
 
+									echo '<br><br>';
+
 									if ( ! empty( $participants ) ) {
 										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										echo $participants;
