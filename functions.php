@@ -1298,4 +1298,11 @@ function utopia_get_translation_for_page_via_ajax() {
 	wp_send_json_success( array( 'url' => $url_to_return ), 200 );
 }
 
+add_action( 'pre_get_posts', 'utopia_utopians_archive_page' );
+function utopia_utopians_archive_page( $query ) {
+	if ( is_post_type_archive( 'utopian' ) && $query->is_main_query() ) {
+		$query->set( 'posts_per_page', -1 );
+	}
+}
+
 require_once get_template_directory() . '/inc/translations.php';
