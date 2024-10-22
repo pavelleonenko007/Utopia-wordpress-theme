@@ -31,7 +31,11 @@ the_post();
 								$concert = get_field( 'concert' );
 								if ( ! empty( $concert ) ) :
 									?>
-									<div class="p-24-120 grey uto-t"><?php echo esc_html( $concert ); ?></div>
+									<div class="p-24-120 grey uto-t">
+										<?php 
+										// phpcs:ignore
+										echo $concert; ?>
+									</div>
 								<?php endif; ?>
 							</div>
 							<?php
