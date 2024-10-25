@@ -1150,7 +1150,17 @@ function utopia_wrap_long_text( $text ) {
 	// Используем DOMDocument для корректной работы с HTML
 	$dom = new DOMDocument();
 	libxml_use_internal_errors( true );
-	$dom->loadHTML( mb_convert_encoding( $text, 'HTML-ENTITIES', 'UTF-8' ) );
+	$convmap = array( 0x80, 0x10ffff, 0, 0xffffff );
+	$dom->loadHTML(
+		mb_encode_numericentity(
+			htmlspecialchars_decode(
+				htmlentities( $text, ENT_NOQUOTES, 'UTF-8', false ),
+				ENT_NOQUOTES
+			),
+			$convmap,
+			'UTF-8'
+		)
+	);
 	libxml_clear_errors();
 
 	$body                  = $dom->getElementsByTagName( 'body' )->item( 0 );
