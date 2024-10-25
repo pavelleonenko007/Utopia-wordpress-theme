@@ -20,6 +20,17 @@ Description:
 
 .rich-right-side p em {
 	font-style: italic;
+
+	color: black;
+}
+
+.rich-right-side p strong {
+	font-weight: 400;
+	color: #757575;
+}
+
+.rich-right-side p strong em {
+	color: #757575;
 }
 
 .barba-container.inner-page[data-barba-namespace='single-concert']

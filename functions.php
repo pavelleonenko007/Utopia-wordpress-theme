@@ -1140,21 +1140,173 @@ function utopia_get_page_title( $post = null ) {
 
 
 function utopia_wrap_long_text( $text ) {
-	if ( strlen( $text ) > 685 ) {
-		$trimmed_text        = substr( $text, 0, 685 );
-		$last_space_position = strrpos( $trimmed_text, ' ' );
+	// new
+	if ( ! $text ) {
+		return;
+	}
 
-		if ( false !== $last_space_position ) {
-			$trimmed_text = substr( $trimmed_text, 0, $last_space_position );
+	$max_length = 685;
+
+	// Используем DOMDocument для корректной работы с HTML
+	$dom = new DOMDocument();
+	libxml_use_internal_errors( true );
+	$dom->loadHTML( mb_convert_encoding( $text, 'HTML-ENTITIES', 'UTF-8' ) );
+	libxml_clear_errors();
+
+	$body                  = $dom->getElementsByTagName( 'body' )->item( 0 );
+	$truncated_content     = '';
+	$remaining_content     = '';
+	$current_length        = 0;
+	$truncated             = false;
+	$nodes_to_be_visible   = array();
+	$nodes_to_be_invisible = array();
+
+	foreach ( $body->childNodes as $node ) {
+		if ( $node->nodeType !== XML_ELEMENT_NODE ) {
+			continue;
 		}
 
-		$remaining_text      = substr( $text, $last_space_position );
-		$concert_more_text   = '<span class="concert-more-text" hidden>' . $remaining_text . '</span>';
-		$concert_more_button = ' <button class="concert-more-button" onclick="this.previousElementSibling.hidden = false; this.hidden = true;">' . pll__( 'more' ) . '</button>';
-		return $trimmed_text . $concert_more_text . $concert_more_button;
-	} else {
-		return $text;
+		$node_content = $dom->saveHTML( $node );
+		$node_length  = mb_strlen( strip_tags( $node_content ) );
+
+		if ( $current_length + $node_length < $max_length ) {
+			$nodes_to_be_visible[] = $node;
+		} else {
+			$truncated               = true;
+			$nodes_to_be_invisible[] = $node;
+		}
+
+		$current_length += $node_length;
 	}
+
+	// $nodes_to_be_visible   = array_filter(
+	// $nodes_to_be_visible,
+	// function ( $node ) {
+	// return $node->nodeType === XML_ELEMENT_NODE;
+	// }
+	// );
+	// $nodes_to_be_invisible = array_filter(
+	// $nodes_to_be_visible,
+	// function ( $node ) {
+	// return $node->nodeType === XML_ELEMENT_NODE;
+	// }
+	// );
+
+	// var_dump(
+	// array_map(
+	// function ( $node ) use ( $dom ) {
+	// return $dom->saveHTML( $node );
+	// },
+	// $nodes_to_be_visible
+	// ),
+	// array_map(
+	// function ( $node ) use ( $dom ) {
+	// return $dom->saveHTML( $node );
+	// },
+	// $nodes_to_be_invisible
+	// )
+	// );
+	// var_dump(
+	// $nodes_to_be_visible,
+	// $nodes_to_be_invisible
+	// );
+
+	if ( $truncated ) {
+		$last_visible_node = end( $nodes_to_be_visible );
+
+		$node_content = strip_tags( $dom->saveHTML( $last_visible_node ) );
+		$last_char    = $node_content[ strlen( $node_content ) - 1 ];
+
+		if ( ! preg_match( '/\s/', $last_char ) ) {
+			$last_visible_node->appendChild( $dom->createTextNode( ' ' ) );
+		}
+
+		$button = $dom->createElement( 'button', pll__( 'more' ) );
+		$button->setAttribute( 'class', 'concert-more-button' );
+		$button->setAttribute( 'onclick', 'this.parentElement.nextElementSibling.hidden = false; this.hidden = true;' );
+		$last_visible_node->appendChild( $button );
+	}
+
+	foreach ( $nodes_to_be_visible as $node ) {
+		$truncated_content .= $dom->saveHTML( $node );
+	}
+
+	foreach ( $nodes_to_be_invisible as $node ) {
+		$remaining_content .= $dom->saveHTML( $node );
+	}
+
+	return $truncated_content . '<div hidden>' . $remaining_content . '</div>';
+
+	foreach ( $body->childNodes as $node ) {
+		if ( $truncated ) {
+			$remaining_content .= $dom->saveHTML( $node );
+		} else {
+			$node_content = $dom->saveHTML( $node );
+			$node_length  = mb_strlen( strip_tags( $node_content ) );
+
+			if ( $current_length + $node_length > $max_length ) {
+				$truncated = true;
+				$button    = $dom->createElement( 'button', pll__( 'more' ) );
+				$button->setAttribute( 'class', 'concert-more-button' );
+				$node->appendChild( $button );
+
+				$remaining_content .= $node_content;
+			} else {
+				$truncated_content .= $node_content;
+				$current_length    += $node_length;
+			}
+		}
+	}
+
+	// var_dump( $truncated_content, $remaining_content );
+
+	echo '<div class="acf-content">';
+	echo $truncated_content;
+
+	if ( $remaining_content ) {
+		echo '<div class="remaining-content" style="display: none;">' . $remaining_content . '</div>';
+	}
+
+	echo '</div>';
+
+	// // JavaScript для обработки клика по кнопке
+	// echo "
+	// <script>
+	// document.addEventListener('DOMContentLoaded', function() {
+	// var button = document.querySelector('.show-more');
+	// var remainingContent = document.querySelector('.remaining-content');
+
+	// if (button && remainingContent) {
+	// button.addEventListener('click', function() {
+	// if (remainingContent.style.display === 'none') {
+	// remainingContent.style.display = 'block';
+	// button.textContent = 'Show less';
+	// } else {
+	// remainingContent.style.display = 'none';
+	// button.textContent = 'Show more';
+	// }
+	// });
+	// }
+	// });
+	// </script>
+	// ";
+
+	// old
+	// if ( strlen( $text ) > 685 ) {
+	// $trimmed_text        = substr( $text, 0, 685 );
+	// $last_space_position = strrpos( $trimmed_text, ' ' );
+
+	// if ( false !== $last_space_position ) {
+	// $trimmed_text = substr( $trimmed_text, 0, $last_space_position );
+	// }
+
+	// $remaining_text      = substr( $text, $last_space_position );
+	// $concert_more_text   = '<span class="concert-more-text" hidden>' . $remaining_text . '</span>';
+	// $concert_more_button = ' <button class="concert-more-button" onclick="this.previousElementSibling.hidden = false; this.hidden = true;">' . pll__( 'more' ) . '</button>';
+	// return $trimmed_text . $concert_more_text . $concert_more_button;
+	// } else {
+	// return $text;
+	// }
 }
 
 function utopia_get_language_switcher() {
