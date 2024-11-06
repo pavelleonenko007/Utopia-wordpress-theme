@@ -766,6 +766,51 @@ function utopia_format_email_link( string $email, string $subject = '' ): string
 	return $email_link;
 }
 
+// function cf_search_join( $join ) {
+// 	global $wpdb;
+
+// 	if ( is_search() ) {    
+// 			$join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
+// 	}
+
+// 	return $join;
+// }
+// add_filter('posts_join', 'cf_search_join' );
+
+// /**
+// * Modify the search query with posts_where
+// *
+// * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_where
+// */
+// function cf_search_where( $where ) {
+// 	global $pagenow, $wpdb;
+
+// 	if ( is_search() ) {
+// 			$where = preg_replace(
+// 					"/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+// 					"(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->postmeta.".meta_value LIKE $1)", $where );
+// 	}
+
+// 	return $where;
+// }
+// add_filter( 'posts_where', 'cf_search_where' );
+
+// /**
+// * Prevent duplicates
+// *
+// * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_distinct
+// */
+// function cf_search_distinct( $where ) {
+// 	global $wpdb;
+
+// 	if ( is_search() ) {
+// 			return "DISTINCT";
+// 	}
+
+// 	return $where;
+// }
+// add_filter( 'posts_distinct', 'cf_search_distinct' );
+
 add_action( 'wp_ajax_search', 'utopia_search_site_content_via_ajax' );
 add_action( 'wp_ajax_nopriv_search', 'utopia_search_site_content_via_ajax' );
 function utopia_search_site_content_via_ajax() {
@@ -776,19 +821,19 @@ function utopia_search_site_content_via_ajax() {
 	$query_args = array(
 		'post_type'  => array( 'post', 'utopian', 'concert' ),
 		's'          => sanitize_text_field( wp_unslash( $_POST['s'] ) ),
-		'meta_query' => array(
-			'relation' => 'OR',
-			array(
-				'key'     => 'start_date',
-				'compare' => 'NOT EXISTS',
-			),
-			array(
-				'key'     => 'start_date',
-				'value'   => gmdate( 'Y-m-d H:i:s' ),
-				'type'    => 'DATETIME',
-				'compare' => '>=',
-			),
-		),
+		// 'meta_query' => array(
+		// 	'relation' => 'OR',
+		// 	array(
+		// 		'key'     => 'start_date',
+		// 		'compare' => 'NOT EXISTS',
+		// 	),
+		// 	array(
+		// 		'key'     => 'start_date',
+		// 		'value'   => gmdate( 'Y-m-d H:i:s' ),
+		// 		'type'    => 'DATETIME',
+		// 		'compare' => '>=',
+		// 	),
+		// ),
 	);
 
 	$query = new WP_Query( $query_args );
