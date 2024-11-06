@@ -354,7 +354,7 @@
             "aria-label": "",
             "type": "textarea",
             "instructions": "Add upcoming concert with this utopian.",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -362,7 +362,7 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": 100,
+            "maxlength": "",
             "rows": "",
             "placeholder": "",
             "new_lines": "br"
@@ -406,5 +406,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1729583801
+    "modified": 1730896339
 }
