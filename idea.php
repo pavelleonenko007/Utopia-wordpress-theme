@@ -179,7 +179,7 @@ $video_description = ! empty( $video_block['video_description'] ) ? $video_block
 												?>
 												<div class="p-28-120 _3"><?php the_title(); ?></div>
 												<div class="link-shos ll _3 hvr">
-													<div class="btn-xtx"><?php pll_e( 'read article' ); ?></div>
+													<div class="btn-xtx"><?php pll_e( 'read the article' ); ?></div>
 													<div class="hover-liner"></div>
 												</div>
 											</a>

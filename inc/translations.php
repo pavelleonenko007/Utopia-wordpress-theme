@@ -28,7 +28,7 @@ pll_register_string( 'header', 'What are you looking for?', 'header', true );
 // Idea.
 pll_register_string( 'idea', 'Our world', 'idea', true );
 pll_register_string( 'idea', 'Article', 'idea', true );
-pll_register_string( 'idea', 'read article', 'idea', true );
+pll_register_string( 'idea', 'read the article', 'idea', true );
 pll_register_string( 'idea', 'load more', 'idea', true );
 
 // Index.
