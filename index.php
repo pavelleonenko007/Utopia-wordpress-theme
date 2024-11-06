@@ -879,7 +879,7 @@ $photo_8 = get_field( 'photo_8' );
 					?>
 					<div class="bottom-home">
 						<a href="<?php echo esc_url( get_post_type_archive_link( 'concert' ) ); ?>" class="link-shos bottmer hvr w-inline-block">
-							<div class="btn-xtx"><?php pll_e( 'discover upcoming tour' ); ?></div>
+							<div class="btn-xtx"><?php pll_e( 'discover the upcoming tour' ); ?></div>
 							<div class="hover-liner"></div>
 						</a>
 						<div class="marq-mom">

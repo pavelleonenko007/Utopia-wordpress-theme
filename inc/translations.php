@@ -38,7 +38,7 @@ pll_register_string( 'index', 'Utopians', 'index', true );
 pll_register_string( 'index', 'Utopia is gathering wait till first bar', 'index', true );
 pll_register_string( 'index', 'Zoom and drag to navigate', 'index', true );
 pll_register_string( 'index', 'Concerts', 'index', true );
-pll_register_string( 'index', 'discover upcoming tour', 'index', true );
+pll_register_string( 'index', 'discover the upcoming tour', 'index', true );
 
 // Single Concert.
 pll_register_string( 'single-concert', 'all concerts', 'single-concert', true );
