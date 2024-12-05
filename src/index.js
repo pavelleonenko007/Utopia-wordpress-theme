@@ -408,7 +408,10 @@ function initBarba() {
 	barba.init({
 		debug: true,
 		prevent: ({ el }) =>
-			el.closest('#wpadminbar') || el.closest('.barba-prevent'),
+			el.closest('#wpadminbar') ||
+			el.closest('.barba-prevent') ||
+			el.closest('.mgbutton') ||
+			el.closest('.moove-gdpr-tab-nav'),
 		views: [
 			{
 				namespace: 'idea',
@@ -646,6 +649,13 @@ function initBarba() {
 						},
 					});
 				},
+			},
+			{
+				name: 'self',
+				enter() {
+					// create your self transition here
+				},
+				leave() {},
 			},
 		],
 	});
