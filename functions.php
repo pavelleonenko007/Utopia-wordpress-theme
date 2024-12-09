@@ -1512,4 +1512,6 @@ function utopia_utopians_archive_page( $query ) {
 	}
 }
 
+remove_action( 'wp_head', 'wp_print_auto_sizes_contain_css_fix', 1 );
+
 require_once get_template_directory() . '/inc/translations.php';
