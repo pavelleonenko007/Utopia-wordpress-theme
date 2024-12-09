@@ -6,6 +6,8 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+
+$current_language = pll_current_language();
 ?>
 
 <footer class="footer">
@@ -80,6 +82,19 @@ defined( 'ABSPATH' ) || exit;
 				<?php foreach ( $emails as $email ) : ?>
 					<a href="<?php echo esc_url( utopia_format_email_link( $email['email'] ) ); ?>" class="foo-text-link w-inline-block">
 						<div><?php echo esc_html( $email['email'] ); ?></div>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		<?php
+		$footer_menu_name  = 'Footer menu ' . strtolower( $current_language );
+		$footer_menu_items = wp_get_nav_menu_items( $footer_menu_name );
+		if ( ! empty( $footer_menu_items ) ) :
+			?>
+			<div class="vert foo-vert forzi">
+				<?php foreach ( $footer_menu_items as $footer_menu_item ) : ?>
+					<a href="<?php echo esc_url( $footer_menu_item->url ); ?>" class="foo-text-link _2 w-inline-block">
+						<div><?php echo esc_html( $footer_menu_item->title ); ?></div>
 					</a>
 				<?php endforeach; ?>
 			</div>
