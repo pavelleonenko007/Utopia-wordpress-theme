@@ -7,11 +7,17 @@
 
 defined( 'ABSPATH' ) || exit;
 
+global $post;
+
+$extra_classes = array();
+
+$extra_classes[] = 'post-' . $post->post_name;
+
 get_header(
 	null,
 	array(
 		'data-wf-page'                  => '665723f572caecd02591aa75',
-		'barba-container-extra-classes' => 'inner-page',
+		'barba-container-extra-classes' => 'inner-page ' . implode( ' ', $extra_classes ),
 		'barba-namespace'               => 'simple-page',
 	)
 );
