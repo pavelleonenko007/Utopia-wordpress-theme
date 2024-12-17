@@ -1,0 +1,24 @@
+.legal-wrapper {
+  padding-top: 109rem;
+  padding-bottom: 84rem;
+  width: 100%;
+  max-width: 642rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 54rem;
+  font-size: 24rem;
+  line-height: 28.8rem;
+
+  strong {
+    font-weight: 400;
+    color: #757575;
+  }
+
+  @include mobile {
+    padding-top: 57rem;
+    padding-right: 24rem;
+    font-size: 20rem;
+    line-height: 24rem;
+  }
+}

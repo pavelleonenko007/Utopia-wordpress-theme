@@ -7,41 +7,44 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$current_language = pll_current_language();
+$hide_subscribe_form = ! empty( $args['hide_subscribe_form'] ) ? $args['hide_subscribe_form'] : false;
+$current_language    = pll_current_language();
 ?>
 
 <footer class="footer">
+	<?php if ( ! $hide_subscribe_form ) : ?>
 	<div class="sub-from">
 		<form id="subscribe-form" class="form" data-wf-page-id="65ef0726d2531bad1f44ea0e" data-wf-element-id="175357ac-dc97-ffe8-4592-427bd0633297">
-			<p class="p-24-120 subs"><?php pll_e( 'Subscribe to be the first to know about upcoming concerts' ); ?></p>
-			<input 
-				class="sub-input w-input" 
-				maxlength="256" 
-				name="email" 
-				placeholder="<?php pll_e( 'your email' ); ?>" 
-				type="email" 
-				id="email" 
-				pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
-				required 
-				autocomplete="off"
-				oninput="this.classList.remove('sub-input--error');"
-			>
-			<input type="hidden" name="action" value="subscribe">
-			<?php wp_nonce_field( 'ajax_subscribe', 'subscribe_nonce', false ); ?>
-			<button class="send-btn">
-				<div class="pre-send w-embed">
-					<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M2.07797 11.0802L2.07797 9.08016L14.078 9.08016L8.57797 3.58016L9.99797 2.16016L17.918 10.0802L9.99797 18.0002L8.57797 16.5802L14.078 11.0802L2.07797 11.0802Z" fill="#757575"></path>
-					</svg>
-				</div>
-				<div class="done-send w-embed">
-					<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M1.83203 10.0001L8.8306 15.8323L18.162 4.16797" stroke="#FFFAF6" stroke-width="2.33286"></path>
-					</svg>
-				</div>
-			</button>
+		<p class="p-24-120 subs"><?php pll_e( 'Subscribe to be the first to know about upcoming concerts' ); ?></p>
+		<input 
+			class="sub-input w-input" 
+			maxlength="256" 
+			name="email" 
+			placeholder="<?php pll_e( 'your email' ); ?>" 
+			type="email" 
+			id="email" 
+			pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+			required 
+			autocomplete="off"
+			oninput="this.classList.remove('sub-input--error');"
+		>
+		<input type="hidden" name="action" value="subscribe">
+		<?php wp_nonce_field( 'ajax_subscribe', 'subscribe_nonce', false ); ?>
+		<button class="send-btn">
+		<div class="pre-send w-embed">
+			<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M2.07797 11.0802L2.07797 9.08016L14.078 9.08016L8.57797 3.58016L9.99797 2.16016L17.918 10.0802L9.99797 18.0002L8.57797 16.5802L14.078 11.0802L2.07797 11.0802Z" fill="#757575"></path>
+			</svg>
+		</div>
+		<div class="done-send w-embed">
+			<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M1.83203 10.0001L8.8306 15.8323L18.162 4.16797" stroke="#FFFAF6" stroke-width="2.33286"></path>
+			</svg>
+		</div>
+		</button>
 		</form>
 	</div>
+	<?php endif; ?>
 	<div class="div-block-5">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="foo-logo w-inline-block">
 			<div class="html-embed w-embed">
