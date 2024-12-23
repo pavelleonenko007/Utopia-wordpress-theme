@@ -77,6 +77,14 @@
 		</div>
 	<?php endif; ?>
 	<?php
+		$content_responsibility = get_field( 'content_responsibility' );
+	if ( ! empty( $content_responsibility ) ) :
+		?>
+	<div class="legal-content-responsibility">
+		<?php echo wp_kses_post( $content_responsibility ); ?>
+	</div>
+	<?php endif; ?>
+	<?php
 	$disclaimer = get_field( 'disclaimer' );
 	if ( ! empty( $disclaimer ) ) :
 		?>

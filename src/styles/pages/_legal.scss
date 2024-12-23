@@ -23,6 +23,10 @@
 	}
 }
 
+.legal-content-responsibility {
+	margin-block: 23rem;
+}
+
 .legal-disclaimer {
 	display: grid;
 	row-gap: 30rem;
@@ -37,7 +41,7 @@
 	&__content {
 		display: grid;
 		row-gap: 30rem;
-		
+
 		&-item {
 			display: grid;
 			row-gap: 10rem;

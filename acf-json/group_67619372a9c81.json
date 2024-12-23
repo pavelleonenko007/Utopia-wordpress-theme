@@ -122,6 +122,26 @@
             "append": ""
         },
         {
+            "key": "field_676977e195e79",
+            "label": "Content Responsibility",
+            "name": "content_responsibility",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
             "key": "field_676966a441a24",
             "label": "Disclaimer",
             "name": "disclaimer",
@@ -208,5 +228,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1734961530
+    "modified": 1734965240
 }
