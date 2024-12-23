@@ -62,10 +62,11 @@ pll_register_string( 'footer', 'Become a part of our world by donating to us (so
 pll_register_string( 'footer', 'support the utopia', 'Polylang', true );
 pll_register_string( 'footer', 'support us', 'Polylang', true );
 
-// Legal Notice
+// Legal Notice.
 pll_register_string( 'legal-notice', 'Represented by', 'legal-notice', true );
 pll_register_string( 'legal-notice', 'Registration number', 'legal-notice', true );
 pll_register_string( 'legal-notice', 'VAT number', 'legal-notice', true );
+pll_register_string( 'legal-notice', 'Haftungsausschluss (Disclaimer)', 'legal-notice', true );
 
 // Dates.
 pll_register_string( 'date', 'Monday', 'Polylang', true );
