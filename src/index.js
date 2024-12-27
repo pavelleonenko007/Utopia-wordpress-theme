@@ -650,13 +650,6 @@ function initBarba() {
 					});
 				},
 			},
-			{
-				name: 'self',
-				enter() {
-					// create your self transition here
-				},
-				leave() {},
-			},
 		],
 	});
 
