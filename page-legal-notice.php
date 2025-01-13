@@ -18,7 +18,7 @@
 		array(
 			'data-wf-page'                  => '665723f572caecd02591aa75',
 			'barba-container-extra-classes' => 'inner-page ' . implode( ' ', $extra_classes ),
-			'barba-namespace'               => 'simple-page',
+			'barba-namespace'               => 'legal-notice',
 		)
 	);
 
